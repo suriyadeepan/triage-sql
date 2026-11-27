@@ -48,7 +48,7 @@ The current raw files total about 5.1 GB (about 99 million CSV rows, plus header
 
 - Existing: `data/raw/azraq/*.csv`, `data/raw/azraq-schema.sql`, `data/raw/azraq-relationships.yaml`, `data/raw/azraq.md`, `.gitignore`, `pyproject.toml`, `uv.lock`, `scripts/validate_azraq_relationships.py`, `scripts/resolve_relationships_azraq.py`, and existing tests.
 - Planned additions: PostgreSQL initialization/import and safe-data checks; full relationship validation/reporting; evaluation and example schemas/data; leakage checks; PostgreSQL service configuration; documentation and regression tests.
-- Dependencies: Python 3.14 with `uv`; PostgreSQL server and a Python PostgreSQL driver (version choice to be pinned during implementation); existing pandas, polars, PyYAML, and pytest dependencies.
+- Dependencies: Python 3.14 with `uv`; PostgreSQL 18.7 container pinned by image digest; Psycopg 3.3.9 binary package; existing pandas, polars, PyYAML, and pytest dependencies.
 
 ## Architecture compatibility matrix
 
@@ -57,8 +57,9 @@ The current raw files total about 5.1 GB (about 99 million CSV rows, plus header
 | Python | VERIFIED | `pyproject.toml` requires Python `>=3.14`; local `uv run --no-sync python --version` reports 3.14.10. Keep commands under `uv`. |
 | Host CPU/OS | VERIFIED | Local host is macOS 15-era Darwin on ARM64; `uv` is native aarch64. |
 | Existing Python dependencies | VERIFIED | Project dependencies are managed by `uv` and pinned in `uv.lock`; PostgreSQL driver is not currently declared. |
-| PostgreSQL server/runtime | UNKNOWN | `psql` is unavailable. Docker CLI is installed, but daemon and PostgreSQL image/runtime compatibility have not been checked. Pin and verify a PostgreSQL image/server version during implementation. |
-| Deployment target/CI | UNKNOWN | No deployment configuration or CI workflow is present in the inspected repository. Establish a repeatable PostgreSQL service and smoke check in the implementation plan execution. |
+| PostgreSQL server/runtime | VERIFIED | Docker Engine 29.5.2 runs the official PostgreSQL 18.7 bookworm image pinned by digest `sha256:e742a2668255221388004f3a42b6150a2103f5054ab3a4a93ae9e4f01e551c35` on local ARM64. Full snapshot import and live schema/type/count/password checks succeeded. |
+| PostgreSQL Python driver | VERIFIED | Psycopg 3.3.9 binary package is locked by `uv`; live COPY integration checks pass on Python 3.14 / PostgreSQL 18.7. |
+| Deployment target/CI | UNKNOWN | No CI workflow is present in the inspected repository. A repeatable local Docker service script exists; add CI/runtime smoke checks if a target is configured. Docker Compose is unavailable locally. |
 | Source dataset safety | USER-CONFIRMED | User confirms the current CSV data is anonymized; this was not independently audited during planning. Preserve that provenance, exclude `users.password`, and avoid exposing row values in logs or generated artifacts. |
 
 ## Risks and mitigations

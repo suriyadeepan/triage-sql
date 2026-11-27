@@ -13,16 +13,16 @@ Tasks are the canonical status source. Lineage: requirement → plan → task �
 - [x] **T001.2** Exclude `users.password` from loaded/indexed/generated content, replacing it with a safe placeholder only if required by DDL; record user confirmation of anonymization in manifest provenance. **Accept:** automated checks demonstrate password values are absent from outputs and logs. **Depends on:** T001.1.
 - [x] **T001.3** Resolve Git ignore/storage handling for reproducibility artifacts and approved anonymized data without staging the full raw tree blindly. **Accept:** exact versioned artifacts are narrow-allowlisted and sized; raw inputs remain reproducible via recorded checksums or a documented storage mechanism. **Depends on:** T001.1.
 
-## T002 — PostgreSQL initialization [ ]
+## T002 — PostgreSQL initialization [x]
 
 **Requirements:** R001.1–R001.2, R002.1, R003.3–R003.4, A001–A002
 **Plan:** P002.1–P002.3
 **Files:** new `scripts/` initializer, PostgreSQL configuration, `pyproject.toml`, `uv.lock`, database-related tests, manifest from T001
 **Depends on:** T001
 
-- [ ] **T002.1** Add deterministic DDL-driven PostgreSQL loading with explicit CSV encoding, NULL/type handling, batched import, and failure reporting. **Accept:** repeatable initialization reproduces table/column types and row counts; DDL remains free of PK/FK constraints. **Depends on:** T001.1.
-- [ ] **T002.2** Pin and configure PostgreSQL server and Python driver compatible with the project `uv` environment. **Accept:** automated setup starts pinned PostgreSQL and executes a schema-load smoke check on supported host/CI runtime. **Depends on:** T002.1.
-- [ ] **T002.3** Record database snapshot ID, source checksums, versions, counts, and subsetting in output. **Accept:** same source and config yield verifiable manifest identity and counts. **Depends on:** T002.1.
+- [x] **T002.1** Add deterministic DDL-driven PostgreSQL loading with explicit CSV encoding, NULL/type handling, batched import, and failure reporting. **Accept:** repeatable initialization reproduces table/column types and row counts; DDL remains free of PK/FK constraints. **Depends on:** T001.1.
+- [x] **T002.2** Pin and configure PostgreSQL server and Python driver compatible with the project `uv` environment. **Accept:** automated setup starts pinned PostgreSQL and executes a schema-load smoke check on supported host/CI runtime. **Depends on:** T002.1.
+- [x] **T002.3** Record database snapshot ID, source checksums, versions, counts, and subsetting in output. **Accept:** same source and config yield verifiable manifest identity and counts. **Depends on:** T002.1.
 
 ## T003 — Full relationship validation and JOIN eligibility [ ]
 
