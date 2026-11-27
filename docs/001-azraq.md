@@ -64,3 +64,7 @@
 
 - Added `docs/tutorial-001-azraq.md` with source prerequisites, snapshot identity, PostgreSQL setup, safe loading, relationship/JOIN policy, evaluation item semantics, generation commands, and leakage validation. Added a README entry point. The tutorial describes future unsupported/ambiguous items as labels without fabricated SQL; the current 120 evaluation items are supported and executed.
 - Reviewed documented paths and commands against the versioned manifests and generator scripts. The journal keeps implementation, automated test, and live runtime evidence in separate statements; task status remains solely in the canonical TODO.
+
+### 2026-11-27 — Generated dataset locations
+
+- Confirmed the generated artifacts are saved in the repository: 120 evaluation items in `data/evaluation/azraq-evaluation.jsonl`; 24 Text-to-SQL examples across `data/examples/azraq/text_to_sql/{train,validation,heldout}.jsonl`; and 24 SQL-correction examples across `data/examples/azraq/sql_correction/{train,validation,heldout}.jsonl`. The two example corpora each split into 15 train, 5 validation, and 4 held-out patterns. These files are versioned and committed on `feat/azraq-data`.
