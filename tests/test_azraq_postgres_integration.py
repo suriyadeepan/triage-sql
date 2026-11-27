@@ -8,6 +8,8 @@ from pathlib import Path
 import psycopg
 
 from scripts.azraq_init import copy_table
+from scripts.validate_azraq_relationships_pg import validate_one
+from triage_sql.relationships import Endpoint, Relationship, relationship_join_clause
 
 
 TEST_DSN = os.environ.get("AZRAQ_TEST_DSN")
@@ -61,6 +63,63 @@ class PostgreSQLCopyIntegrationTests(unittest.TestCase):
                         )
                     row = conn.execute("SELECT id, name FROM clients").fetchone()
                     self.assertEqual(row, (18, "Synthetic, Group"))
+
+    def test_generated_join_applies_target_subtype_filter(self):
+        with psycopg.connect(TEST_DSN) as conn:
+            expected = {
+                "collaterals.owner_id__clients.id": ("owner_id", None),
+                "groups_members.group_id__clients.id": ("group_id", "Group"),
+                "groups_members.member_id__clients.id": ("member_id", "Individual"),
+                "nsg_meetings.group_id__clients.id": ("group_id", "NSG"),
+            }
+            for relationship_id, (source_column, subtype) in expected.items():
+                relationship = Relationship(
+                    id=relationship_id,
+                    source=Endpoint(relationship_id.split(".")[0], source_column),
+                    target=Endpoint("clients", "id"),
+                    cardinality="many_to_one",
+                    confidence=1.0,
+                    status="validated",
+                    evidence=("full_postgresql_validation", "semantic_review"),
+                    target_filter=("type", subtype) if subtype else None,
+                    metadata={"semantic_review": "Reviewed"},
+                )
+                source_alias = "src"
+                rendered = relationship_join_clause(relationship, source_alias, "client").as_string(conn)
+                base = f'JOIN "clients" AS "client" ON "src"."{source_column}" = "client"."id"'
+                suffix = f" AND \"client\".\"type\" = '{subtype}'" if subtype else ""
+                self.assertEqual(rendered, base + suffix)
+
+    def test_relationship_report_counts_nulls_orphans_duplicates_and_subtypes(self):
+        relationship = Relationship(
+            id="source_fixture.client_id__target_fixture.id",
+            source=Endpoint("source_fixture", "client_id"),
+            target=Endpoint("target_fixture", "id"),
+            cardinality="many_to_one",
+            confidence=1.0,
+            status="validated",
+            evidence=("full_postgresql_validation", "semantic_review"),
+            target_filter=("type", "Group"),
+            metadata={"semantic_review": "Reviewed"},
+        )
+        with psycopg.connect(TEST_DSN) as conn:
+            with conn.transaction():
+                conn.execute("CREATE TEMP TABLE source_fixture (client_id BIGINT)")
+                conn.execute("INSERT INTO source_fixture VALUES (1), (1), (2), (NULL), (3)")
+                conn.execute("CREATE TEMP TABLE target_fixture (id BIGINT, type TEXT)")
+                conn.execute("INSERT INTO target_fixture VALUES (1, 'Group'), (1, 'Group'), (2, 'Individual')")
+                report = validate_one(conn, relationship, "pg_temp")
+
+        self.assertEqual(report["coverage"], "full")
+        self.assertEqual(report["source_rows"], 5)
+        self.assertEqual(report["source_null_count"], 1)
+        self.assertEqual(report["matched_source_rows"], 2)
+        self.assertEqual(report["orphan_source_rows"], 1)
+        self.assertEqual(report["subtype_mismatch_count"], 1)
+        self.assertEqual(report["target_null_count"], 0)
+        self.assertEqual(report["target_duplicate_keys"], 1)
+        self.assertEqual(report["filtered_target_duplicate_keys"], 1)
+        self.assertTrue(report["join_eligible"])
 
 
 if __name__ == "__main__":

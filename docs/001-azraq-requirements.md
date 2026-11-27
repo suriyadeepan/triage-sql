@@ -20,7 +20,7 @@
 - **R002.3** Do not use `needs_review` or merely `inferred` edges for JOIN generation; require reviewed `validated` status.
 - **R002.4** Preserve the four profiled `clients.type` ranges as evidence only: Individual 1–2,800,000; Group 2,800,001–3,200,000; NSG 3,200,001–3,400,000; Corporate 3,400,001–4,000,000.
 - **R002.5** Preserve subtype-aware links: `collaterals.owner_id` → `clients.id` (any type); `groups_members.group_id` → `clients.id` (`type='Group'`); `groups_members.member_id` → `clients.id` (`type='Individual'`); `nsg_meetings.group_id` → `clients.id` (`type='NSG'`). Keep all other YAML relationships and evidence.
-- **R002.6** YAML records 1,000-row randomized samples per source for these four links (seed `20261127`, zero null/nonmatch in each sample), plus manual full-file subtype counts; full null/orphan validation is explicitly `not_performed`.
+- **R002.6** Preserve the original 1,000-row randomized samples per source for these four links (seed `20261127`, zero null/nonmatch in each sample) and manual full-file subtype counts as distinct evidence. The original full null/orphan state was `not_performed`; update current status only when a separate full-coverage report supports it, retaining the initial state for provenance.
 - **R002.7** Promote relationships only after checking target-key uniqueness, nulls, orphans, subtype mismatches, and semantics.
 
 ### R003 — Data safety and reproducibility

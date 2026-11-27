@@ -17,7 +17,7 @@ The current raw files total about 5.1 GB (about 99 million CSV rows, plus header
 ### P002 — Reproducible PostgreSQL initialization
 
 - **P002.1** Add a versioned initializer/import command using the authoritative DDL and raw CSV directory, with deterministic encoding, NULL handling, type handling, and clear row-count/error reporting.
-- **P002.2** Record dataset/schema versions, per-table row counts, source checksums, snapshot ID, and any sampling/subsetting in a manifest.
+- **P002.2** Record dataset/schema versions, per-table row counts, source checksums, snapshot ID, and any sampling/subsetting in a manifest. Compute the database snapshot ID from DDL plus CSV hashes; record the relationship YAML hash separately so relationship review/status updates do not require reloading the database.
 - **P002.3** Provide a repeatable local PostgreSQL environment with a pinned server version and documented configuration; do not add PK/FK constraints.
 
 ### P003 — Relationship validation and JOIN eligibility
@@ -66,7 +66,7 @@ The current raw files total about 5.1 GB (about 99 million CSV rows, plus header
 
 - **Sensitive values:** use the user-confirmed anonymized dataset, omit passwords, and prevent row values from appearing in logs or generated artifacts.
 - **Scale and local resources:** the CSVs total approximately 99 million lines and the ignored compressed archive is about 1.6 GB. Use streaming/batched loading, document resource requirements, and use a deterministic documented subset for iteration where necessary.
-- **Sample evidence overstated as full integrity:** preserve the 1,000-row seed-20261127 sample evidence and manual subtype counts, but keep full null/orphan validation `not_performed` until full coverage is run.
+- **Sample evidence overstated as full integrity:** preserve the 1,000-row seed-20261127 sample evidence and manual subtype counts separately. Full validation has now been run on snapshot `ba058d581b04d1d75f63ac0a4705d98ea0d8ea54dcf577ee90b58222d082dddc`; the versioned report and YAML distinguish the initial `not_performed` state from current full-coverage results.
 - **Semantic errors from inferred edges:** require reviewed `validated` status and enforce subtype predicates in the generated JOIN metadata.
 - **Ignored source files:** `.gitignore` excludes the large raw dataset. The versioned manifest verifies exact source files but does not distribute them; future deployment requires a source-artifact provider matching the manifest or another approved large-file storage mechanism.
 

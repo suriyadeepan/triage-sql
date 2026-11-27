@@ -16,7 +16,7 @@ from pathlib import Path
 import psycopg
 from psycopg import sql
 
-from scripts.azraq_manifest import DEFAULT_DATA_DIR, DEFAULT_RELATIONSHIPS, DEFAULT_SCHEMA, parse_schema, sha256_file
+from scripts.azraq_manifest import DEFAULT_DATA_DIR, DEFAULT_RELATIONSHIPS, DEFAULT_SCHEMA, parse_schema, sha256_file, snapshot_identity
 from triage_sql.data_safety import sanitize_row
 
 
@@ -48,16 +48,13 @@ def validate_manifest(
     if sha256_file(relationships_path) != manifest.get("relationships", {}).get("sha256"):
         raise ValueError("relationship metadata checksum does not match the manifest")
 
-    identity = hashlib.sha256()
-    identity.update(manifest["schema"]["sha256"].encode("ascii"))
-    identity.update(manifest["relationships"]["sha256"].encode("ascii"))
+    table_records = {}
     for table, record in sorted(manifest["tables"].items()):
         path = data_dir / f"{table}.csv"
         if not path.is_file() or sha256_file(path) != record.get("sha256"):
             raise ValueError(f"source checksum mismatch for table {table}")
-        identity.update(table.encode("utf-8"))
-        identity.update(record["sha256"].encode("ascii"))
-    snapshot_id = identity.hexdigest()
+        table_records[table] = record
+    snapshot_id = snapshot_identity(manifest["schema"]["sha256"], table_records)
     if snapshot_id != manifest.get("dataset_snapshot_id"):
         raise ValueError("snapshot identity does not match the manifest")
 

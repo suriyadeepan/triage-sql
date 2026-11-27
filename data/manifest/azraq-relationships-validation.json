@@ -1,0 +1,1204 @@
+{
+  "coverage": "full",
+  "dataset_snapshot_id": "ba058d581b04d1d75f63ac0a4705d98ea0d8ea54dcf577ee90b58222d082dddc",
+  "postgres_version": "18.7",
+  "relationship_metadata_sha256": "23f2a0ca888442ac5c35700e3a90f282d4ef5cae4190c3521a3aa9dc94f83865",
+  "relationships": [
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 4000000,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "client_id",
+        "table": "client_locations"
+      },
+      "id": "client_locations.client_id__clients.id",
+      "join_eligible": true,
+      "matched_source_rows": 13999691,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 13999691,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 4000000,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "clients"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 23,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "economic_activity_id",
+        "table": "clients"
+      },
+      "id": "clients.economic_activity_id__economic_activities.id",
+      "join_eligible": true,
+      "matched_source_rows": 4000000,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 4000000,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 23,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "economic_activities"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 35,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "branch_id",
+        "table": "clients"
+      },
+      "id": "clients.branch_id__branches.id",
+      "join_eligible": true,
+      "matched_source_rows": 4000000,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 4000000,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 35,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "branches"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 11,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "city_id",
+        "table": "clients"
+      },
+      "id": "clients.city_id__cities.id",
+      "join_eligible": true,
+      "matched_source_rows": 4000000,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 4000000,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 11,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "cities"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 11,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "district_id",
+        "table": "cities"
+      },
+      "id": "cities.district_id__districts.id",
+      "join_eligible": true,
+      "matched_source_rows": 11,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 11,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 11,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "districts"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 14,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "region_id",
+        "table": "districts"
+      },
+      "id": "districts.region_id__regions.id",
+      "join_eligible": true,
+      "matched_source_rows": 11,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 11,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 14,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "regions"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 4000000,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "client_id",
+        "table": "loans"
+      },
+      "id": "loans.client_id__clients.id",
+      "join_eligible": true,
+      "matched_source_rows": 1540000,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 1540000,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 4000000,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "clients"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 38,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "product_id",
+        "table": "loans"
+      },
+      "id": "loans.product_id__loan_products.id",
+      "join_eligible": true,
+      "matched_source_rows": 1540000,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 1540000,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 38,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "loan_products"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.96,
+      "coverage": "full",
+      "evidence": [
+        "column_semantics",
+        "source_relationship_note"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 11000,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "officer_id",
+        "table": "loans"
+      },
+      "id": "loans.officer_id__users.id",
+      "join_eligible": false,
+      "matched_source_rows": 1540000,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": false,
+      "source_null_count": 0,
+      "source_rows": 1540000,
+      "status": "needs_review",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 11000,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "users"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 19,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "funding_line_id",
+        "table": "loans"
+      },
+      "id": "loans.funding_line_id__funding_lines.id",
+      "join_eligible": true,
+      "matched_source_rows": 1540000,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 1540000,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 19,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "funding_lines"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "column_name_semantics",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 19,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "funding_line_id",
+        "table": "loan_products"
+      },
+      "id": "loan_products.funding_line_id__funding_lines.id",
+      "join_eligible": true,
+      "matched_source_rows": 38,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 38,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 19,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "funding_lines"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 1540000,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "loan_id",
+        "table": "loan_tranches"
+      },
+      "id": "loan_tranches.loan_id__loans.id",
+      "join_eligible": true,
+      "matched_source_rows": 4452238,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 4452238,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 1540000,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "loans"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 1540000,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "loan_id",
+        "table": "loan_writeoffs"
+      },
+      "id": "loan_writeoffs.loan_id__loans.id",
+      "join_eligible": true,
+      "matched_source_rows": 30000,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 30000,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 1540000,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "loans"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 1540000,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "loan_id",
+        "table": "manual_schedule_adjustments"
+      },
+      "id": "manual_schedule_adjustments.loan_id__loans.id",
+      "join_eligible": true,
+      "matched_source_rows": 92634,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 92634,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 1540000,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "loans"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 1540000,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "loan_id",
+        "table": "delinquency_tracking"
+      },
+      "id": "delinquency_tracking.loan_id__loans.id",
+      "join_eligible": true,
+      "matched_source_rows": 1153612,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 1153612,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 1540000,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "loans"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.96,
+      "coverage": "full",
+      "evidence": [
+        "column_name_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 11000,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "responsible_user_id",
+        "table": "delinquency_tracking"
+      },
+      "id": "delinquency_tracking.responsible_user_id__users.id",
+      "join_eligible": true,
+      "matched_source_rows": 1153612,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 1153612,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 11000,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "users"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 28,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "product_id",
+        "table": "collaterals"
+      },
+      "id": "collaterals.product_id__collateral_products.id",
+      "join_eligible": true,
+      "matched_source_rows": 23626291,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 23626291,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 28,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "collateral_products"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "manual_full_data_profile",
+        "randomized_referential_sample",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 4000000,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "owner_id",
+        "table": "collaterals"
+      },
+      "id": "collaterals.owner_id__clients.id",
+      "join_eligible": true,
+      "matched_source_rows": 23626291,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": "Manual full-file subtype counts and randomized 1,000-row referential sample; full validation is reported separately.",
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 23626291,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 4000000,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "clients"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 4000000,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "client_id",
+        "table": "savings_accounts"
+      },
+      "id": "savings_accounts.client_id__clients.id",
+      "join_eligible": true,
+      "matched_source_rows": 2760000,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 2760000,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 4000000,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "clients"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 25,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "product_id",
+        "table": "savings_accounts"
+      },
+      "id": "savings_accounts.product_id__savings_products.id",
+      "join_eligible": true,
+      "matched_source_rows": 2760000,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 2760000,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 25,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "savings_products"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.96,
+      "coverage": "full",
+      "evidence": [
+        "column_name_semantics",
+        "source_relationship_note"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 11000,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "officer_id",
+        "table": "savings_accounts"
+      },
+      "id": "savings_accounts.officer_id__users.id",
+      "join_eligible": false,
+      "matched_source_rows": 2760000,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": false,
+      "source_null_count": 0,
+      "source_rows": 2760000,
+      "status": "needs_review",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 11000,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "users"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 2760000,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "savings_account_id",
+        "table": "savings_transactions"
+      },
+      "id": "savings_transactions.savings_account_id__savings_accounts.id",
+      "join_eligible": true,
+      "matched_source_rows": 21998,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 21998,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 2760000,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "savings_accounts"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "manual_full_data_profile",
+        "randomized_referential_sample",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 400000,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "group_id",
+        "table": "groups_members"
+      },
+      "id": "groups_members.group_id__clients.id",
+      "join_eligible": true,
+      "matched_source_rows": 3200000,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": "Manual full-file subtype counts and randomized 1,000-row referential sample; full validation is reported separately.",
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 3200000,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": [
+        "type",
+        "Group"
+      ],
+      "target_null_count": 0,
+      "target_rows": 4000000,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "clients"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "manual_full_data_profile",
+        "randomized_referential_sample",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 2800000,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "member_id",
+        "table": "groups_members"
+      },
+      "id": "groups_members.member_id__clients.id",
+      "join_eligible": true,
+      "matched_source_rows": 3200000,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": "Manual full-file subtype counts and randomized 1,000-row referential sample; full validation is reported separately.",
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 3200000,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": [
+        "type",
+        "Individual"
+      ],
+      "target_null_count": 0,
+      "target_rows": 4000000,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "clients"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "manual_full_data_profile",
+        "randomized_referential_sample",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 200000,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "group_id",
+        "table": "nsg_meetings"
+      },
+      "id": "nsg_meetings.group_id__clients.id",
+      "join_eligible": true,
+      "matched_source_rows": 2399988,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": "Manual full-file subtype counts and randomized 1,000-row referential sample; full validation is reported separately.",
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 2399988,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": [
+        "type",
+        "NSG"
+      ],
+      "target_null_count": 0,
+      "target_rows": 4000000,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "clients"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 30,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "role_id",
+        "table": "users"
+      },
+      "id": "users.role_id__roles.id",
+      "join_eligible": true,
+      "matched_source_rows": 11000,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 11000,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 30,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "roles"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "matching_id_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 35,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "branch_id",
+        "table": "users"
+      },
+      "id": "users.branch_id__branches.id",
+      "join_eligible": true,
+      "matched_source_rows": 11000,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 11000,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 35,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "branches"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "role_qualified_column_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 50,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "from_currency_id",
+        "table": "exchange_rates"
+      },
+      "id": "exchange_rates.from_currency_id__currencies.id",
+      "join_eligible": true,
+      "matched_source_rows": 50,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 50,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 50,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "currencies"
+      }
+    },
+    {
+      "cardinality": "many_to_one",
+      "confidence": 0.99,
+      "coverage": "full",
+      "evidence": [
+        "role_qualified_column_semantics",
+        "source_relationship_note",
+        "full_postgresql_validation",
+        "manual_semantic_review"
+      ],
+      "filtered_target_duplicate_keys": 0,
+      "filtered_target_null_count": 0,
+      "filtered_target_rows": 50,
+      "filtered_target_unique": true,
+      "from": {
+        "column": "to_currency_id",
+        "table": "exchange_rates"
+      },
+      "id": "exchange_rates.to_currency_id__currencies.id",
+      "join_eligible": true,
+      "matched_source_rows": 50,
+      "no_orphans": true,
+      "no_subtype_mismatches": true,
+      "orphan_source_rows": 0,
+      "provenance": null,
+      "semantic_reviewed": true,
+      "source_null_count": 0,
+      "source_rows": 50,
+      "status": "validated",
+      "subtype_mismatch_count": 0,
+      "target_duplicate_keys": 0,
+      "target_duplicate_rows": 0,
+      "target_filter": null,
+      "target_null_count": 0,
+      "target_rows": 50,
+      "target_unique": true,
+      "to": {
+        "column": "id",
+        "table": "currencies"
+      }
+    }
+  ],
+  "report_version": 1,
+  "schema": "azraq_ba058d581b04d1d7"
+}

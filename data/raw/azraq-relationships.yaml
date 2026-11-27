@@ -3,7 +3,7 @@
 # These are relationship metadata, NOT database-enforced constraints.
 # Confidence records the strength of the available profiling and semantic evidence.
 
-metadata_version: 1
+metadata_version: 2
 dataset: azraq
 source_schema: azraq-schema.sql
 source_observations: azraq.md
@@ -15,9 +15,9 @@ inference:
   sample_scope: first_10_rows_per_table
   limitation: >
     The source schema declares no primary keys or foreign keys. Confidence
-    scores are evidence summaries, not statistical probabilities. Four client
-    relationships below have full-file null, orphan, and subtype coverage
-    profiling recorded in profiling_evidence.
+    scores are evidence summaries, not statistical probabilities. The initial
+    four-client evidence includes randomized samples and manual full-file subtype
+    counts; current full referential results are in full_validation and its report.
 
 relationships:
   # Client and organization
@@ -26,8 +26,9 @@ relationships:
     to: {table: clients, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, source_relationship_note]
+    status: validated
+    evidence: [matching_id_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
     rationale: Each location record is associated with a client.
 
   - id: clients.economic_activity_id__economic_activities.id
@@ -35,40 +36,45 @@ relationships:
     to: {table: economic_activities, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, source_relationship_note]
+    status: validated
+    evidence: [matching_id_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   - id: clients.branch_id__branches.id
     from: {table: clients, column: branch_id}
     to: {table: branches, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, source_relationship_note]
+    status: validated
+    evidence: [matching_id_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   - id: clients.city_id__cities.id
     from: {table: clients, column: city_id}
     to: {table: cities, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, source_relationship_note]
+    status: validated
+    evidence: [matching_id_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   - id: cities.district_id__districts.id
     from: {table: cities, column: district_id}
     to: {table: districts, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, source_relationship_note]
+    status: validated
+    evidence: [matching_id_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   - id: districts.region_id__regions.id
     from: {table: districts, column: region_id}
     to: {table: regions, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, source_relationship_note]
+    status: validated
+    evidence: [matching_id_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   # Loans
   - id: loans.client_id__clients.id
@@ -76,23 +82,25 @@ relationships:
     to: {table: clients, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, source_relationship_note]
+    status: validated
+    evidence: [matching_id_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   - id: loans.product_id__loan_products.id
     from: {table: loans, column: product_id}
     to: {table: loan_products, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, source_relationship_note]
+    status: validated
+    evidence: [matching_id_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   - id: loans.officer_id__users.id
     from: {table: loans, column: officer_id}
     to: {table: users, column: id}
     cardinality: many_to_one
     confidence: 0.96
-    status: inferred
+    status: needs_review
     evidence: [column_semantics, source_relationship_note]
     rationale: Officer is interpreted as a user; validate against the business domain.
 
@@ -101,56 +109,63 @@ relationships:
     to: {table: funding_lines, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, source_relationship_note]
+    status: validated
+    evidence: [matching_id_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   - id: loan_products.funding_line_id__funding_lines.id
     from: {table: loan_products, column: funding_line_id}
     to: {table: funding_lines, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, column_name_semantics]
+    status: validated
+    evidence: [matching_id_semantics, column_name_semantics, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   - id: loan_tranches.loan_id__loans.id
     from: {table: loan_tranches, column: loan_id}
     to: {table: loans, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, source_relationship_note]
+    status: validated
+    evidence: [matching_id_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   - id: loan_writeoffs.loan_id__loans.id
     from: {table: loan_writeoffs, column: loan_id}
     to: {table: loans, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, source_relationship_note]
+    status: validated
+    evidence: [matching_id_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   - id: manual_schedule_adjustments.loan_id__loans.id
     from: {table: manual_schedule_adjustments, column: loan_id}
     to: {table: loans, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, source_relationship_note]
+    status: validated
+    evidence: [matching_id_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   - id: delinquency_tracking.loan_id__loans.id
     from: {table: delinquency_tracking, column: loan_id}
     to: {table: loans, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, source_relationship_note]
+    status: validated
+    evidence: [matching_id_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   - id: delinquency_tracking.responsible_user_id__users.id
     from: {table: delinquency_tracking, column: responsible_user_id}
     to: {table: users, column: id}
     cardinality: many_to_one
     confidence: 0.96
-    status: inferred
-    evidence: [column_name_semantics, source_relationship_note]
+    status: validated
+    evidence: [column_name_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   # Collateral
   - id: collaterals.product_id__collateral_products.id
@@ -158,18 +173,20 @@ relationships:
     to: {table: collateral_products, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, source_relationship_note]
+    status: validated
+    evidence: [matching_id_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   - id: collaterals.owner_id__clients.id
     from: {table: collaterals, column: owner_id}
     to: {table: clients, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [manual_full_data_profile, randomized_referential_sample]
+    status: validated
+    evidence: [manual_full_data_profile, randomized_referential_sample, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
     rationale: Owner IDs reference clients of any type; no subtype filter applies.
-    provenance: Manual profiling and full-file validation; details in profiling_evidence.
+    provenance: Manual full-file subtype counts and randomized 1,000-row referential sample; full validation is reported separately.
 
   # Savings
   - id: savings_accounts.client_id__clients.id
@@ -177,32 +194,36 @@ relationships:
     to: {table: clients, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, source_relationship_note]
+    status: validated
+    evidence: [matching_id_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   - id: savings_accounts.product_id__savings_products.id
     from: {table: savings_accounts, column: product_id}
     to: {table: savings_products, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, source_relationship_note]
+    status: validated
+    evidence: [matching_id_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   - id: savings_accounts.officer_id__users.id
     from: {table: savings_accounts, column: officer_id}
     to: {table: users, column: id}
     cardinality: many_to_one
     confidence: 0.96
-    status: inferred
+    status: needs_review
     evidence: [column_name_semantics, source_relationship_note]
+    rationale: Officer-to-user business meaning remains unconfirmed by the source observations.
 
   - id: savings_transactions.savings_account_id__savings_accounts.id
     from: {table: savings_transactions, column: savings_account_id}
     to: {table: savings_accounts, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, source_relationship_note]
+    status: validated
+    evidence: [matching_id_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   - id: groups_members.group_id__clients.id
     from: {table: groups_members, column: group_id}
@@ -210,10 +231,11 @@ relationships:
     target_filter: {column: type, equals: Group}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [manual_full_data_profile, randomized_referential_sample]
+    status: validated
+    evidence: [manual_full_data_profile, randomized_referential_sample, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
     rationale: Group membership rows identify a Group client.
-    provenance: Manual profiling and full-file validation; details in profiling_evidence.
+    provenance: Manual full-file subtype counts and randomized 1,000-row referential sample; full validation is reported separately.
 
   - id: groups_members.member_id__clients.id
     from: {table: groups_members, column: member_id}
@@ -221,10 +243,11 @@ relationships:
     target_filter: {column: type, equals: Individual}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [manual_full_data_profile, randomized_referential_sample]
+    status: validated
+    evidence: [manual_full_data_profile, randomized_referential_sample, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
     rationale: Group members identify Individual clients.
-    provenance: Manual profiling and full-file validation; details in profiling_evidence.
+    provenance: Manual full-file subtype counts and randomized 1,000-row referential sample; full validation is reported separately.
 
   - id: nsg_meetings.group_id__clients.id
     from: {table: nsg_meetings, column: group_id}
@@ -232,10 +255,11 @@ relationships:
     target_filter: {column: type, equals: NSG}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [manual_full_data_profile, randomized_referential_sample]
+    status: validated
+    evidence: [manual_full_data_profile, randomized_referential_sample, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
     rationale: Meeting groups identify NSG clients.
-    provenance: Manual profiling and full-file validation; details in profiling_evidence.
+    provenance: Manual full-file subtype counts and randomized 1,000-row referential sample; full validation is reported separately.
 
   # User and currency lookups
   - id: users.role_id__roles.id
@@ -243,37 +267,41 @@ relationships:
     to: {table: roles, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, source_relationship_note]
+    status: validated
+    evidence: [matching_id_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   - id: users.branch_id__branches.id
     from: {table: users, column: branch_id}
     to: {table: branches, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [matching_id_semantics, source_relationship_note]
+    status: validated
+    evidence: [matching_id_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   - id: exchange_rates.from_currency_id__currencies.id
     from: {table: exchange_rates, column: from_currency_id}
     to: {table: currencies, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [role_qualified_column_semantics, source_relationship_note]
+    status: validated
+    evidence: [role_qualified_column_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
   - id: exchange_rates.to_currency_id__currencies.id
     from: {table: exchange_rates, column: to_currency_id}
     to: {table: currencies, column: id}
     cardinality: many_to_one
     confidence: 0.99
-    status: inferred
-    evidence: [role_qualified_column_semantics, source_relationship_note]
+    status: validated
+    evidence: [role_qualified_column_semantics, source_relationship_note, full_postgresql_validation, manual_semantic_review]
+    semantic_review: "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified."
 
 unresolved_candidates: []
 
 profiling_evidence:
-  provenance: Manual profiling supplied by the user, plus full-file validation by scripts/validate_azraq_relationships.py.
+  provenance: Manual full-file subtype counts supplied by the user; randomized referential samples are recorded separately.
   client_type_counts_and_id_ranges:
     Individual: {id_min: 1, id_max: 2800000, rows: 2800000}
     Group: {id_min: 2800001, id_max: 3200000, rows: 400000}
@@ -299,8 +327,12 @@ profiling_evidence:
       groups_members.member_id: {sampled: 1000, nulls: 0, nonmatching: 0}
       nsg_meetings.group_id: {sampled: 1000, nulls: 0, nonmatching: 0}
   full_validation:
-    status: not_performed
-    reason: Random source samples do not establish complete null or orphan coverage.
+    status: performed
+    coverage: full
+    snapshot_id: ba058d581b04d1d75f63ac0a4705d98ea0d8ea54dcf577ee90b58222d082dddc
+    report: ../manifest/azraq-relationships-validation.json
+    initial_status: not_performed
+    initial_reason: Random source samples did not establish complete null or orphan coverage.
 
 validation_policy:
   inferred_relationships_are_constraints: false

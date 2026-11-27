@@ -27,6 +27,16 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def snapshot_identity(schema_hash: str, tables: dict[str, dict]) -> str:
+    """Identify data plus schema; relationship metadata is versioned separately."""
+    identity = hashlib.sha256()
+    identity.update(schema_hash.encode("ascii"))
+    for table, record in sorted(tables.items()):
+        identity.update(table.encode("utf-8"))
+        identity.update(record["sha256"].encode("ascii"))
+    return identity.hexdigest()
+
+
 def parse_schema(path: Path) -> dict[str, list[dict[str, str]]]:
     """Return DDL tables and inferred column names/types without SQL execution."""
     schema: dict[str, list[dict[str, str]]] = {}
@@ -96,17 +106,10 @@ def build_manifest(data_dir: Path, schema_path: Path, relationships_path: Path) 
 
     schema_hash = sha256_file(schema_path)
     relationships_hash = sha256_file(relationships_path)
-    identity = hashlib.sha256()
-    identity.update(schema_hash.encode("ascii"))
-    identity.update(relationships_hash.encode("ascii"))
-    for table, record in sorted(tables.items()):
-        identity.update(table.encode("utf-8"))
-        identity.update(record["sha256"].encode("ascii"))
-
     return {
         "manifest_version": 1,
         "dataset": "azraq",
-        "dataset_snapshot_id": identity.hexdigest(),
+        "dataset_snapshot_id": snapshot_identity(schema_hash, tables),
         "anonymization_provenance": "User-confirmed anonymized; not independently audited by this tool.",
         "schema": {"path": schema_path.name, "sha256": schema_hash},
         "relationships": {"path": relationships_path.name, "sha256": relationships_hash},

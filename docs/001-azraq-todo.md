@@ -24,17 +24,17 @@ Tasks are the canonical status source. Lineage: requirement → plan → task �
 - [x] **T002.2** Pin and configure PostgreSQL server and Python driver compatible with the project `uv` environment. **Accept:** automated setup starts pinned PostgreSQL and executes a schema-load smoke check on supported host/CI runtime. **Depends on:** T002.1.
 - [x] **T002.3** Record database snapshot ID, source checksums, versions, counts, and subsetting in output. **Accept:** same source and config yield verifiable manifest identity and counts. **Depends on:** T002.1.
 
-## T003 — Full relationship validation and JOIN eligibility [ ]
+## T003 — Full relationship validation and JOIN eligibility [x]
 
 **Requirements:** R002.1–R002.7, A002–A003
 **Plan:** P003.1–P003.4
-**Files:** `data/raw/azraq-relationships.yaml`, `scripts/validate_azraq_relationships.py`, new report/eligibility code and tests, database snapshot
+**Files:** `data/raw/azraq-relationships.yaml`, `scripts/validate_azraq_relationships_pg.py`, `data/manifest/azraq-relationships-validation.{json,md}`, relationship eligibility code and tests, database snapshot
 **Depends on:** T002
 
-- [ ] **T003.1** Extend relationship validation to report target uniqueness, source/target nulls, matched/orphan counts, and subtype mismatches with explicit sample/full coverage. **Accept:** machine-readable and human-readable reports disclose exact coverage and never call sample results full integrity. **Depends on:** T002.1.
-- [ ] **T003.2** Preserve endpoints, cardinality, status, confidence, evidence/provenance and filters; retain four client ID ranges as evidence; correct any wording inconsistent with `full_validation.status: not_performed`. **Accept:** metadata regression tests protect all existing relationships/evidence and required profiling details. **Depends on:** T003.1.
-- [ ] **T003.3** Gate JOIN generation on reviewed `validated` status only and apply subtype predicates to target `clients.type`, including no subtype restriction for collaterals. **Accept:** tests prove inferred/needs_review/rejected edges are excluded and each required subtype predicate is exact. **Depends on:** T003.2.
-- [ ] **T003.4** Promote any relationship only after full checks and semantic review. **Accept:** each promoted edge has uniqueness, null, orphan, subtype, and semantic evidence; otherwise status remains unvalidated. **Depends on:** T003.1, T003.2.
+- [x] **T003.1** Extend relationship validation to report target uniqueness, source/target nulls, matched/orphan counts, and subtype mismatches with explicit sample/full coverage. **Accept:** machine-readable and human-readable reports disclose exact coverage and never call sample results full integrity. **Depends on:** T002.1.
+- [x] **T003.2** Preserve endpoints, cardinality, status, confidence, evidence/provenance and filters; retain four client ID ranges and original sample/full-validation history as evidence; distinguish the initial `not_performed` state from the current full report. **Accept:** metadata regression tests protect all existing relationships/evidence and required profiling details. **Depends on:** T003.1.
+- [x] **T003.3** Gate JOIN generation on reviewed `validated` status only and apply subtype predicates to target `clients.type`, including no subtype restriction for collaterals. **Accept:** tests prove inferred/needs_review/rejected edges are excluded and each required subtype predicate is exact. **Depends on:** T003.2.
+- [x] **T003.4** Promote any relationship only after full checks and semantic review. **Accept:** each promoted edge has uniqueness, null, orphan, subtype, and semantic evidence; otherwise status remains unvalidated. **Depends on:** T003.1, T003.2.
 
 ## T004 — Fixed-snapshot NL evaluation set [ ]
 
