@@ -10,6 +10,7 @@ import psycopg
 from scripts.azraq_init import copy_table
 from scripts.validate_azraq_relationships_pg import validate_one
 from triage_sql.relationships import Endpoint, Relationship, relationship_join_clause
+from triage_sql.evaluation import generate, validate_items
 
 
 TEST_DSN = os.environ.get("AZRAQ_TEST_DSN")
@@ -17,6 +18,18 @@ TEST_DSN = os.environ.get("AZRAQ_TEST_DSN")
 
 @unittest.skipUnless(TEST_DSN, "set AZRAQ_TEST_DSN to run PostgreSQL integration checks")
 class PostgreSQLCopyIntegrationTests(unittest.TestCase):
+    def test_fixed_snapshot_evaluation_executes_every_item(self):
+        root = Path(__file__).resolve().parents[1]
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary) / "evaluation.jsonl"
+            count = generate(TEST_DSN, root / "data/manifest/azraq-postgres.json", output)
+            items = [__import__("json").loads(line) for line in output.read_text(encoding="utf-8").splitlines()]
+            snapshot = __import__("json").loads((root / "data/manifest/azraq-postgres.json").read_text())["dataset_snapshot_id"]
+            validate_items(items, snapshot)
+            self.assertEqual(count, 120)
+            self.assertTrue(all(item["execution"]["status"] == "passed" for item in items))
+            self.assertTrue(any(item["category"] == "subtype_join" for item in items))
+
     def test_users_password_is_null_after_copy(self):
         with tempfile.TemporaryDirectory() as temporary:
             source = Path(temporary) / "users.csv"

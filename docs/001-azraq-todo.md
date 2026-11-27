@@ -36,15 +36,15 @@ Tasks are the canonical status source. Lineage: requirement → plan → task �
 - [x] **T003.3** Gate JOIN generation on reviewed `validated` status only and apply subtype predicates to target `clients.type`, including no subtype restriction for collaterals. **Accept:** tests prove inferred/needs_review/rejected edges are excluded and each required subtype predicate is exact. **Depends on:** T003.2.
 - [x] **T003.4** Promote any relationship only after full checks and semantic review. **Accept:** each promoted edge has uniqueness, null, orphan, subtype, and semantic evidence; otherwise status remains unvalidated. **Depends on:** T003.1, T003.2.
 
-## T004 — Fixed-snapshot NL evaluation set [ ]
+## T004 — Fixed-snapshot NL evaluation set [x]
 
 **Requirements:** R004.1–R004.3, A004
 **Plan:** P004.1–P004.3
 **Files:** new evaluation data/schema and generator/validator scripts, fixed database manifest, tests
 **Depends on:** T002, T003
 
-- [ ] **T004.1** Create 100–200 questions covering filters, dates, aggregations, validated joins, subtype-aware joins, and supported multi-table questions. **Accept:** every item includes reference SQL, expected result, execution outcome, and fixed snapshot ID, or an explicit unsupported/ambiguous label with no fabricated SQL. **Depends on:** T003.3.
-- [ ] **T004.2** Store evaluation questions/results using anonymized data only and record provenance. **Accept:** schema and automated content checks exclude password/secrets and identify the immutable database snapshot. **Depends on:** T001.2, T002.3.
+- [x] **T004.1** Create 100–200 questions covering filters, dates, aggregations, validated joins, subtype-aware joins, and supported multi-table questions. **Accept:** every item includes reference SQL, expected result, execution outcome, and fixed snapshot ID, or an explicit unsupported/ambiguous label with no fabricated SQL. **Depends on:** T003.3.
+- [x] **T004.2** Store evaluation questions/results using anonymized data only and record provenance. **Accept:** schema and automated content checks exclude password/secrets and identify the immutable database snapshot. **Depends on:** T001.2, T002.3.
 
 ## T005 — Text-to-SQL and correction examples [ ]
 
