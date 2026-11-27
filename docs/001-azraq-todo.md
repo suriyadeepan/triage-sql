@@ -57,15 +57,15 @@ Tasks are the canonical status source. Lineage: requirement → plan → task �
 - [x] **T005.2** Parse generated SQL and execute it read-only against the fixed PostgreSQL snapshot. **Accept:** independently recorded parse/execution result exists for every example; invalid or unsafe SQL is rejected. **Depends on:** T002.2, T002.3.
 - [x] **T005.3** Separate train/validation/held-out partitions and add duplicate/template/question/SQL/result leakage detection. **Accept:** automated regression fixtures detect deliberate held-out leaks and the generated partitions pass the checker. **Depends on:** T005.1.
 
-## T006 — Automated validation, compatibility, and smoke checks [ ]
+## T006 — Automated validation, compatibility, and smoke checks [x]
 
 **Requirements:** R001.2, R002.1–R002.7, R003.1–R003.4, R004.1–R004.3, R005.1–R005.4, A001–A005
 **Plan:** P001.1–P005.3
 **Files:** `tests/`, PostgreSQL service configuration, scripts, CI/deployment configuration if present
 **Depends on:** T001–T005
 
-- [ ] **T006.1** Add unit/integration checks for schema coverage, DDL constraints, data safety, relationship validation/eligibility, evaluation execution, example execution, and leakage. **Accept:** tests pass through prescribed `uv` environment. **Depends on:** T002–T005.
-- [ ] **T006.2** Add deployment/runtime smoke validation for pinned PostgreSQL and Python 3.14; report real-world verification separately from automated tests. **Accept:** actual service start, import, and read-only query evidence recorded; limitations reported if host cannot run it. **Depends on:** T002.2.
+- [x] **T006.1** Add unit/integration checks for schema coverage, DDL constraints, data safety, relationship validation/eligibility, evaluation execution, example execution, and leakage. **Accept:** tests pass through prescribed `uv` environment. **Depends on:** T002–T005.
+- [x] **T006.2** Add deployment/runtime smoke validation for pinned PostgreSQL and Python 3.14; report real-world verification separately from automated tests. **Accept:** actual service start, import, and read-only query evidence recorded; limitations reported if host cannot run it. **Depends on:** T002.2.
 
 ## T007 — User documentation and implementation journal [ ]
 

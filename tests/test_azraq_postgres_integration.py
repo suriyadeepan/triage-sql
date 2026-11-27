@@ -12,6 +12,7 @@ from scripts.validate_azraq_relationships_pg import validate_one
 from triage_sql.relationships import Endpoint, Relationship, relationship_join_clause
 from triage_sql.evaluation import generate, validate_items
 from triage_sql.examples import generate_examples, leakage_findings
+from scripts.azraq_runtime_smoke import verify_runtime
 
 
 TEST_DSN = os.environ.get("AZRAQ_TEST_DSN")
@@ -19,6 +20,13 @@ TEST_DSN = os.environ.get("AZRAQ_TEST_DSN")
 
 @unittest.skipUnless(TEST_DSN, "set AZRAQ_TEST_DSN to run PostgreSQL integration checks")
 class PostgreSQLCopyIntegrationTests(unittest.TestCase):
+    def test_pinned_runtime_smoke(self):
+        root = Path(__file__).resolve().parents[1]
+        evidence = verify_runtime(TEST_DSN, root / "data/manifest/azraq-postgres.json")
+        self.assertEqual(evidence["postgres_version"], "18.7")
+        self.assertEqual(evidence["table_count"], 26)
+        self.assertTrue(evidence["read_only_query"])
+
     def test_fixed_snapshot_evaluation_executes_every_item(self):
         root = Path(__file__).resolve().parents[1]
         with tempfile.TemporaryDirectory() as temporary:

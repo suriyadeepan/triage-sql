@@ -53,3 +53,9 @@
 - Added deterministic pattern-level splitting and exact normalized question/SQL, expected-result hash, and pattern leakage checks. A deliberate fixture covering all four leakage types is detected.
 - Verification: `uv run pytest tests/test_examples.py` — 2 passed. `AZRAQ_TEST_DSN='postgresql://azraq:azraq_local_only@127.0.0.1:55432/azraq' uv run pytest tests/test_examples.py tests/test_azraq_postgres_integration.py` — 8 passed in 54.13s, including read-only generation against PostgreSQL 18.7 and leakage checks for each corpus.
 - Deployment/live verification: `uv run python -m scripts.generate_azraq_examples` generated all 48 examples on snapshot `ba058d581b04d1d75f63ac0a4705d98ea0d8ea54dcf577ee90b58222d082dddc`. Generated content does not reference `users.password` or unvalidated relationship IDs.
+
+### 2026-11-27 — Automated checks and runtime smoke
+
+- Added versioned-artifact regression checks for complete 26-table/column manifest coverage, constraint-free DDL, evaluation snapshot/execution metadata, secret exclusion, validated relationship provenance, and persisted split leakage. Added `scripts/azraq_runtime_smoke.py` and executable `scripts/azraq_smoke.sh` for pinned runtime checks, idempotent initialization, and a read-only database query.
+- Automated verification: `AZRAQ_TEST_DSN='postgresql://azraq:azraq_local_only@127.0.0.1:55432/azraq' uv run pytest` — 30 passed in 54.51s on Python 3.14.10 with PostgreSQL 18.7 integration enabled.
+- Live verification: the first direct smoke invocation found the new shell file lacked its executable bit; set it and reran `scripts/azraq_smoke.sh`. The PostgreSQL 18.7 service started and became ready on loopback, idempotent initialization confirmed 26 tables and 99,297,521 rows, then runtime smoke reported Python 3.14.10, PostgreSQL 18.7, 4,000,000 clients, zero non-NULL `users.password` rows, and `read_only_query: true` on snapshot `ba058d581b04d1d75f63ac0a4705d98ea0d8ea54dcf577ee90b58222d082dddc`.
