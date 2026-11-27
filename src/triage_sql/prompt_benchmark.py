@@ -15,6 +15,7 @@ from sqlglot import exp, parse
 
 from triage_sql.evaluation import _json_value
 from triage_sql.retrieval import SchemaRetriever
+from triage_sql.rerank import CohereReranker
 from triage_sql.sql_generation import SQLGenerator
 
 
@@ -88,8 +89,12 @@ def run_prompt_benchmark(
     snapshot_manifest_path: Path,
     output_path: Path,
     top_k: int = 5,
+    candidate_k: int = 20,
+    reranker: CohereReranker | None = None,
+    rerank_delay_seconds: float = 6.5,
     timeout_ms: int = 15000,
     limit: int | None = None,
+    include_full_schema: bool = True,
 ) -> dict:
     items = [json.loads(line) for line in queries_path.read_text(encoding="utf-8").splitlines()]
     items = [item for item in items if item.get("status") == "supported"]
@@ -98,13 +103,24 @@ def run_prompt_benchmark(
     snapshot = json.loads(snapshot_manifest_path.read_text(encoding="utf-8"))
     all_records = json.loads(retriever.records_path.read_text(encoding="utf-8"))
     allowed_tables = {record["table"] for record in all_records if record["kind"] == "table"}
-    strategies = {"retrieved": [], "full_schema": []}
+    if candidate_k < top_k or rerank_delay_seconds < 0:
+        raise ValueError("candidate_k must be >= top_k and rerank delay cannot be negative")
+    strategies = {"retrieved": []}
+    if include_full_schema:
+        strategies["full_schema"] = []
     with psycopg.connect(dsn) as conn:
         for item in items:
             start = time.perf_counter()
-            retrieved = retriever.search(item["question"], "hybrid", top_k, max(20, top_k))
+            retrieved = retriever.search(item["question"], "hybrid", candidate_k if reranker else top_k, candidate_k)
+            cohere_latency_ms = 0.0
+            if reranker:
+                rerank_start = time.perf_counter()
+                retrieved = reranker.rerank(item["question"], retrieved, top_k)
+                cohere_latency_ms = (time.perf_counter() - rerank_start) * 1000
             retrieval_ms = (time.perf_counter() - start) * 1000
-            contexts = {"retrieved": (retrieved, retrieval_ms), "full_schema": (all_records, 0.0)}
+            contexts = {"retrieved": (retrieved, retrieval_ms)}
+            if include_full_schema:
+                contexts["full_schema"] = (all_records, 0.0)
             for strategy, (records, schema_retrieval_ms) in contexts.items():
                 prompt = build_prompt(item["question"], records)
                 generation = generator.generate(prompt)
@@ -117,6 +133,13 @@ def run_prompt_benchmark(
                     "execution_status": "not_run",
                     "prompt_tokens": generation.input_tokens,
                     "retrieval_latency_ms": schema_retrieval_ms,
+                    "cohere_latency_ms": cohere_latency_ms,
+                    "retrieval_labels": {
+                        key: item.get(key, []) for key in (
+                            "relevant_tables", "relevant_columns", "relevant_relationships", "unresolved_relationships"
+                        )
+                    },
+                    "ranked_records": records if strategy == "retrieved" else [],
                     "generation_latency_ms": generation.latency_ms,
                     "execution_latency_ms": 0.0,
                 }
@@ -137,6 +160,8 @@ def run_prompt_benchmark(
                     entry["retrieval_latency_ms"] + entry["generation_latency_ms"] + entry["execution_latency_ms"]
                 )
                 strategies[strategy].append(entry)
+            if reranker and item is not items[-1] and rerank_delay_seconds:
+                time.sleep(rerank_delay_seconds)
 
     summary = {}
     for strategy, entries in strategies.items():
@@ -148,6 +173,7 @@ def run_prompt_benchmark(
                 "average": statistics.mean([entry["prompt_tokens"] or 0 for entry in entries]) if entries else 0,
             },
             "retrieval_latency_ms": _percentiles([entry["retrieval_latency_ms"] for entry in entries]) if entries else {},
+            "cohere_latency_ms": _percentiles([entry["cohere_latency_ms"] for entry in entries]) if entries else {},
             "generation_latency_ms": _percentiles([entry["generation_latency_ms"] for entry in entries]) if entries else {},
             "execution_latency_ms": _percentiles([entry["execution_latency_ms"] for entry in entries]) if entries else {},
             "end_to_end_latency_ms": _percentiles([entry["end_to_end_latency_ms"] for entry in entries]) if entries else {},
@@ -164,6 +190,23 @@ def run_prompt_benchmark(
                 "query_count": len(category_entries),
                 "sql_execution_accuracy": sum(entry["execution_accuracy"] for entry in category_entries) / len(category_entries),
             }
+    retrieval_metrics = {}
+    if "retrieved" in strategies:
+        from triage_sql.retrieval_benchmark import _metrics
+
+        retrieval_rows = [{
+            "id": row["id"], "category": row["category"],
+            "tags": [], "labels": row["retrieval_labels"], "ranked_records": row["ranked_records"],
+        } for row in strategies["retrieved"]]
+        metrics = _metrics(retrieval_rows)
+        recall_at_5 = _metrics([{
+            **row, "ranked_records": row["ranked_records"][:5]
+        } for row in retrieval_rows])
+        retrieval_metrics = {
+            "recall_at_5": recall_at_5["overall_recall_at_k"],
+            "mrr": metrics["overall_mrr"],
+            "query_count": len(retrieval_rows),
+        }
 
     result = {
         "dataset_snapshot_id": snapshot["dataset_snapshot_id"],
@@ -172,10 +215,14 @@ def run_prompt_benchmark(
         "generator_model": generator.model,
         "generator_reasoning_effort": getattr(generator, "reasoning_effort", None),
         "top_k": top_k,
+        "candidate_k": candidate_k,
+        "reranker": "rerank-v5.0-fast" if reranker else None,
         "query_count": len(items),
         "retrieved_schema": summary["retrieved"],
-        "full_schema": summary["full_schema"],
+        "retrieval_metrics": retrieval_metrics,
     }
+    if "full_schema" in summary:
+        result["full_schema"] = summary["full_schema"]
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(result, sort_keys=True, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return result

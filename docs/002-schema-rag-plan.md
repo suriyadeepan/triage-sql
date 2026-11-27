@@ -37,6 +37,10 @@ Expose independently configurable dense, BM25, hybrid RRF, and optional hybrid-r
 - **P004.2** Test dense, lexical, and fusion behavior independently; test stale-index detection and deterministic rebuild identity.
 - **P004.3** Record benchmark commands, environment, model/index identities, metrics, ranked-result artifacts, failures, and limitations in the feature journal.
 
+### Approved follow-up experiment scope
+
+The user narrowed T007 to Phase 1 only: compare candidate pools at `top_k=5` on the frozen SQL failure cohort, generate with `gpt-6-luna` / `low`, and execute against the fixed snapshot. Phase 2 top-k optimization and the conditional new all-120 rerun were removed from this follow-up at the user's direction. The original 120-query full-schema and retrieved-schema baselines required by R004.3/P003.3 remain recorded under T005; no additional full-set run is planned here. Three Phase 2 outputs had completed before the stop request and are retained as explicitly partial exploratory evidence in the journal, not as a completed phase or configuration recommendation.
+
 ## Affected files and dependencies
 
 - Existing inputs: `data/raw/azraq-schema.sql`, `data/raw/azraq-relationships.yaml`, `data/raw/azraq.md`; evaluation input `data/evaluation/azraq-evaluation.jsonl`.

@@ -9,6 +9,7 @@ from pathlib import Path
 from triage_sql.prompt_benchmark import run_prompt_benchmark
 from triage_sql.retrieval import DEFAULT_MODEL, SchemaRetriever, SentenceTransformerEncoder
 from triage_sql.sql_generation import OpenAIResponsesGenerator
+from triage_sql.rerank import CohereReranker
 from scripts.azraq_init import DEFAULT_DSN
 
 
@@ -21,6 +22,12 @@ def main() -> int:
     parser.add_argument("--index-dir", type=Path, default=ROOT / "data/index/azraq-schema")
     parser.add_argument("--output", type=Path, default=ROOT / "data/evaluation/azraq-sql-prompt-results.json")
     parser.add_argument("--top-k", type=int, default=5)
+    parser.add_argument("--candidate-k", type=int, default=20)
+    parser.add_argument("--queries", type=Path, default=ROOT / "data/evaluation/azraq-evaluation.jsonl",
+                        help="query JSONL; use frozen failure labels for focused experiments")
+    parser.add_argument("--rerank", action="store_true", help="apply optional Cohere reranking")
+    parser.add_argument("--rerank-delay-seconds", type=float, default=6.5)
+    parser.add_argument("--retrieved-only", action="store_true", help="skip full-schema generation strategy")
     parser.add_argument("--timeout-ms", type=int, default=15000)
     parser.add_argument("--limit", type=int, help="small smoke run; omit to process all 120 queries")
     args = parser.parse_args()
@@ -37,11 +44,15 @@ def main() -> int:
     )
     retriever.ensure_fresh()
     result = run_prompt_benchmark(
-        ROOT / "data/evaluation/azraq-evaluation.jsonl", retriever, generator, dsn,
+        args.queries, retriever, generator, dsn,
         ROOT / "data/manifest/azraq-postgres.json", args.output, args.top_k,
-        args.timeout_ms, args.limit,
+        args.candidate_k, CohereReranker() if args.rerank else None,
+        args.rerank_delay_seconds, args.timeout_ms, args.limit,
+        not args.retrieved_only,
     )
     for strategy in ("retrieved_schema", "full_schema"):
+        if strategy not in result:
+            continue
         summary = result[strategy]
         print(strategy, "accuracy", summary["sql_execution_accuracy"],
               "mean prompt tokens", summary["prompt_tokens"]["average"],
