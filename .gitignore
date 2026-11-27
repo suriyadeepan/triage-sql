@@ -1,0 +1,27 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+logs/
+
+# Virtual environments
+.venv
+
+# Test and tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# secrets
+.env
+
+# data
+data/raw/
+
+# mac crap
+.DS_Store
