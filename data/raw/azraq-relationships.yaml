@@ -1,0 +1,317 @@
+# Relationship metadata for the azraq dataset.
+#
+# These are relationship metadata, NOT database-enforced constraints.
+# Confidence records the strength of the available profiling and semantic evidence.
+
+metadata_version: 1
+dataset: azraq
+source_schema: azraq-schema.sql
+source_observations: azraq.md
+inference:
+  method:
+    - column_name_semantics
+    - referenced_table_and_key_name_match
+    - sample_value_observations
+  sample_scope: first_10_rows_per_table
+  limitation: >
+    The source schema declares no primary keys or foreign keys. Confidence
+    scores are evidence summaries, not statistical probabilities. Four client
+    relationships below have full-file null, orphan, and subtype coverage
+    profiling recorded in profiling_evidence.
+
+relationships:
+  # Client and organization
+  - id: client_locations.client_id__clients.id
+    from: {table: client_locations, column: client_id}
+    to: {table: clients, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, source_relationship_note]
+    rationale: Each location record is associated with a client.
+
+  - id: clients.economic_activity_id__economic_activities.id
+    from: {table: clients, column: economic_activity_id}
+    to: {table: economic_activities, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, source_relationship_note]
+
+  - id: clients.branch_id__branches.id
+    from: {table: clients, column: branch_id}
+    to: {table: branches, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, source_relationship_note]
+
+  - id: clients.city_id__cities.id
+    from: {table: clients, column: city_id}
+    to: {table: cities, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, source_relationship_note]
+
+  - id: cities.district_id__districts.id
+    from: {table: cities, column: district_id}
+    to: {table: districts, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, source_relationship_note]
+
+  - id: districts.region_id__regions.id
+    from: {table: districts, column: region_id}
+    to: {table: regions, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, source_relationship_note]
+
+  # Loans
+  - id: loans.client_id__clients.id
+    from: {table: loans, column: client_id}
+    to: {table: clients, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, source_relationship_note]
+
+  - id: loans.product_id__loan_products.id
+    from: {table: loans, column: product_id}
+    to: {table: loan_products, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, source_relationship_note]
+
+  - id: loans.officer_id__users.id
+    from: {table: loans, column: officer_id}
+    to: {table: users, column: id}
+    cardinality: many_to_one
+    confidence: 0.96
+    status: inferred
+    evidence: [column_semantics, source_relationship_note]
+    rationale: Officer is interpreted as a user; validate against the business domain.
+
+  - id: loans.funding_line_id__funding_lines.id
+    from: {table: loans, column: funding_line_id}
+    to: {table: funding_lines, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, source_relationship_note]
+
+  - id: loan_products.funding_line_id__funding_lines.id
+    from: {table: loan_products, column: funding_line_id}
+    to: {table: funding_lines, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, column_name_semantics]
+
+  - id: loan_tranches.loan_id__loans.id
+    from: {table: loan_tranches, column: loan_id}
+    to: {table: loans, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, source_relationship_note]
+
+  - id: loan_writeoffs.loan_id__loans.id
+    from: {table: loan_writeoffs, column: loan_id}
+    to: {table: loans, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, source_relationship_note]
+
+  - id: manual_schedule_adjustments.loan_id__loans.id
+    from: {table: manual_schedule_adjustments, column: loan_id}
+    to: {table: loans, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, source_relationship_note]
+
+  - id: delinquency_tracking.loan_id__loans.id
+    from: {table: delinquency_tracking, column: loan_id}
+    to: {table: loans, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, source_relationship_note]
+
+  - id: delinquency_tracking.responsible_user_id__users.id
+    from: {table: delinquency_tracking, column: responsible_user_id}
+    to: {table: users, column: id}
+    cardinality: many_to_one
+    confidence: 0.96
+    status: inferred
+    evidence: [column_name_semantics, source_relationship_note]
+
+  # Collateral
+  - id: collaterals.product_id__collateral_products.id
+    from: {table: collaterals, column: product_id}
+    to: {table: collateral_products, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, source_relationship_note]
+
+  - id: collaterals.owner_id__clients.id
+    from: {table: collaterals, column: owner_id}
+    to: {table: clients, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [manual_full_data_profile, randomized_referential_sample]
+    rationale: Owner IDs reference clients of any type; no subtype filter applies.
+    provenance: Manual profiling and full-file validation; details in profiling_evidence.
+
+  # Savings
+  - id: savings_accounts.client_id__clients.id
+    from: {table: savings_accounts, column: client_id}
+    to: {table: clients, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, source_relationship_note]
+
+  - id: savings_accounts.product_id__savings_products.id
+    from: {table: savings_accounts, column: product_id}
+    to: {table: savings_products, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, source_relationship_note]
+
+  - id: savings_accounts.officer_id__users.id
+    from: {table: savings_accounts, column: officer_id}
+    to: {table: users, column: id}
+    cardinality: many_to_one
+    confidence: 0.96
+    status: inferred
+    evidence: [column_name_semantics, source_relationship_note]
+
+  - id: savings_transactions.savings_account_id__savings_accounts.id
+    from: {table: savings_transactions, column: savings_account_id}
+    to: {table: savings_accounts, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, source_relationship_note]
+
+  - id: groups_members.group_id__clients.id
+    from: {table: groups_members, column: group_id}
+    to: {table: clients, column: id}
+    target_filter: {column: type, equals: Group}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [manual_full_data_profile, randomized_referential_sample]
+    rationale: Group membership rows identify a Group client.
+    provenance: Manual profiling and full-file validation; details in profiling_evidence.
+
+  - id: groups_members.member_id__clients.id
+    from: {table: groups_members, column: member_id}
+    to: {table: clients, column: id}
+    target_filter: {column: type, equals: Individual}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [manual_full_data_profile, randomized_referential_sample]
+    rationale: Group members identify Individual clients.
+    provenance: Manual profiling and full-file validation; details in profiling_evidence.
+
+  - id: nsg_meetings.group_id__clients.id
+    from: {table: nsg_meetings, column: group_id}
+    to: {table: clients, column: id}
+    target_filter: {column: type, equals: NSG}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [manual_full_data_profile, randomized_referential_sample]
+    rationale: Meeting groups identify NSG clients.
+    provenance: Manual profiling and full-file validation; details in profiling_evidence.
+
+  # User and currency lookups
+  - id: users.role_id__roles.id
+    from: {table: users, column: role_id}
+    to: {table: roles, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, source_relationship_note]
+
+  - id: users.branch_id__branches.id
+    from: {table: users, column: branch_id}
+    to: {table: branches, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [matching_id_semantics, source_relationship_note]
+
+  - id: exchange_rates.from_currency_id__currencies.id
+    from: {table: exchange_rates, column: from_currency_id}
+    to: {table: currencies, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [role_qualified_column_semantics, source_relationship_note]
+
+  - id: exchange_rates.to_currency_id__currencies.id
+    from: {table: exchange_rates, column: to_currency_id}
+    to: {table: currencies, column: id}
+    cardinality: many_to_one
+    confidence: 0.99
+    status: inferred
+    evidence: [role_qualified_column_semantics, source_relationship_note]
+
+unresolved_candidates: []
+
+profiling_evidence:
+  provenance: Manual profiling supplied by the user, plus full-file validation by scripts/validate_azraq_relationships.py.
+  client_type_counts_and_id_ranges:
+    Individual: {id_min: 1, id_max: 2800000, rows: 2800000}
+    Group: {id_min: 2800001, id_max: 3200000, rows: 400000}
+    NSG: {id_min: 3200001, id_max: 3400000, rows: 200000}
+    Corporate: {id_min: 3400001, id_max: 4000000, rows: 600000}
+  source_profile_counts:
+    collaterals.owner_id:
+      Individual: 11159
+      Corporate: 2414
+      Group: 1579
+      NSG: 848
+    groups_members.group_id: {Group: 399867}
+    groups_members.member_id: {Individual: 1907258}
+    nsg_meetings.group_id: {NSG: 199999}
+  randomized_validation:
+    method: random_file_offset_source_sample_and_exact_target_lookup
+    sample_size_per_source_table: 1000
+    seed: 20261127
+    full_source_coverage: false
+    results:
+      collaterals.owner_id: {sampled: 1000, nulls: 0, nonmatching: 0}
+      groups_members.group_id: {sampled: 1000, nulls: 0, nonmatching: 0}
+      groups_members.member_id: {sampled: 1000, nulls: 0, nonmatching: 0}
+      nsg_meetings.group_id: {sampled: 1000, nulls: 0, nonmatching: 0}
+  full_validation:
+    status: not_performed
+    reason: Random source samples do not establish complete null or orphan coverage.
+
+validation_policy:
+  inferred_relationships_are_constraints: false
+  validated_relationships_require:
+    - referenced_key_is_unique
+    - null_count_is_reported
+    - orphan_count_is_zero
+    - subtype_mismatch_count_is_zero_when_filtered
+    - relationship_semantics_are_reviewed
+  recommended_status_values: [inferred, needs_review, validated, rejected]
+  recommended_confidence_bands:
+    high: ">= 0.90"
+    medium: "0.60-0.89"
+    low: "< 0.60"

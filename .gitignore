@@ -21,7 +21,10 @@ htmlcov/
 .env
 
 # data
-data/raw/
+data/raw/*
+!data/raw/azraq-schema.sql
+!data/raw/azraq-relationships.yaml
+!data/raw/azraq.md
 
 # mac crap
 .DS_Store

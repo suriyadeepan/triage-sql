@@ -1,0 +1,984 @@
+{
+  "anonymization_provenance": "User-confirmed anonymized; not independently audited by this tool.",
+  "csv_table_count": 26,
+  "dataset": "azraq",
+  "dataset_snapshot_id": "c4f4be61cad2d091708747193e61b7e8dfa702a6210bffb9fce51495878fc780",
+  "ddl_table_count": 26,
+  "errors": [],
+  "extra_csv_tables": [],
+  "manifest_version": 1,
+  "missing_csv_tables": [],
+  "relationships": {
+    "path": "azraq-relationships.yaml",
+    "sha256": "206ace8ff26c0ae3ef9bf3a73a65b3e04c5cfeea24ac21edb02740801cc4dbdb"
+  },
+  "schema": {
+    "path": "azraq-schema.sql",
+    "sha256": "5cad582cb373b47d266a74451979bbc1c62d35f7c6e06466945abb64f9190064"
+  },
+  "tables": {
+    "branches": {
+      "columns": [
+        "id",
+        "name"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "name",
+          "type": "TEXT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/branches.csv",
+      "row_count": 35,
+      "sha256": "c4e2e10213f2690d7c2d14f823ec82d1ba3f7897d85687cf184bd9272d60dea1",
+      "size_bytes": 2163
+    },
+    "cities": {
+      "columns": [
+        "id",
+        "name",
+        "district_id"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "name",
+          "type": "TEXT"
+        },
+        {
+          "name": "district_id",
+          "type": "BIGINT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/cities.csv",
+      "row_count": 11,
+      "sha256": "2ad876c5b2a9913e4d3c57aa0142fec6a620ddb68422fe433648d4bb1c8bb6a0",
+      "size_bytes": 153
+    },
+    "client_locations": {
+      "columns": [
+        "id",
+        "client_id",
+        "latitude",
+        "longitude",
+        "recorded_at"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "client_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "latitude",
+          "type": "NUMERIC"
+        },
+        {
+          "name": "longitude",
+          "type": "NUMERIC"
+        },
+        {
+          "name": "recorded_at",
+          "type": "TIMESTAMP"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/client_locations.csv",
+      "row_count": 13999691,
+      "sha256": "767b7a403b57d8314998663ee5c7ce6b3df5d6afadd45be1968c965b463e4cdf",
+      "size_bytes": 891867791
+    },
+    "clients": {
+      "columns": [
+        "id",
+        "type",
+        "name",
+        "registration_date",
+        "economic_activity_id",
+        "branch_id",
+        "city_id"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "type",
+          "type": "TEXT"
+        },
+        {
+          "name": "name",
+          "type": "TEXT"
+        },
+        {
+          "name": "registration_date",
+          "type": "DATE"
+        },
+        {
+          "name": "economic_activity_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "branch_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "city_id",
+          "type": "BIGINT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/clients.csv",
+      "row_count": 4000000,
+      "sha256": "54297f2178fce44d9d2bb646dc1d578a88fbb6c9c17fa4015ddf1fa6d889b813",
+      "size_bytes": 205058574
+    },
+    "collateral_products": {
+      "columns": [
+        "id",
+        "name",
+        "description"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "name",
+          "type": "TEXT"
+        },
+        {
+          "name": "description",
+          "type": "TEXT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/collateral_products.csv",
+      "row_count": 28,
+      "sha256": "0cc7afffa920cf4d9ec1fc51c8e787a901d76432ace260921de2fad59fb8b224",
+      "size_bytes": 2592
+    },
+    "collaterals": {
+      "columns": [
+        "id",
+        "product_id",
+        "owner_id",
+        "value",
+        "description"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "product_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "owner_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "value",
+          "type": "BIGINT"
+        },
+        {
+          "name": "description",
+          "type": "TEXT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/collaterals.csv",
+      "row_count": 23626291,
+      "sha256": "74a553c9e6b77004102a5cecd00a582a2cdecbcfbc09e453d61824719549988a",
+      "size_bytes": 1466919937
+    },
+    "currencies": {
+      "columns": [
+        "id",
+        "code",
+        "name"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "code",
+          "type": "TEXT"
+        },
+        {
+          "name": "name",
+          "type": "TEXT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/currencies.csv",
+      "row_count": 50,
+      "sha256": "f5d3d52924803c1252cb06c38902b6572561b5b4fbdc1c22d229ab6eb143304d",
+      "size_bytes": 1131
+    },
+    "delinquency_tracking": {
+      "columns": [
+        "id",
+        "loan_id",
+        "event_date",
+        "late_amount",
+        "late_interest",
+        "late_days",
+        "description",
+        "responsible_user_id"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "loan_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "event_date",
+          "type": "DATE"
+        },
+        {
+          "name": "late_amount",
+          "type": "NUMERIC"
+        },
+        {
+          "name": "late_interest",
+          "type": "NUMERIC"
+        },
+        {
+          "name": "late_days",
+          "type": "BIGINT"
+        },
+        {
+          "name": "description",
+          "type": "TEXT"
+        },
+        {
+          "name": "responsible_user_id",
+          "type": "BIGINT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/delinquency_tracking.csv",
+      "row_count": 1153612,
+      "sha256": "97e6db50f1fc87939f6e490ed4bb7c7e46beaa5cb05afcd8254914724dcf3d26",
+      "size_bytes": 94262364
+    },
+    "districts": {
+      "columns": [
+        "id",
+        "name",
+        "region_id"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "name",
+          "type": "TEXT"
+        },
+        {
+          "name": "region_id",
+          "type": "BIGINT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/districts.csv",
+      "row_count": 11,
+      "sha256": "660df1baaccfaae64e8a9f074a914ee0eb6b1a20ef6603426f91f4c9a544caac",
+      "size_bytes": 149
+    },
+    "economic_activities": {
+      "columns": [
+        "id",
+        "name"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "name",
+          "type": "TEXT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/economic_activities.csv",
+      "row_count": 23,
+      "sha256": "08f64526c9aba1fa8126c9f73434822c56a0f14ee2ed6638bedd3ea10613a360",
+      "size_bytes": 651
+    },
+    "exchange_rates": {
+      "columns": [
+        "id",
+        "from_currency_id",
+        "to_currency_id",
+        "rate",
+        "date"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "from_currency_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "to_currency_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "rate",
+          "type": "NUMERIC"
+        },
+        {
+          "name": "date",
+          "type": "DATE"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/exchange_rates.csv",
+      "row_count": 50,
+      "sha256": "506ce599a213db2a35083a915001075e50b55e7290065c90efcf94f3244453ee",
+      "size_bytes": 1419
+    },
+    "funding_lines": {
+      "columns": [
+        "id",
+        "name"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "name",
+          "type": "TEXT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/funding_lines.csv",
+      "row_count": 19,
+      "sha256": "368cfb5784ea243f421d2d19d5333993f0cf9a968ccd2292aa62f1e41ce27d81",
+      "size_bytes": 538
+    },
+    "groups_members": {
+      "columns": [
+        "group_id",
+        "member_id"
+      ],
+      "ddl_columns": [
+        {
+          "name": "group_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "member_id",
+          "type": "BIGINT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/groups_members.csv",
+      "row_count": 3200000,
+      "sha256": "20d0ed1f19f5b3ed388bbb4e32973fb2acac5104d351ebfe7b3ead211c82864f",
+      "size_bytes": 53130156
+    },
+    "loan_products": {
+      "columns": [
+        "id",
+        "name",
+        "interest_method",
+        "interest_rate",
+        "max_amount",
+        "min_amount",
+        "duration_months",
+        "grace_period",
+        "funding_line_id"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "name",
+          "type": "TEXT"
+        },
+        {
+          "name": "interest_method",
+          "type": "TEXT"
+        },
+        {
+          "name": "interest_rate",
+          "type": "NUMERIC"
+        },
+        {
+          "name": "max_amount",
+          "type": "BIGINT"
+        },
+        {
+          "name": "min_amount",
+          "type": "BIGINT"
+        },
+        {
+          "name": "duration_months",
+          "type": "BIGINT"
+        },
+        {
+          "name": "grace_period",
+          "type": "BIGINT"
+        },
+        {
+          "name": "funding_line_id",
+          "type": "BIGINT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/loan_products.csv",
+      "row_count": 38,
+      "sha256": "eea03134df0187fb4de3b3a19fe632f092c118c7850c5e053b8d2a52bae1f8ab",
+      "size_bytes": 2303
+    },
+    "loan_tranches": {
+      "columns": [
+        "id",
+        "loan_id",
+        "tranche_date",
+        "amount",
+        "interest_rate",
+        "number_of_installments",
+        "grace_period"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "loan_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "tranche_date",
+          "type": "DATE"
+        },
+        {
+          "name": "amount",
+          "type": "NUMERIC"
+        },
+        {
+          "name": "interest_rate",
+          "type": "NUMERIC"
+        },
+        {
+          "name": "number_of_installments",
+          "type": "BIGINT"
+        },
+        {
+          "name": "grace_period",
+          "type": "BIGINT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/loan_tranches.csv",
+      "row_count": 4452238,
+      "sha256": "e34474f1b863eae9b52427806d3d4d05027fa1c128dfc22020921bc0d7f15172",
+      "size_bytes": 198257924
+    },
+    "loan_writeoffs": {
+      "columns": [
+        "id",
+        "loan_id",
+        "writeoff_date",
+        "amount",
+        "reason"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "loan_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "writeoff_date",
+          "type": "DATE"
+        },
+        {
+          "name": "amount",
+          "type": "NUMERIC"
+        },
+        {
+          "name": "reason",
+          "type": "TEXT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/loan_writeoffs.csv",
+      "row_count": 30000,
+      "sha256": "1915976fb34adf9ca6640c1d00b074c5647ce28028a30b881f57dae74d90d49c",
+      "size_bytes": 2325464
+    },
+    "loans": {
+      "columns": [
+        "id",
+        "client_id",
+        "product_id",
+        "officer_id",
+        "status",
+        "principal_amount",
+        "disbursed_date",
+        "maturity_date",
+        "interest_rate",
+        "grace_period",
+        "funding_line_id",
+        "credit_insurance_percent"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "client_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "product_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "officer_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "status",
+          "type": "TEXT"
+        },
+        {
+          "name": "principal_amount",
+          "type": "NUMERIC"
+        },
+        {
+          "name": "disbursed_date",
+          "type": "DATE"
+        },
+        {
+          "name": "maturity_date",
+          "type": "DATE"
+        },
+        {
+          "name": "interest_rate",
+          "type": "NUMERIC"
+        },
+        {
+          "name": "grace_period",
+          "type": "BIGINT"
+        },
+        {
+          "name": "funding_line_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "credit_insurance_percent",
+          "type": "NUMERIC"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/loans.csv",
+      "row_count": 1540000,
+      "sha256": "99b09cbccd4d92d7e0de824c5858d0cc9d95e952366d59364c44f9d65fd4a3a0",
+      "size_bytes": 118960489
+    },
+    "manual_schedule_adjustments": {
+      "columns": [
+        "id",
+        "loan_id",
+        "adjustment_date",
+        "details"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "loan_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "adjustment_date",
+          "type": "DATE"
+        },
+        {
+          "name": "details",
+          "type": "TEXT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/manual_schedule_adjustments.csv",
+      "row_count": 92634,
+      "sha256": "9734ec7c4b04516612037882f9345d103e8cc11f41fb3492198074fd916c5264",
+      "size_bytes": 6054385
+    },
+    "nsg_meetings": {
+      "columns": [
+        "id",
+        "group_id",
+        "meeting_date",
+        "notes"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "group_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "meeting_date",
+          "type": "DATE"
+        },
+        {
+          "name": "notes",
+          "type": "TEXT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/nsg_meetings.csv",
+      "row_count": 2399988,
+      "sha256": "a6ae395f2cc0e1b054fa30d068f119cef5c8e85c4738083947f018a343d37e23",
+      "size_bytes": 178457277
+    },
+    "regions": {
+      "columns": [
+        "id",
+        "name"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "name",
+          "type": "TEXT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/regions.csv",
+      "row_count": 14,
+      "sha256": "be18ec745b8045963994917f71d26fe9e837cc19b83482708371519ca8c60eda",
+      "size_bytes": 164
+    },
+    "repayments": {
+      "columns": [
+        "id",
+        "loan_id",
+        "payment_date",
+        "principal_paid",
+        "interest_paid",
+        "penalty_paid",
+        "commission_paid"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "loan_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "payment_date",
+          "type": "DATE"
+        },
+        {
+          "name": "principal_paid",
+          "type": "NUMERIC"
+        },
+        {
+          "name": "interest_paid",
+          "type": "NUMERIC"
+        },
+        {
+          "name": "penalty_paid",
+          "type": "BIGINT"
+        },
+        {
+          "name": "commission_paid",
+          "type": "NUMERIC"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/repayments.csv",
+      "row_count": 42009735,
+      "sha256": "e04d8086bae975f2524ad34660052ee9cc109665f78a78f592085359358bf462",
+      "size_bytes": 2067018584
+    },
+    "roles": {
+      "columns": [
+        "id",
+        "name"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "name",
+          "type": "TEXT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/roles.csv",
+      "row_count": 30,
+      "sha256": "e2a6c364de681eb17d2590e1a58cc2545c2591e3ac15487af4deb344ae1d51e3",
+      "size_bytes": 654
+    },
+    "savings_accounts": {
+      "columns": [
+        "id",
+        "client_id",
+        "product_id",
+        "officer_id",
+        "balance",
+        "status"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "client_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "product_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "officer_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "balance",
+          "type": "NUMERIC"
+        },
+        {
+          "name": "status",
+          "type": "TEXT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/savings_accounts.csv",
+      "row_count": 2760000,
+      "sha256": "2fbc432acf0e371d33f10b69096b1bc2ac315b1dcd2f795199424ae151653971",
+      "size_bytes": 109584985
+    },
+    "savings_products": {
+      "columns": [
+        "id",
+        "name",
+        "interest_rate",
+        "frequency",
+        "overdraft_allowed",
+        "term_deposit_period"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "name",
+          "type": "TEXT"
+        },
+        {
+          "name": "interest_rate",
+          "type": "NUMERIC"
+        },
+        {
+          "name": "frequency",
+          "type": "TEXT"
+        },
+        {
+          "name": "overdraft_allowed",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "term_deposit_period",
+          "type": "BIGINT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/savings_products.csv",
+      "row_count": 25,
+      "sha256": "348002c2fdfde97b3ccdb546f4456c6e96cbc93ffb3343cafcb5d5107f2c4ec2",
+      "size_bytes": 1518
+    },
+    "savings_transactions": {
+      "columns": [
+        "id",
+        "savings_account_id",
+        "transaction_type",
+        "transaction_date",
+        "amount",
+        "method"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "savings_account_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "transaction_type",
+          "type": "TEXT"
+        },
+        {
+          "name": "transaction_date",
+          "type": "DATE"
+        },
+        {
+          "name": "amount",
+          "type": "NUMERIC"
+        },
+        {
+          "name": "method",
+          "type": "TEXT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/savings_transactions.csv",
+      "row_count": 21998,
+      "sha256": "fde50c7865fa18fe5bacb48ed910ad357c70103d9e21ed57eff975cdedbfa218",
+      "size_bytes": 1040526
+    },
+    "users": {
+      "columns": [
+        "id",
+        "username",
+        "password",
+        "role_id",
+        "branch_id"
+      ],
+      "ddl_columns": [
+        {
+          "name": "id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "username",
+          "type": "TEXT"
+        },
+        {
+          "name": "password",
+          "type": "TEXT"
+        },
+        {
+          "name": "role_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "branch_id",
+          "type": "BIGINT"
+        }
+      ],
+      "extra_columns": [],
+      "malformed_record_count": 0,
+      "missing_columns": [],
+      "path": "data/raw/azraq/users.csv",
+      "row_count": 11000,
+      "sha256": "dae8c568422c9ff3642f2ce4712fb10fcc12987c967b761385c44e7822601b30",
+      "size_bytes": 382033
+    }
+  }
+}
