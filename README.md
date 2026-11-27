@@ -21,6 +21,8 @@ uv run python scripts/validate_azraq_relationships.py --help
 
 The versioned schema, relationship metadata, and snapshot manifest are in this repository. The anonymized CSV snapshot remains a local input under `data/raw/azraq/`; the initializer checks every input file against the manifest before loading it.
 
+See the [Azraq data and evaluation tutorial](docs/tutorial-001-azraq.md) for reproducible initialization, relationship eligibility, evaluation generation, and leakage checks.
+
 ```sh
 ./scripts/azraq_postgres.sh start
 uv run python -m scripts.azraq_init

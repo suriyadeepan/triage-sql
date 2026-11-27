@@ -67,12 +67,12 @@ Tasks are the canonical status source. Lineage: requirement → plan → task �
 - [x] **T006.1** Add unit/integration checks for schema coverage, DDL constraints, data safety, relationship validation/eligibility, evaluation execution, example execution, and leakage. **Accept:** tests pass through prescribed `uv` environment. **Depends on:** T002–T005.
 - [x] **T006.2** Add deployment/runtime smoke validation for pinned PostgreSQL and Python 3.14; report real-world verification separately from automated tests. **Accept:** actual service start, import, and read-only query evidence recorded; limitations reported if host cannot run it. **Depends on:** T002.2.
 
-## T007 — User documentation and implementation journal [ ]
+## T007 — User documentation and implementation journal [x]
 
 **Requirements:** R003.3–R003.4, R004.3, R005.2–R005.4
 **Plan:** P006.1–P006.2
 **Files:** `docs/001-azraq.md`, tutorial on completion if appropriate, README if needed
 **Depends on:** T001–T006
 
-- [ ] **T007.1** Document setup, source/snapshot identity, safe data handling, validation policy, evaluation format, generation, and leakage checks. **Accept:** instructions reproduce initialization and explain unsupported/ambiguous labeling and JOIN eligibility. **Depends on:** T002–T005.
-- [ ] **T007.2** Record implementation decisions, commands, results, failures, and evidence in the journal without duplicating task statuses. **Accept:** journal distinguishes implementation, automated tests, and deployment/live verification. **Depends on:** T001–T006.
+- [x] **T007.1** Document setup, source/snapshot identity, safe data handling, validation policy, evaluation format, generation, and leakage checks. **Accept:** instructions reproduce initialization and explain unsupported/ambiguous labeling and JOIN eligibility. **Depends on:** T002–T005.
+- [x] **T007.2** Record implementation decisions, commands, results, failures, and evidence in the journal without duplicating task statuses. **Accept:** journal distinguishes implementation, automated tests, and deployment/live verification. **Depends on:** T001–T006.
