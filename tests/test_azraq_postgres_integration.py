@@ -11,6 +11,7 @@ from scripts.azraq_init import copy_table
 from scripts.validate_azraq_relationships_pg import validate_one
 from triage_sql.relationships import Endpoint, Relationship, relationship_join_clause
 from triage_sql.evaluation import generate, validate_items
+from triage_sql.examples import generate_examples, leakage_findings
 
 
 TEST_DSN = os.environ.get("AZRAQ_TEST_DSN")
@@ -29,6 +30,26 @@ class PostgreSQLCopyIntegrationTests(unittest.TestCase):
             self.assertEqual(count, 120)
             self.assertTrue(all(item["execution"]["status"] == "passed" for item in items))
             self.assertTrue(any(item["category"] == "subtype_join" for item in items))
+
+    def test_generated_examples_are_read_only_validated_and_split_by_pattern(self):
+        root = Path(__file__).resolve().parents[1]
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary)
+            count = generate_examples(
+                TEST_DSN,
+                root / "data/manifest/azraq-postgres.json",
+                root / "data/raw/azraq-relationships.yaml",
+                output,
+            )
+            self.assertEqual(count, 48)
+            for kind in ("text_to_sql", "sql_correction"):
+                partitions = {}
+                for split in ("train", "validation", "heldout"):
+                    path = output / kind / f"{split}.jsonl"
+                    partitions[split] = [__import__("json").loads(line) for line in path.read_text().splitlines()]
+                    self.assertTrue(all(row["validation"]["parse"] == "passed" and row["validation"]["execution"] == "passed" for row in partitions[split]))
+                    self.assertTrue(all(row["provenance"]["dataset_snapshot_id"] for row in partitions[split]))
+                self.assertEqual(leakage_findings(partitions), [])
 
     def test_users_password_is_null_after_copy(self):
         with tempfile.TemporaryDirectory() as temporary:

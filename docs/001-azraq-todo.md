@@ -46,16 +46,16 @@ Tasks are the canonical status source. Lineage: requirement → plan → task �
 - [x] **T004.1** Create 100–200 questions covering filters, dates, aggregations, validated joins, subtype-aware joins, and supported multi-table questions. **Accept:** every item includes reference SQL, expected result, execution outcome, and fixed snapshot ID, or an explicit unsupported/ambiguous label with no fabricated SQL. **Depends on:** T003.3.
 - [x] **T004.2** Store evaluation questions/results using anonymized data only and record provenance. **Accept:** schema and automated content checks exclude password/secrets and identify the immutable database snapshot. **Depends on:** T001.2, T002.3.
 
-## T005 — Text-to-SQL and correction examples [ ]
+## T005 — Text-to-SQL and correction examples [x]
 
 **Requirements:** R003.1–R003.2, R005.1–R005.4, A005
 **Plan:** P005.1–P005.3
 **Files:** new example generation/validation scripts and datasets, tests, validated schema/relationship metadata
 **Depends on:** T003, T004
 
-- [ ] **T005.1** Generate separate synthetic Text-to-SQL and SQL-correction examples grounded in actual schema and validated edges. **Accept:** every example has provenance and excludes unvalidated joins and secrets. **Depends on:** T003.3.
-- [ ] **T005.2** Parse generated SQL and execute it read-only against the fixed PostgreSQL snapshot. **Accept:** independently recorded parse/execution result exists for every example; invalid or unsafe SQL is rejected. **Depends on:** T002.2, T002.3.
-- [ ] **T005.3** Separate train/validation/held-out partitions and add duplicate/template/question/SQL/result leakage detection. **Accept:** automated regression fixtures detect deliberate held-out leaks and the generated partitions pass the checker. **Depends on:** T005.1.
+- [x] **T005.1** Generate separate synthetic Text-to-SQL and SQL-correction examples grounded in actual schema and validated edges. **Accept:** every example has provenance and excludes unvalidated joins and secrets. **Depends on:** T003.3.
+- [x] **T005.2** Parse generated SQL and execute it read-only against the fixed PostgreSQL snapshot. **Accept:** independently recorded parse/execution result exists for every example; invalid or unsafe SQL is rejected. **Depends on:** T002.2, T002.3.
+- [x] **T005.3** Separate train/validation/held-out partitions and add duplicate/template/question/SQL/result leakage detection. **Accept:** automated regression fixtures detect deliberate held-out leaks and the generated partitions pass the checker. **Depends on:** T005.1.
 
 ## T006 — Automated validation, compatibility, and smoke checks [ ]
 
