@@ -47,7 +47,7 @@ Tasks are the canonical status source. Lineage: requirement → plan → task �
 - [x] **T004.2** Calculate token use, latency, estimated cost, and cost per net additional successful query separately for both conditions. **Accept:** when the net additional success count is nonpositive, report no gain and leave cost-per-additional-success undefined; distinguish unavailable Luna-low cost/output/reasoning data. **Depends on:** T002.2, T003.3, T004.1.
 - [x] **T004.3** State that cost acceptability is left to the reader and limit any recommendation to conditional failure-triggered escalation. **Accept:** no invented dollar threshold or unconditional recommendation. **Depends on:** T004.1, T004.2.
 
-## T005 — Regression verification, convergence, and journal evidence [x]
+## T005 — Regression verification and implementation evidence [x]
 
 **Requirements:** R001–R005, A001–A006
 **Plan:** P004.1–P004.3
@@ -56,5 +56,15 @@ Tasks are the canonical status source. Lineage: requirement → plan → task �
 
 - [x] **T005.1** Add mocked tests for input/hash guards, fixed settings, exact contexts, call/retry ceilings, transient retry policy, malformed-output stop behavior, checkpoint/resume, token/cost calculation, and comparison metrics. **Accept:** regression tests prove the runner makes no external model calls during test execution. **Depends on:** T001–T004.
 - [x] **T005.2** Exercise schema construction and read-only execution against the fixed snapshot without invoking Luna-high. **Accept:** execution remains behind the existing safety pipeline and saved expected results compare correctly. **Depends on:** T003.1–T003.2.
-- [x] **T005.3** Record implementation, commands/results, frozen identities, compatibility, limitations, and experiment approval gate in the durable journal; run convergence review and resolve gaps. **Accept:** preserve baselines/cohort, distinguish mock/integration verification from real-world model run, and leave the real experiment gated for explicit approval. **Depends on:** T005.1–T005.2.
+- [x] **T005.3** Record implementation, commands/results, frozen identities, compatibility, limitations, and experiment approval gate in the durable journal; review implementation convergence. **Accept:** preserve baselines/cohort and distinguish mock/integration verification from real-world model execution. **Depends on:** T005.1–T005.2.
 - [x] **T005.4** Create the feature-completion tutorial under `docs/tutorial-003-luna-escalation.md`. **Accept:** append-only user-facing instructions explain the fixed experiment, artifacts, interpretation, limitations, and separate real-run approval gate; do not imply the real experiment ran unless it did. **Depends on:** T005.3.
+
+## T006 — Execute and evaluate the approved Luna-high experiment [ ]
+
+**Requirements:** R003.3–R003.5, R004.1–R004.6, A001–A006
+**Plan:** P002.1–P002.5, P003.1–P003.3, P004.2–P004.3
+**Files:** `data/evaluation/experiments/failure-sql-luna-high/`, `docs/003-luna-escalation.md`
+**Depends on:** T001–T005 and separate explicit user approval to make the external model/reranker requests.
+
+- [ ] **T006.1** Run the one-time two-condition experiment after separate explicit approval, using the frozen 53-query cohort and the fixed run configuration. **Accept:** remain within 106 initial requests, two retries per request, and 50 retries overall; checkpoint each request; preserve separate per-condition query artifacts; never rerun without further explicit approval. **Depends on:** T003.1–T003.5.
+- [ ] **T006.2** Generate the final comparison report and record the observed results. **Accept:** compare each Luna-high condition with its matching Luna-low baseline; include accuracy, validity, execution success, result correctness, tokens, latency, estimated cost, category/error breakdown, and cost per additional success; leave cost acceptability to the reader. **Depends on:** T004.1–T004.3, T006.1.
