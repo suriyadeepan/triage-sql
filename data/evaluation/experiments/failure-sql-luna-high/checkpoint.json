@@ -19153,8 +19153,40 @@
         "validation_error": "generated SQL must contain exactly one SELECT query"
       },
       "eval-115": {
-        "attempts": [],
+        "attempts": [
+          {
+            "attempt_number": 1,
+            "estimated_cost_usd": 0.0004169,
+            "latency_ms": 6380.4121659486555,
+            "model": "gpt-6-luna",
+            "reasoning_effort": "high",
+            "request_kind": "initial",
+            "started_at": "2026-11-28T01:39:04.416479+00:00",
+            "status": "succeeded",
+            "usage": {
+              "cached_input_tokens": 0,
+              "input_tokens": 1609,
+              "output_tokens": 512,
+              "reasoning_tokens": 498
+            }
+          }
+        ],
         "category": "multi_table",
+        "cohere_latency_ms": 676.7204580246471,
+        "cohere_request_started_at": "2026-11-28T01:39:03.644426+00:00",
+        "cohere_usage": {
+          "billed_input_tokens": 6638.0,
+          "billed_output_tokens": null,
+          "search_units": null
+        },
+        "context_record_count": 5,
+        "context_sha256": "248e7c6f59b3423faa7d09776d5da994c0ba1bae14fcefcbfa9097360057a666",
+        "context_started_at": "2026-11-28T01:39:03.387989+00:00",
+        "context_status": "ready",
+        "error_type": "SQLValidationError",
+        "estimated_cohere_cost_usd": 0.0,
+        "estimated_generation_cost_usd": 0.0004169,
+        "estimated_total_cost_usd": 0.0004169,
         "expected_result": [
           [
             "Agriculture Loan",
@@ -19309,6 +19341,8 @@
             17933
           ]
         ],
+        "generation_cost_estimate_complete": true,
+        "generation_latency_ms": 6380.4121659486555,
         "luna_low_baseline": {
           "category": "multi_table",
           "end_to_end_latency_ms": 2855.3455839282833,
@@ -19322,7 +19356,12 @@
           "retrieval_latency_ms": 36.35079198284075,
           "sql": "SELECT\n    lp.id AS product_id,\n    lp.name AS product_name,\n    COUNT(l.id) AS loan_count\nFROM loan_products AS lp\nJOIN loans AS l\n    ON l.product_id = lp.id\nWHERE lp.funding_line_id IS NOT NULL\nGROUP BY lp.id, lp.name\nORDER BY lp.name"
         },
+        "model": "gpt-6-luna",
+        "prompt_sha256": "8ab9644bf2134b4903b0bf796f1a0a2201fb492fbed1b2803c7373a2c49d2de9",
         "question": "Give the number of loan counts by product with a funding line.",
+        "raw_output": "SELECT lp.name AS product_name, COUNT(l",
+        "reasoning_effort": "high",
+        "response_received_at": "2026-11-28T01:39:10.831950+00:00",
         "retrieval_labels": {
           "relevant_columns": [
             "funding_lines.id",
@@ -19342,7 +19381,258 @@
           ],
           "unresolved_relationships": []
         },
-        "status": "not_started"
+        "retrieval_latency_ms": 222.54812496248633,
+        "retrieved_records": [
+          {
+            "columns": [
+              {
+                "name": "id",
+                "type": "BIGINT"
+              },
+              {
+                "name": "client_id",
+                "type": "BIGINT"
+              },
+              {
+                "name": "product_id",
+                "type": "BIGINT"
+              },
+              {
+                "name": "officer_id",
+                "type": "BIGINT"
+              },
+              {
+                "name": "status",
+                "type": "TEXT"
+              },
+              {
+                "name": "principal_amount",
+                "type": "NUMERIC"
+              },
+              {
+                "name": "disbursed_date",
+                "type": "DATE"
+              },
+              {
+                "name": "maturity_date",
+                "type": "DATE"
+              },
+              {
+                "name": "interest_rate",
+                "type": "NUMERIC"
+              },
+              {
+                "name": "grace_period",
+                "type": "BIGINT"
+              },
+              {
+                "name": "funding_line_id",
+                "type": "BIGINT"
+              },
+              {
+                "name": "credit_insurance_percent",
+                "type": "NUMERIC"
+              }
+            ],
+            "description": "The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys.",
+            "id": "table:loans",
+            "kind": "table",
+            "searchable_text": "table loans The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys. id BIGINT client_id BIGINT product_id BIGINT officer_id BIGINT status TEXT principal_amount NUMERIC disbursed_date DATE maturity_date DATE interest_rate NUMERIC grace_period BIGINT funding_line_id BIGINT credit_insurance_percent NUMERIC",
+            "table": "loans"
+          },
+          {
+            "cardinality": "many_to_one",
+            "confidence": 0.99,
+            "evidence": [
+              "matching_id_semantics",
+              "column_name_semantics",
+              "full_postgresql_validation",
+              "manual_semantic_review"
+            ],
+            "from": {
+              "column": "funding_line_id",
+              "table": "loan_products"
+            },
+            "id": "loan_products.funding_line_id__funding_lines.id",
+            "join_predicate": "loan_products.funding_line_id = funding_lines.id",
+            "kind": "relationship",
+            "provenance": {
+              "cardinality": "many_to_one",
+              "confidence": 0.99,
+              "evidence": [
+                "matching_id_semantics",
+                "column_name_semantics",
+                "full_postgresql_validation",
+                "manual_semantic_review"
+              ],
+              "from": {
+                "column": "funding_line_id",
+                "table": "loan_products"
+              },
+              "id": "loan_products.funding_line_id__funding_lines.id",
+              "semantic_review": "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+              "status": "validated",
+              "to": {
+                "column": "id",
+                "table": "funding_lines"
+              }
+            },
+            "searchable_text": "loan_products.funding_line_id__funding_lines.id loan_products funding_line_id funding_lines id many_to_one loan_products.funding_line_id = funding_lines.id matching_id_semantics column_name_semantics full_postgresql_validation manual_semantic_review validated Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+            "status": "validated",
+            "target_filter": null,
+            "to": {
+              "column": "id",
+              "table": "funding_lines"
+            }
+          },
+          {
+            "columns": [
+              {
+                "name": "id",
+                "type": "BIGINT"
+              },
+              {
+                "name": "name",
+                "type": "TEXT"
+              },
+              {
+                "name": "interest_method",
+                "type": "TEXT"
+              },
+              {
+                "name": "interest_rate",
+                "type": "NUMERIC"
+              },
+              {
+                "name": "max_amount",
+                "type": "BIGINT"
+              },
+              {
+                "name": "min_amount",
+                "type": "BIGINT"
+              },
+              {
+                "name": "duration_months",
+                "type": "BIGINT"
+              },
+              {
+                "name": "grace_period",
+                "type": "BIGINT"
+              },
+              {
+                "name": "funding_line_id",
+                "type": "BIGINT"
+              }
+            ],
+            "description": "The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys.",
+            "id": "table:loan_products",
+            "kind": "table",
+            "searchable_text": "table loan_products The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys. id BIGINT name TEXT interest_method TEXT interest_rate NUMERIC max_amount BIGINT min_amount BIGINT duration_months BIGINT grace_period BIGINT funding_line_id BIGINT",
+            "table": "loan_products"
+          },
+          {
+            "cardinality": "many_to_one",
+            "confidence": 0.99,
+            "evidence": [
+              "matching_id_semantics",
+              "source_relationship_note",
+              "full_postgresql_validation",
+              "manual_semantic_review"
+            ],
+            "from": {
+              "column": "funding_line_id",
+              "table": "loans"
+            },
+            "id": "loans.funding_line_id__funding_lines.id",
+            "join_predicate": "loans.funding_line_id = funding_lines.id",
+            "kind": "relationship",
+            "provenance": {
+              "cardinality": "many_to_one",
+              "confidence": 0.99,
+              "evidence": [
+                "matching_id_semantics",
+                "source_relationship_note",
+                "full_postgresql_validation",
+                "manual_semantic_review"
+              ],
+              "from": {
+                "column": "funding_line_id",
+                "table": "loans"
+              },
+              "id": "loans.funding_line_id__funding_lines.id",
+              "semantic_review": "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+              "status": "validated",
+              "to": {
+                "column": "id",
+                "table": "funding_lines"
+              }
+            },
+            "searchable_text": "loans.funding_line_id__funding_lines.id loans funding_line_id funding_lines id many_to_one loans.funding_line_id = funding_lines.id matching_id_semantics source_relationship_note full_postgresql_validation manual_semantic_review validated Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+            "status": "validated",
+            "target_filter": null,
+            "to": {
+              "column": "id",
+              "table": "funding_lines"
+            }
+          },
+          {
+            "cardinality": "many_to_one",
+            "confidence": 0.99,
+            "evidence": [
+              "matching_id_semantics",
+              "source_relationship_note",
+              "full_postgresql_validation",
+              "manual_semantic_review"
+            ],
+            "from": {
+              "column": "product_id",
+              "table": "loans"
+            },
+            "id": "loans.product_id__loan_products.id",
+            "join_predicate": "loans.product_id = loan_products.id",
+            "kind": "relationship",
+            "provenance": {
+              "cardinality": "many_to_one",
+              "confidence": 0.99,
+              "evidence": [
+                "matching_id_semantics",
+                "source_relationship_note",
+                "full_postgresql_validation",
+                "manual_semantic_review"
+              ],
+              "from": {
+                "column": "product_id",
+                "table": "loans"
+              },
+              "id": "loans.product_id__loan_products.id",
+              "semantic_review": "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+              "status": "validated",
+              "to": {
+                "column": "id",
+                "table": "loan_products"
+              }
+            },
+            "searchable_text": "loans.product_id__loan_products.id loans product_id loan_products id many_to_one loans.product_id = loan_products.id matching_id_semantics source_relationship_note full_postgresql_validation manual_semantic_review validated Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+            "status": "validated",
+            "target_filter": null,
+            "to": {
+              "column": "id",
+              "table": "loan_products"
+            }
+          }
+        ],
+        "retry_preclaimed": false,
+        "sql_valid": false,
+        "status": "malformed_output",
+        "total_cost_estimate_complete": true,
+        "unpriced_request_attempts": 0,
+        "usage": {
+          "cached_input_tokens": 0,
+          "input_tokens": 1609,
+          "output_tokens": 512,
+          "reasoning_tokens": 498
+        },
+        "validation_error": "generated SQL could not be parsed"
       },
       "eval-116": {
         "attempts": [],
@@ -19766,8 +20056,23 @@
       }
     }
   },
+  "continuations": [
+    {
+      "approved": true,
+      "continued_at": "2026-11-28T01:39:03.282316+00:00",
+      "initial_requests_used_before_continuation": 47,
+      "malformed_condition": "retrieved_schema",
+      "malformed_query_skipped": "eval-114",
+      "prior_stop_reason": {
+        "at": "2026-11-28T00:56:10.241944+00:00",
+        "condition": "retrieved_schema",
+        "query_id": "eval-114",
+        "type": "malformed_model_output"
+      }
+    }
+  ],
   "created_at": "2026-11-28T00:50:34.752949+00:00",
-  "initial_requests_used": 47,
+  "initial_requests_used": 48,
   "metadata": {
     "cohere_min_request_interval_seconds": 6.5,
     "cohort_count": 53,
@@ -19884,10 +20189,11 @@
   },
   "status": "stopped",
   "stop_reason": {
-    "at": "2026-11-28T00:56:10.241944+00:00",
-    "query_id": "eval-114",
+    "at": "2026-11-28T01:39:10.904001+00:00",
+    "condition": "retrieved_schema",
+    "query_id": "eval-115",
     "type": "malformed_model_output"
   },
-  "updated_at": "2026-11-28T00:56:10.241953+00:00",
+  "updated_at": "2026-11-28T01:39:10.904010+00:00",
   "version": 1
 }
