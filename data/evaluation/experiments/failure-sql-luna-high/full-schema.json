@@ -1,0 +1,3216 @@
+{
+  "condition": "full_schema",
+  "experiment_status": "stopped",
+  "initial_requests_used": 47,
+  "metadata": {
+    "cohere_min_request_interval_seconds": 6.5,
+    "cohort_count": 53,
+    "cohort_ids": [
+      "eval-011",
+      "eval-014",
+      "eval-015",
+      "eval-016",
+      "eval-017",
+      "eval-018",
+      "eval-019",
+      "eval-020",
+      "eval-022",
+      "eval-023",
+      "eval-024",
+      "eval-025",
+      "eval-026",
+      "eval-027",
+      "eval-028",
+      "eval-029",
+      "eval-030",
+      "eval-031",
+      "eval-032",
+      "eval-033",
+      "eval-034",
+      "eval-035",
+      "eval-038",
+      "eval-051",
+      "eval-052",
+      "eval-053",
+      "eval-054",
+      "eval-055",
+      "eval-056",
+      "eval-057",
+      "eval-058",
+      "eval-059",
+      "eval-060",
+      "eval-066",
+      "eval-067",
+      "eval-068",
+      "eval-069",
+      "eval-070",
+      "eval-078",
+      "eval-080",
+      "eval-081",
+      "eval-082",
+      "eval-083",
+      "eval-084",
+      "eval-085",
+      "eval-112",
+      "eval-114",
+      "eval-115",
+      "eval-116",
+      "eval-117",
+      "eval-118",
+      "eval-119",
+      "eval-120"
+    ],
+    "cohort_sha256": "150579fb833e209c6b66f1c7d4eca579116b5d6644514b4e8cce6c69f855f764",
+    "conditions": {
+      "full_schema": {
+        "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+        "record_count": 53,
+        "table_count": 26,
+        "validated_relationship_count": 27
+      },
+      "retrieved_schema": {
+        "candidate_k": 20,
+        "reranker": "rerank-v5.0-fast",
+        "retrieval_mode": "hybrid-rrf",
+        "top_k": 5
+      }
+    },
+    "dataset_snapshot_id": "ba058d581b04d1d75f63ac0a4705d98ea0d8ea54dcf577ee90b58222d082dddc",
+    "experiment": "FS-03 failure-triggered Luna-high SQL generation",
+    "generator_model": "gpt-6-luna",
+    "index_manifest_sha256": "e3e9c32aa1b62321e7dc3664061945e37bc3ffcad04b1fd1b33bad64586ce92b",
+    "max_output_tokens": 512,
+    "maximum_result_rows": 1000,
+    "prompt_format": "Schema context (JSON), question, SQL",
+    "query_set_sha256": "1cbe40d2d027a28d32fd39e91807e6427c6fad10d8a338a488b60bc7703dc87a",
+    "rate_card": {
+      "cached_input_usd_per_million": 0.01,
+      "checked_at": "2026-11-28",
+      "input_usd_per_million": 0.1,
+      "model": "gpt-6-luna",
+      "output_usd_per_million": 0.5,
+      "pricing_tier": "standard",
+      "source_url": "https://developers.openai.com/api/docs/pricing"
+    },
+    "reasoning_effort": "high",
+    "rerank_rate_card": {
+      "account_tier": "trial",
+      "checked_at": "2026-11-28",
+      "input_usd_per_million": 0.02,
+      "model": "rerank-v5.0-fast",
+      "source_url": "https://cohere.com/blog/rerank-5"
+    },
+    "retrieval_baseline_sha256": "f4eaa6a81b951380c38f8c42eae29ccd25bdd0ea3fbb631d9692ca3a37cfe776",
+    "retry_policy": {
+      "global_max_retries": 50,
+      "malformed_output_retry": false,
+      "per_initial_request_max_retries": 2,
+      "retryable_errors": "OpenAI connection/timeouts; HTTP 408, 409, 429, and 5xx"
+    },
+    "sql_baseline_sha256": "ee7beb0a1229fe8fad1985d1f37591054eb0feac082b7e2c2f7c72dffb6e09e1",
+    "statement_timeout_ms": 15000
+  },
+  "queries": [
+    {
+      "attempts": [],
+      "category": "filter",
+      "expected_result": [
+        [
+          4000000
+        ]
+      ],
+      "id": "eval-011",
+      "luna_low_baseline": {
+        "category": "filter",
+        "end_to_end_latency_ms": 2292.111582995858,
+        "execution_accuracy": true,
+        "execution_latency_ms": 181.09687499236315,
+        "execution_status": "passed",
+        "generation_latency_ms": 2111.014708003495,
+        "id": "eval-011",
+        "prompt_tokens": 13377,
+        "question": "How many clients registered since 2020 are there?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT COUNT(*) AS client_count\nFROM clients\nWHERE registration_date >= DATE '2020-01-01'"
+      },
+      "question": "How many clients registered since 2020 are there?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "clients.registration_date"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "clients"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "filter",
+      "expected_result": [
+        [
+          4000000
+        ]
+      ],
+      "id": "eval-014",
+      "luna_low_baseline": {
+        "category": "filter",
+        "end_to_end_latency_ms": 1808.512374991551,
+        "execution_accuracy": true,
+        "execution_latency_ms": 186.86937500024214,
+        "execution_status": "passed",
+        "generation_latency_ms": 1621.642999991309,
+        "id": "eval-014",
+        "prompt_tokens": 13378,
+        "question": "Show me the count of clients registered since 2020.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT COUNT(*) AS client_count\nFROM clients\nWHERE registration_date >= DATE '2020-01-01'"
+      },
+      "question": "Show me the count of clients registered since 2020.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "clients.registration_date"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "clients"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "filter",
+      "expected_result": [
+        [
+          4000000
+        ]
+      ],
+      "id": "eval-015",
+      "luna_low_baseline": {
+        "category": "filter",
+        "end_to_end_latency_ms": 1890.2529159677215,
+        "execution_accuracy": true,
+        "execution_latency_ms": 182.963999977801,
+        "execution_status": "passed",
+        "generation_latency_ms": 1707.2889159899205,
+        "id": "eval-015",
+        "prompt_tokens": 13377,
+        "question": "Give the number of clients registered since 2020.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT COUNT(*) AS client_count\nFROM clients\nWHERE registration_date >= DATE '2020-01-01'"
+      },
+      "question": "Give the number of clients registered since 2020.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "clients.registration_date"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "clients"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "filter",
+      "expected_result": [
+        [
+          0
+        ]
+      ],
+      "id": "eval-016",
+      "luna_low_baseline": {
+        "category": "filter",
+        "end_to_end_latency_ms": 2279.6363750239834,
+        "execution_accuracy": false,
+        "execution_latency_ms": 250.18625002121553,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2029.450125002768,
+        "id": "eval-016",
+        "prompt_tokens": 13373,
+        "question": "How many active loans are there?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT COUNT(*) AS active_loan_count\nFROM loans\nWHERE LOWER(status) = 'active'"
+      },
+      "question": "How many active loans are there?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "loans.status"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "loans"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "filter",
+      "expected_result": [
+        [
+          0
+        ]
+      ],
+      "id": "eval-017",
+      "luna_low_baseline": {
+        "category": "filter",
+        "end_to_end_latency_ms": 2413.6840830324218,
+        "execution_accuracy": true,
+        "execution_latency_ms": 106.77637503249571,
+        "execution_status": "passed",
+        "generation_latency_ms": 2306.907707999926,
+        "id": "eval-017",
+        "prompt_tokens": 13374,
+        "question": "Count the active loans in the dataset.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT COUNT(*) AS active_loan_count\nFROM loans\nWHERE status = 'Active'"
+      },
+      "question": "Count the active loans in the dataset.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "loans.status"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "loans"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "filter",
+      "expected_result": [
+        [
+          0
+        ]
+      ],
+      "id": "eval-018",
+      "luna_low_baseline": {
+        "category": "filter",
+        "end_to_end_latency_ms": 2166.480165964458,
+        "execution_accuracy": false,
+        "execution_latency_ms": 257.9974160180427,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 1908.4827499464154,
+        "id": "eval-018",
+        "prompt_tokens": 13375,
+        "question": "What is the total number of active loans?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT COUNT(*) AS total_active_loans\nFROM loans\nWHERE LOWER(status) = 'active'"
+      },
+      "question": "What is the total number of active loans?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "loans.status"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "loans"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "filter",
+      "expected_result": [
+        [
+          0
+        ]
+      ],
+      "id": "eval-019",
+      "luna_low_baseline": {
+        "category": "filter",
+        "end_to_end_latency_ms": 2348.1407510116696,
+        "execution_accuracy": false,
+        "execution_latency_ms": 241.21454200940207,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2106.9262090022676,
+        "id": "eval-019",
+        "prompt_tokens": 13374,
+        "question": "Show me the count of active loans.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT COUNT(*) AS active_loan_count\nFROM loans\nWHERE LOWER(status) = 'active'"
+      },
+      "question": "Show me the count of active loans.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "loans.status"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "loans"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "filter",
+      "expected_result": [
+        [
+          0
+        ]
+      ],
+      "id": "eval-020",
+      "luna_low_baseline": {
+        "category": "filter",
+        "end_to_end_latency_ms": 1787.6058329711668,
+        "execution_accuracy": true,
+        "execution_latency_ms": 105.49783299211413,
+        "execution_status": "passed",
+        "generation_latency_ms": 1682.1079999790527,
+        "id": "eval-020",
+        "prompt_tokens": 13373,
+        "question": "Give the number of active loans.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT COUNT(*) AS active_loan_count\nFROM loans\nWHERE status = 'Active'"
+      },
+      "question": "Give the number of active loans.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "loans.status"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "loans"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "filter",
+      "expected_result": [
+        [
+          2208300
+        ]
+      ],
+      "id": "eval-022",
+      "luna_low_baseline": {
+        "category": "filter",
+        "end_to_end_latency_ms": 2017.4040410201997,
+        "execution_accuracy": false,
+        "execution_latency_ms": 115.06366601679474,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 1902.340375003405,
+        "id": "eval-022",
+        "prompt_tokens": 13375,
+        "question": "Count the active savings accounts in the dataset.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT COUNT(*) AS active_savings_account_count\nFROM savings_accounts\nWHERE status = 'active'"
+      },
+      "question": "Count the active savings accounts in the dataset.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "savings_accounts.status"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "savings_accounts"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "filter",
+      "expected_result": [
+        [
+          2208300
+        ]
+      ],
+      "id": "eval-023",
+      "luna_low_baseline": {
+        "category": "filter",
+        "end_to_end_latency_ms": 2618.356917053461,
+        "execution_accuracy": true,
+        "execution_latency_ms": 374.2497080238536,
+        "execution_status": "passed",
+        "generation_latency_ms": 2244.1072090296075,
+        "id": "eval-023",
+        "prompt_tokens": 13376,
+        "question": "What is the total number of active savings accounts?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT COUNT(*) AS total_active_savings_accounts\nFROM savings_accounts\nWHERE LOWER(status) = 'active'"
+      },
+      "question": "What is the total number of active savings accounts?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "savings_accounts.status"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "savings_accounts"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "filter",
+      "expected_result": [
+        [
+          2208300
+        ]
+      ],
+      "id": "eval-024",
+      "luna_low_baseline": {
+        "category": "filter",
+        "end_to_end_latency_ms": 1993.5613330453634,
+        "execution_accuracy": false,
+        "execution_latency_ms": 113.71704103657976,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 1879.8442920087837,
+        "id": "eval-024",
+        "prompt_tokens": 13375,
+        "question": "Show me the count of active savings accounts.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT COUNT(*) AS active_savings_account_count\nFROM savings_accounts\nWHERE status = 'active'"
+      },
+      "question": "Show me the count of active savings accounts.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "savings_accounts.status"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "savings_accounts"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "filter",
+      "expected_result": [
+        [
+          2208300
+        ]
+      ],
+      "id": "eval-025",
+      "luna_low_baseline": {
+        "category": "filter",
+        "end_to_end_latency_ms": 2050.1154579687864,
+        "execution_accuracy": false,
+        "execution_latency_ms": 124.55845798831433,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 1925.556999980472,
+        "id": "eval-025",
+        "prompt_tokens": 13374,
+        "question": "Give the number of active savings accounts.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT COUNT(*) AS active_savings_account_count\nFROM savings_accounts\nWHERE status = 'active'"
+      },
+      "question": "Give the number of active savings accounts.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "savings_accounts.status"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "savings_accounts"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "date",
+      "expected_result": [
+        [
+          "2020-06-09",
+          "2025-06-09"
+        ]
+      ],
+      "id": "eval-026",
+      "luna_low_baseline": {
+        "category": "date",
+        "end_to_end_latency_ms": 2985.0881659658626,
+        "execution_accuracy": false,
+        "execution_latency_ms": 131.36387499980628,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2853.7242909660563,
+        "id": "eval-026",
+        "prompt_tokens": 13377,
+        "question": "How many loan disbursement date range are there?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    COUNT(*) AS loan_count,\n    MIN(disbursed_date) AS earliest_disbursement_date,\n    MAX(disbursed_date) AS latest_disbursement_date\nFROM loans\nWHERE disbursed_date IS NOT NULL"
+      },
+      "question": "How many loan disbursement date range are there?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "loans.disbursed_date"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "loans"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "date",
+      "expected_result": [
+        [
+          "2020-06-09",
+          "2025-06-09"
+        ]
+      ],
+      "id": "eval-027",
+      "luna_low_baseline": {
+        "category": "date",
+        "end_to_end_latency_ms": 2329.592459020205,
+        "execution_accuracy": false,
+        "execution_latency_ms": 97.79691701987758,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2231.7955420003273,
+        "id": "eval-027",
+        "prompt_tokens": 13378,
+        "question": "Count the loan disbursement date range in the dataset.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    COUNT(*) AS loan_count,\n    MIN(disbursed_date) AS earliest_disbursement_date,\n    MAX(disbursed_date) AS latest_disbursement_date\nFROM loans"
+      },
+      "question": "Count the loan disbursement date range in the dataset.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "loans.disbursed_date"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "loans"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "date",
+      "expected_result": [
+        [
+          "2020-06-09",
+          "2025-06-09"
+        ]
+      ],
+      "id": "eval-028",
+      "luna_low_baseline": {
+        "category": "date",
+        "end_to_end_latency_ms": 2769.4877089816146,
+        "execution_accuracy": false,
+        "execution_latency_ms": 113.11899998690933,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2656.3687089947052,
+        "id": "eval-028",
+        "prompt_tokens": 13379,
+        "question": "What is the total number of loan disbursement date range?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    COUNT(*) AS total_loans,\n    MIN(disbursed_date) AS earliest_disbursement_date,\n    MAX(disbursed_date) AS latest_disbursement_date\nFROM loans\nWHERE disbursed_date IS NOT NULL"
+      },
+      "question": "What is the total number of loan disbursement date range?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "loans.disbursed_date"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "loans"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "date",
+      "expected_result": [
+        [
+          "2020-06-09",
+          "2025-06-09"
+        ]
+      ],
+      "id": "eval-029",
+      "luna_low_baseline": {
+        "category": "date",
+        "end_to_end_latency_ms": 2221.8035829719156,
+        "execution_accuracy": false,
+        "execution_latency_ms": 92.89112500846386,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2128.9124579634517,
+        "id": "eval-029",
+        "prompt_tokens": 13378,
+        "question": "Show me the count of loan disbursement date range.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    COUNT(*) AS loan_count,\n    MIN(disbursed_date) AS earliest_disbursement_date,\n    MAX(disbursed_date) AS latest_disbursement_date\nFROM loans"
+      },
+      "question": "Show me the count of loan disbursement date range.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "loans.disbursed_date"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "loans"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "date",
+      "expected_result": [
+        [
+          "2020-06-09",
+          "2025-06-09"
+        ]
+      ],
+      "id": "eval-030",
+      "luna_low_baseline": {
+        "category": "date",
+        "end_to_end_latency_ms": 2881.7424579756334,
+        "execution_accuracy": false,
+        "execution_latency_ms": 0.0,
+        "execution_status": "invalid_sql",
+        "generation_latency_ms": 2881.7424579756334,
+        "id": "eval-030",
+        "prompt_tokens": 13377,
+        "question": "Give the number of loan disbursement date range.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    disbursed_date,\n    COUNT(*) AS loan_count\nFROM loans\nGROUP BY disbursed_date\nORDER BY disbursed_date"
+      },
+      "question": "Give the number of loan disbursement date range.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "loans.disbursed_date"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "loans"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "date",
+      "expected_result": [
+        [
+          "2020-06-09",
+          "2025-06-10"
+        ]
+      ],
+      "id": "eval-031",
+      "luna_low_baseline": {
+        "category": "date",
+        "end_to_end_latency_ms": 5995.582292031031,
+        "execution_accuracy": false,
+        "execution_latency_ms": 2609.620333008934,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 3385.9619590220973,
+        "id": "eval-031",
+        "prompt_tokens": 13374,
+        "question": "How many repayment date range are there?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    COUNT(*) AS repayment_count,\n    MIN(payment_date) AS earliest_payment_date,\n    MAX(payment_date) AS latest_payment_date\nFROM repayments"
+      },
+      "question": "How many repayment date range are there?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "repayments.payment_date"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "repayments"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "date",
+      "expected_result": [
+        [
+          "2020-06-09",
+          "2025-06-10"
+        ]
+      ],
+      "id": "eval-032",
+      "luna_low_baseline": {
+        "category": "date",
+        "end_to_end_latency_ms": 5075.650833023246,
+        "execution_accuracy": false,
+        "execution_latency_ms": 2459.0813330141827,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2616.5695000090636,
+        "id": "eval-032",
+        "prompt_tokens": 13375,
+        "question": "Count the repayment date range in the dataset.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    COUNT(*) AS repayment_count,\n    MIN(payment_date) AS earliest_repayment_date,\n    MAX(payment_date) AS latest_repayment_date\nFROM repayments"
+      },
+      "question": "Count the repayment date range in the dataset.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "repayments.payment_date"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "repayments"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "date",
+      "expected_result": [
+        [
+          "2020-06-09",
+          "2025-06-10"
+        ]
+      ],
+      "id": "eval-033",
+      "luna_low_baseline": {
+        "category": "date",
+        "end_to_end_latency_ms": 4807.540041976608,
+        "execution_accuracy": false,
+        "execution_latency_ms": 2617.289041983895,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2190.2509999927133,
+        "id": "eval-033",
+        "prompt_tokens": 13376,
+        "question": "What is the total number of repayment date range?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    COUNT(*) AS total_repayments,\n    MIN(payment_date) AS earliest_repayment_date,\n    MAX(payment_date) AS latest_repayment_date\nFROM repayments"
+      },
+      "question": "What is the total number of repayment date range?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "repayments.payment_date"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "repayments"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "date",
+      "expected_result": [
+        [
+          "2020-06-09",
+          "2025-06-10"
+        ]
+      ],
+      "id": "eval-034",
+      "luna_low_baseline": {
+        "category": "date",
+        "end_to_end_latency_ms": 5116.5353750111535,
+        "execution_accuracy": false,
+        "execution_latency_ms": 2425.095250015147,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2691.4401249960065,
+        "id": "eval-034",
+        "prompt_tokens": 13375,
+        "question": "Show me the count of repayment date range.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    COUNT(*) AS repayment_count,\n    MIN(payment_date) AS earliest_payment_date,\n    MAX(payment_date) AS latest_payment_date\nFROM repayments"
+      },
+      "question": "Show me the count of repayment date range.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "repayments.payment_date"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "repayments"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "date",
+      "expected_result": [
+        [
+          "2020-06-09",
+          "2025-06-10"
+        ]
+      ],
+      "id": "eval-035",
+      "luna_low_baseline": {
+        "category": "date",
+        "end_to_end_latency_ms": 5111.979416979011,
+        "execution_accuracy": false,
+        "execution_latency_ms": 2638.7042499845847,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2473.2751669944264,
+        "id": "eval-035",
+        "prompt_tokens": 13374,
+        "question": "Give the number of repayment date range.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    COUNT(*) AS repayment_count,\n    MIN(payment_date) AS earliest_payment_date,\n    MAX(payment_date) AS latest_payment_date\nFROM repayments"
+      },
+      "question": "Give the number of repayment date range.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "repayments.payment_date"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "repayments"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "date",
+      "expected_result": [
+        [
+          798128
+        ]
+      ],
+      "id": "eval-038",
+      "luna_low_baseline": {
+        "category": "date",
+        "end_to_end_latency_ms": 1954.4895409489982,
+        "execution_accuracy": true,
+        "execution_latency_ms": 170.50783295417204,
+        "execution_status": "passed",
+        "generation_latency_ms": 1783.9817079948261,
+        "id": "eval-038",
+        "prompt_tokens": 13379,
+        "question": "What is the total number of clients registered in 2021?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT COUNT(*) AS total_clients\nFROM clients\nWHERE registration_date >= DATE '2021-01-01'\n  AND registration_date < DATE '2022-01-01'"
+      },
+      "question": "What is the total number of clients registered in 2021?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "clients.registration_date"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "clients"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "aggregation",
+      "expected_result": [
+        [
+          "2020-01-01",
+          640501
+        ],
+        [
+          "2021-01-01",
+          3886317
+        ],
+        [
+          "2022-01-01",
+          7146905
+        ],
+        [
+          "2023-01-01",
+          10315594
+        ],
+        [
+          "2024-01-01",
+          13396197
+        ],
+        [
+          "2025-01-01",
+          6624221
+        ]
+      ],
+      "id": "eval-051",
+      "luna_low_baseline": {
+        "category": "aggregation",
+        "end_to_end_latency_ms": 7493.293499981519,
+        "execution_accuracy": false,
+        "execution_latency_ms": 5264.553499990143,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2228.739999991376,
+        "id": "eval-051",
+        "prompt_tokens": 13375,
+        "question": "How many repayment counts by year are there?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n  EXTRACT(YEAR FROM payment_date)::INTEGER AS year,\n  COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year"
+      },
+      "question": "How many repayment counts by year are there?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "repayments.payment_date"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "repayments"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "aggregation",
+      "expected_result": [
+        [
+          "2020-01-01",
+          640501
+        ],
+        [
+          "2021-01-01",
+          3886317
+        ],
+        [
+          "2022-01-01",
+          7146905
+        ],
+        [
+          "2023-01-01",
+          10315594
+        ],
+        [
+          "2024-01-01",
+          13396197
+        ],
+        [
+          "2025-01-01",
+          6624221
+        ]
+      ],
+      "id": "eval-052",
+      "luna_low_baseline": {
+        "category": "aggregation",
+        "end_to_end_latency_ms": 7784.988791041542,
+        "execution_accuracy": false,
+        "execution_latency_ms": 5005.55116601754,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2779.437625024002,
+        "id": "eval-052",
+        "prompt_tokens": 13376,
+        "question": "Count the repayment counts by year in the dataset.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT EXTRACT(YEAR FROM payment_date)::INTEGER AS year,\n       COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year"
+      },
+      "question": "Count the repayment counts by year in the dataset.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "repayments.payment_date"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "repayments"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "aggregation",
+      "expected_result": [
+        [
+          "2020-01-01",
+          640501
+        ],
+        [
+          "2021-01-01",
+          3886317
+        ],
+        [
+          "2022-01-01",
+          7146905
+        ],
+        [
+          "2023-01-01",
+          10315594
+        ],
+        [
+          "2024-01-01",
+          13396197
+        ],
+        [
+          "2025-01-01",
+          6624221
+        ]
+      ],
+      "id": "eval-053",
+      "luna_low_baseline": {
+        "category": "aggregation",
+        "end_to_end_latency_ms": 7429.075125022791,
+        "execution_accuracy": false,
+        "execution_latency_ms": 5066.110457992181,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2362.96466703061,
+        "id": "eval-053",
+        "prompt_tokens": 13377,
+        "question": "What is the total number of repayment counts by year?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    EXTRACT(YEAR FROM payment_date)::INTEGER AS year,\n    COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year"
+      },
+      "question": "What is the total number of repayment counts by year?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "repayments.payment_date"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "repayments"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "aggregation",
+      "expected_result": [
+        [
+          "2020-01-01",
+          640501
+        ],
+        [
+          "2021-01-01",
+          3886317
+        ],
+        [
+          "2022-01-01",
+          7146905
+        ],
+        [
+          "2023-01-01",
+          10315594
+        ],
+        [
+          "2024-01-01",
+          13396197
+        ],
+        [
+          "2025-01-01",
+          6624221
+        ]
+      ],
+      "id": "eval-054",
+      "luna_low_baseline": {
+        "category": "aggregation",
+        "end_to_end_latency_ms": 7003.710333025083,
+        "execution_accuracy": false,
+        "execution_latency_ms": 4990.911250002682,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2012.7990830224007,
+        "id": "eval-054",
+        "prompt_tokens": 13376,
+        "question": "Show me the count of repayment counts by year.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    EXTRACT(YEAR FROM payment_date)::INTEGER AS year,\n    COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year"
+      },
+      "question": "Show me the count of repayment counts by year.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "repayments.payment_date"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "repayments"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "aggregation",
+      "expected_result": [
+        [
+          "2020-01-01",
+          640501
+        ],
+        [
+          "2021-01-01",
+          3886317
+        ],
+        [
+          "2022-01-01",
+          7146905
+        ],
+        [
+          "2023-01-01",
+          10315594
+        ],
+        [
+          "2024-01-01",
+          13396197
+        ],
+        [
+          "2025-01-01",
+          6624221
+        ]
+      ],
+      "id": "eval-055",
+      "luna_low_baseline": {
+        "category": "aggregation",
+        "end_to_end_latency_ms": 7232.152041979134,
+        "execution_accuracy": false,
+        "execution_latency_ms": 4975.61816702364,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2256.533874955494,
+        "id": "eval-055",
+        "prompt_tokens": 13375,
+        "question": "Give the number of repayment counts by year.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    EXTRACT(YEAR FROM payment_date)::integer AS year,\n    COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year"
+      },
+      "question": "Give the number of repayment counts by year.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "repayments.payment_date"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "repayments"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "aggregation",
+      "expected_result": [
+        [
+          "Active",
+          2208300,
+          "86421.43"
+        ],
+        [
+          "Closed",
+          138315,
+          "87175.81"
+        ],
+        [
+          "Dormant",
+          413385,
+          "86318.68"
+        ]
+      ],
+      "id": "eval-056",
+      "luna_low_baseline": {
+        "category": "aggregation",
+        "end_to_end_latency_ms": 2415.8811240340583,
+        "execution_accuracy": false,
+        "execution_latency_ms": 246.56945804599673,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2169.3116659880616,
+        "id": "eval-056",
+        "prompt_tokens": 13379,
+        "question": "How many savings account counts and average balances by status are there?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status\nORDER BY status"
+      },
+      "question": "How many savings account counts and average balances by status are there?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "savings_accounts.balance",
+          "savings_accounts.status"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "savings_accounts"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "aggregation",
+      "expected_result": [
+        [
+          "Active",
+          2208300,
+          "86421.43"
+        ],
+        [
+          "Closed",
+          138315,
+          "87175.81"
+        ],
+        [
+          "Dormant",
+          413385,
+          "86318.68"
+        ]
+      ],
+      "id": "eval-057",
+      "luna_low_baseline": {
+        "category": "aggregation",
+        "end_to_end_latency_ms": 1929.5654169400223,
+        "execution_accuracy": false,
+        "execution_latency_ms": 236.9022499769926,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 1692.6631669630297,
+        "id": "eval-057",
+        "prompt_tokens": 13380,
+        "question": "Count the savings account counts and average balances by status in the dataset.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status\nORDER BY status"
+      },
+      "question": "Count the savings account counts and average balances by status in the dataset.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "savings_accounts.balance",
+          "savings_accounts.status"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "savings_accounts"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "aggregation",
+      "expected_result": [
+        [
+          "Active",
+          2208300,
+          "86421.43"
+        ],
+        [
+          "Closed",
+          138315,
+          "87175.81"
+        ],
+        [
+          "Dormant",
+          413385,
+          "86318.68"
+        ]
+      ],
+      "id": "eval-058",
+      "luna_low_baseline": {
+        "category": "aggregation",
+        "end_to_end_latency_ms": 2463.9859999879263,
+        "execution_accuracy": false,
+        "execution_latency_ms": 233.43391699017957,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2230.5520829977468,
+        "id": "eval-058",
+        "prompt_tokens": 13381,
+        "question": "What is the total number of savings account counts and average balances by status?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status\nORDER BY status"
+      },
+      "question": "What is the total number of savings account counts and average balances by status?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "savings_accounts.balance",
+          "savings_accounts.status"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "savings_accounts"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "aggregation",
+      "expected_result": [
+        [
+          "Active",
+          2208300,
+          "86421.43"
+        ],
+        [
+          "Closed",
+          138315,
+          "87175.81"
+        ],
+        [
+          "Dormant",
+          413385,
+          "86318.68"
+        ]
+      ],
+      "id": "eval-059",
+      "luna_low_baseline": {
+        "category": "aggregation",
+        "end_to_end_latency_ms": 2125.5865420098417,
+        "execution_accuracy": false,
+        "execution_latency_ms": 250.8205840131268,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 1874.7659579967149,
+        "id": "eval-059",
+        "prompt_tokens": 13380,
+        "question": "Show me the count of savings account counts and average balances by status.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status\nORDER BY status"
+      },
+      "question": "Show me the count of savings account counts and average balances by status.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "savings_accounts.balance",
+          "savings_accounts.status"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "savings_accounts"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "aggregation",
+      "expected_result": [
+        [
+          "Active",
+          2208300,
+          "86421.43"
+        ],
+        [
+          "Closed",
+          138315,
+          "87175.81"
+        ],
+        [
+          "Dormant",
+          413385,
+          "86318.68"
+        ]
+      ],
+      "id": "eval-060",
+      "luna_low_baseline": {
+        "category": "aggregation",
+        "end_to_end_latency_ms": 2182.5003339909017,
+        "execution_accuracy": false,
+        "execution_latency_ms": 241.87308398541063,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 1940.627250005491,
+        "id": "eval-060",
+        "prompt_tokens": 13379,
+        "question": "Give the number of savings account counts and average balances by status.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status\nORDER BY status"
+      },
+      "question": "Give the number of savings account counts and average balances by status.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "savings_accounts.balance",
+          "savings_accounts.status"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "savings_accounts"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "aggregation",
+      "expected_result": [
+        [
+          "30 days",
+          1
+        ],
+        [
+          "Monthly",
+          22
+        ],
+        [
+          "Quarterly",
+          2
+        ]
+      ],
+      "id": "eval-066",
+      "luna_low_baseline": {
+        "category": "aggregation",
+        "end_to_end_latency_ms": 1943.030083028134,
+        "execution_accuracy": true,
+        "execution_latency_ms": 6.8725000019185245,
+        "execution_status": "passed",
+        "generation_latency_ms": 1936.1575830262154,
+        "id": "eval-066",
+        "prompt_tokens": 13376,
+        "question": "How many savings product counts by frequency are there?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT frequency, COUNT(*) AS savings_product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency"
+      },
+      "question": "How many savings product counts by frequency are there?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "savings_products.frequency"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "savings_products"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "aggregation",
+      "expected_result": [
+        [
+          "30 days",
+          1
+        ],
+        [
+          "Monthly",
+          22
+        ],
+        [
+          "Quarterly",
+          2
+        ]
+      ],
+      "id": "eval-067",
+      "luna_low_baseline": {
+        "category": "aggregation",
+        "end_to_end_latency_ms": 1797.1480829874054,
+        "execution_accuracy": true,
+        "execution_latency_ms": 6.774957990273833,
+        "execution_status": "passed",
+        "generation_latency_ms": 1790.3731249971315,
+        "id": "eval-067",
+        "prompt_tokens": 13377,
+        "question": "Count the savings product counts by frequency in the dataset.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT frequency, COUNT(*) AS product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency"
+      },
+      "question": "Count the savings product counts by frequency in the dataset.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "savings_products.frequency"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "savings_products"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "aggregation",
+      "expected_result": [
+        [
+          "30 days",
+          1
+        ],
+        [
+          "Monthly",
+          22
+        ],
+        [
+          "Quarterly",
+          2
+        ]
+      ],
+      "id": "eval-068",
+      "luna_low_baseline": {
+        "category": "aggregation",
+        "end_to_end_latency_ms": 2089.853917947039,
+        "execution_accuracy": true,
+        "execution_latency_ms": 10.763833997771144,
+        "execution_status": "passed",
+        "generation_latency_ms": 2079.090083949268,
+        "id": "eval-068",
+        "prompt_tokens": 13378,
+        "question": "What is the total number of savings product counts by frequency?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    frequency,\n    COUNT(*) AS savings_product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency"
+      },
+      "question": "What is the total number of savings product counts by frequency?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "savings_products.frequency"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "savings_products"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "aggregation",
+      "expected_result": [
+        [
+          "30 days",
+          1
+        ],
+        [
+          "Monthly",
+          22
+        ],
+        [
+          "Quarterly",
+          2
+        ]
+      ],
+      "id": "eval-069",
+      "luna_low_baseline": {
+        "category": "aggregation",
+        "end_to_end_latency_ms": 1789.6462089847773,
+        "execution_accuracy": true,
+        "execution_latency_ms": 11.883916973602027,
+        "execution_status": "passed",
+        "generation_latency_ms": 1777.7622920111753,
+        "id": "eval-069",
+        "prompt_tokens": 13377,
+        "question": "Show me the count of savings product counts by frequency.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    frequency,\n    COUNT(*) AS savings_product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency"
+      },
+      "question": "Show me the count of savings product counts by frequency.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "savings_products.frequency"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "savings_products"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "aggregation",
+      "expected_result": [
+        [
+          "30 days",
+          1
+        ],
+        [
+          "Monthly",
+          22
+        ],
+        [
+          "Quarterly",
+          2
+        ]
+      ],
+      "id": "eval-070",
+      "luna_low_baseline": {
+        "category": "aggregation",
+        "end_to_end_latency_ms": 1839.8993749869987,
+        "execution_accuracy": true,
+        "execution_latency_ms": 9.16504196356982,
+        "execution_status": "passed",
+        "generation_latency_ms": 1830.734333023429,
+        "id": "eval-070",
+        "prompt_tokens": 13376,
+        "question": "Give the number of savings product counts by frequency.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT frequency, COUNT(*) AS savings_product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency"
+      },
+      "question": "Give the number of savings product counts by frequency.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "savings_products.frequency"
+        ],
+        "relevant_relationships": [],
+        "relevant_tables": [
+          "savings_products"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "join",
+      "expected_result": [
+        [
+          "Corporate",
+          230799
+        ],
+        [
+          "Group",
+          153953
+        ],
+        [
+          "Individual",
+          1078091
+        ],
+        [
+          "NSG",
+          77157
+        ]
+      ],
+      "id": "eval-078",
+      "luna_low_baseline": {
+        "category": "join",
+        "end_to_end_latency_ms": 2867.327999032568,
+        "execution_accuracy": true,
+        "execution_latency_ms": 1145.9517080220394,
+        "execution_status": "passed",
+        "generation_latency_ms": 1721.3762910105288,
+        "id": "eval-078",
+        "prompt_tokens": 13378,
+        "question": "What is the total number of loan counts by client type?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    c.type AS client_type,\n    COUNT(l.id) AS loan_count\nFROM clients AS c\nLEFT JOIN loans AS l\n    ON l.client_id = c.id\nGROUP BY c.type\nORDER BY c.type"
+      },
+      "question": "What is the total number of loan counts by client type?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "clients.id",
+          "clients.type",
+          "loans.client_id"
+        ],
+        "relevant_relationships": [
+          "loans.client_id__clients.id"
+        ],
+        "relevant_tables": [
+          "clients",
+          "loans"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "join",
+      "expected_result": [
+        [
+          "Corporate",
+          230799
+        ],
+        [
+          "Group",
+          153953
+        ],
+        [
+          "Individual",
+          1078091
+        ],
+        [
+          "NSG",
+          77157
+        ]
+      ],
+      "id": "eval-080",
+      "luna_low_baseline": {
+        "category": "join",
+        "end_to_end_latency_ms": 3268.883124983404,
+        "execution_accuracy": true,
+        "execution_latency_ms": 1244.6556249633431,
+        "execution_status": "passed",
+        "generation_latency_ms": 2024.2275000200607,
+        "id": "eval-080",
+        "prompt_tokens": 13376,
+        "question": "Give the number of loan counts by client type.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    c.type AS client_type,\n    COUNT(l.id) AS loan_count\nFROM clients AS c\nLEFT JOIN loans AS l\n    ON l.client_id = c.id\nGROUP BY c.type\nORDER BY c.type"
+      },
+      "question": "Give the number of loan counts by client type.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "clients.id",
+          "clients.type",
+          "loans.client_id"
+        ],
+        "relevant_relationships": [
+          "loans.client_id__clients.id"
+        ],
+        "relevant_tables": [
+          "clients",
+          "loans"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "join",
+      "expected_result": [
+        [
+          "Azraq Bank – Abu Dhabi Main Branch, Blue Tower, Khalifa St., Corniche Road, Abu Dhabi",
+          332688
+        ],
+        [
+          "Azraq Bank – Ajman Main Branch, near Ajman Gold Souq, Ajman",
+          332896
+        ],
+        [
+          "Azraq Bank – Al Ain Main Branch, Al Ain Mall area, Al Ain",
+          333532
+        ],
+        [
+          "Azraq Bank – Al Aweer Express Banking, Ras Al Khor, Dubai",
+          332265
+        ],
+        [
+          "Azraq Bank – Al Nakheel Express Banking, Ras Al Khaimah",
+          333762
+        ],
+        [
+          "Azraq Bank – Burjuman Branch, Bur Dubai (Near Burjuman Metro)",
+          332814
+        ],
+        [
+          "Azraq Bank – Dubai Internet City Branch, Sheikh Zayed Road, Dubai",
+          333725
+        ],
+        [
+          "Azraq Bank – Ghusais Branch, Amman Street, Dubai",
+          333105
+        ],
+        [
+          "Azraq Bank – Muraqqabat Branch, Abu Bakr Al Siddique Road, Dubai",
+          334467
+        ],
+        [
+          "Azraq Bank – Mussaffah Branch, Musaffah Industrial Area, Abu Dhabi",
+          334123
+        ],
+        [
+          "Azraq Bank – Sharjah Industrial Area Branch, Industrial Area No. 11, Sharjah",
+          332826
+        ],
+        [
+          "Azraq Bank – Sheikh Zayed Road Branch (Al Hawai Tower), DIFC, Dubai",
+          333797
+        ]
+      ],
+      "id": "eval-081",
+      "luna_low_baseline": {
+        "category": "join",
+        "end_to_end_latency_ms": 3082.3519169935025,
+        "execution_accuracy": false,
+        "execution_latency_ms": 947.9169999831356,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2134.434917010367,
+        "id": "eval-081",
+        "prompt_tokens": 13375,
+        "question": "How many client counts by branch are there?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.name"
+      },
+      "question": "How many client counts by branch are there?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "branches.id",
+          "branches.name",
+          "clients.branch_id"
+        ],
+        "relevant_relationships": [
+          "clients.branch_id__branches.id"
+        ],
+        "relevant_tables": [
+          "branches",
+          "clients"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "join",
+      "expected_result": [
+        [
+          "Azraq Bank – Abu Dhabi Main Branch, Blue Tower, Khalifa St., Corniche Road, Abu Dhabi",
+          332688
+        ],
+        [
+          "Azraq Bank – Ajman Main Branch, near Ajman Gold Souq, Ajman",
+          332896
+        ],
+        [
+          "Azraq Bank – Al Ain Main Branch, Al Ain Mall area, Al Ain",
+          333532
+        ],
+        [
+          "Azraq Bank – Al Aweer Express Banking, Ras Al Khor, Dubai",
+          332265
+        ],
+        [
+          "Azraq Bank – Al Nakheel Express Banking, Ras Al Khaimah",
+          333762
+        ],
+        [
+          "Azraq Bank – Burjuman Branch, Bur Dubai (Near Burjuman Metro)",
+          332814
+        ],
+        [
+          "Azraq Bank – Dubai Internet City Branch, Sheikh Zayed Road, Dubai",
+          333725
+        ],
+        [
+          "Azraq Bank – Ghusais Branch, Amman Street, Dubai",
+          333105
+        ],
+        [
+          "Azraq Bank – Muraqqabat Branch, Abu Bakr Al Siddique Road, Dubai",
+          334467
+        ],
+        [
+          "Azraq Bank – Mussaffah Branch, Musaffah Industrial Area, Abu Dhabi",
+          334123
+        ],
+        [
+          "Azraq Bank – Sharjah Industrial Area Branch, Industrial Area No. 11, Sharjah",
+          332826
+        ],
+        [
+          "Azraq Bank – Sheikh Zayed Road Branch (Al Hawai Tower), DIFC, Dubai",
+          333797
+        ]
+      ],
+      "id": "eval-082",
+      "luna_low_baseline": {
+        "category": "join",
+        "end_to_end_latency_ms": 3148.807500023395,
+        "execution_accuracy": false,
+        "execution_latency_ms": 929.7333750291727,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2219.074124994222,
+        "id": "eval-082",
+        "prompt_tokens": 13376,
+        "question": "Count the client counts by branch in the dataset.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.id"
+      },
+      "question": "Count the client counts by branch in the dataset.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "branches.id",
+          "branches.name",
+          "clients.branch_id"
+        ],
+        "relevant_relationships": [
+          "clients.branch_id__branches.id"
+        ],
+        "relevant_tables": [
+          "branches",
+          "clients"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "join",
+      "expected_result": [
+        [
+          "Azraq Bank – Abu Dhabi Main Branch, Blue Tower, Khalifa St., Corniche Road, Abu Dhabi",
+          332688
+        ],
+        [
+          "Azraq Bank – Ajman Main Branch, near Ajman Gold Souq, Ajman",
+          332896
+        ],
+        [
+          "Azraq Bank – Al Ain Main Branch, Al Ain Mall area, Al Ain",
+          333532
+        ],
+        [
+          "Azraq Bank – Al Aweer Express Banking, Ras Al Khor, Dubai",
+          332265
+        ],
+        [
+          "Azraq Bank – Al Nakheel Express Banking, Ras Al Khaimah",
+          333762
+        ],
+        [
+          "Azraq Bank – Burjuman Branch, Bur Dubai (Near Burjuman Metro)",
+          332814
+        ],
+        [
+          "Azraq Bank – Dubai Internet City Branch, Sheikh Zayed Road, Dubai",
+          333725
+        ],
+        [
+          "Azraq Bank – Ghusais Branch, Amman Street, Dubai",
+          333105
+        ],
+        [
+          "Azraq Bank – Muraqqabat Branch, Abu Bakr Al Siddique Road, Dubai",
+          334467
+        ],
+        [
+          "Azraq Bank – Mussaffah Branch, Musaffah Industrial Area, Abu Dhabi",
+          334123
+        ],
+        [
+          "Azraq Bank – Sharjah Industrial Area Branch, Industrial Area No. 11, Sharjah",
+          332826
+        ],
+        [
+          "Azraq Bank – Sheikh Zayed Road Branch (Al Hawai Tower), DIFC, Dubai",
+          333797
+        ]
+      ],
+      "id": "eval-083",
+      "luna_low_baseline": {
+        "category": "join",
+        "end_to_end_latency_ms": 2848.2910830061883,
+        "execution_accuracy": false,
+        "execution_latency_ms": 970.6631660228595,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 1877.6279169833288,
+        "id": "eval-083",
+        "prompt_tokens": 13377,
+        "question": "What is the total number of client counts by branch?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.name"
+      },
+      "question": "What is the total number of client counts by branch?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "branches.id",
+          "branches.name",
+          "clients.branch_id"
+        ],
+        "relevant_relationships": [
+          "clients.branch_id__branches.id"
+        ],
+        "relevant_tables": [
+          "branches",
+          "clients"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "join",
+      "expected_result": [
+        [
+          "Azraq Bank – Abu Dhabi Main Branch, Blue Tower, Khalifa St., Corniche Road, Abu Dhabi",
+          332688
+        ],
+        [
+          "Azraq Bank – Ajman Main Branch, near Ajman Gold Souq, Ajman",
+          332896
+        ],
+        [
+          "Azraq Bank – Al Ain Main Branch, Al Ain Mall area, Al Ain",
+          333532
+        ],
+        [
+          "Azraq Bank – Al Aweer Express Banking, Ras Al Khor, Dubai",
+          332265
+        ],
+        [
+          "Azraq Bank – Al Nakheel Express Banking, Ras Al Khaimah",
+          333762
+        ],
+        [
+          "Azraq Bank – Burjuman Branch, Bur Dubai (Near Burjuman Metro)",
+          332814
+        ],
+        [
+          "Azraq Bank – Dubai Internet City Branch, Sheikh Zayed Road, Dubai",
+          333725
+        ],
+        [
+          "Azraq Bank – Ghusais Branch, Amman Street, Dubai",
+          333105
+        ],
+        [
+          "Azraq Bank – Muraqqabat Branch, Abu Bakr Al Siddique Road, Dubai",
+          334467
+        ],
+        [
+          "Azraq Bank – Mussaffah Branch, Musaffah Industrial Area, Abu Dhabi",
+          334123
+        ],
+        [
+          "Azraq Bank – Sharjah Industrial Area Branch, Industrial Area No. 11, Sharjah",
+          332826
+        ],
+        [
+          "Azraq Bank – Sheikh Zayed Road Branch (Al Hawai Tower), DIFC, Dubai",
+          333797
+        ]
+      ],
+      "id": "eval-084",
+      "luna_low_baseline": {
+        "category": "join",
+        "end_to_end_latency_ms": 3317.528666986618,
+        "execution_accuracy": false,
+        "execution_latency_ms": 987.7763339900412,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2329.752332996577,
+        "id": "eval-084",
+        "prompt_tokens": 13376,
+        "question": "Show me the count of client counts by branch.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.name"
+      },
+      "question": "Show me the count of client counts by branch.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "branches.id",
+          "branches.name",
+          "clients.branch_id"
+        ],
+        "relevant_relationships": [
+          "clients.branch_id__branches.id"
+        ],
+        "relevant_tables": [
+          "branches",
+          "clients"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "join",
+      "expected_result": [
+        [
+          "Azraq Bank – Abu Dhabi Main Branch, Blue Tower, Khalifa St., Corniche Road, Abu Dhabi",
+          332688
+        ],
+        [
+          "Azraq Bank – Ajman Main Branch, near Ajman Gold Souq, Ajman",
+          332896
+        ],
+        [
+          "Azraq Bank – Al Ain Main Branch, Al Ain Mall area, Al Ain",
+          333532
+        ],
+        [
+          "Azraq Bank – Al Aweer Express Banking, Ras Al Khor, Dubai",
+          332265
+        ],
+        [
+          "Azraq Bank – Al Nakheel Express Banking, Ras Al Khaimah",
+          333762
+        ],
+        [
+          "Azraq Bank – Burjuman Branch, Bur Dubai (Near Burjuman Metro)",
+          332814
+        ],
+        [
+          "Azraq Bank – Dubai Internet City Branch, Sheikh Zayed Road, Dubai",
+          333725
+        ],
+        [
+          "Azraq Bank – Ghusais Branch, Amman Street, Dubai",
+          333105
+        ],
+        [
+          "Azraq Bank – Muraqqabat Branch, Abu Bakr Al Siddique Road, Dubai",
+          334467
+        ],
+        [
+          "Azraq Bank – Mussaffah Branch, Musaffah Industrial Area, Abu Dhabi",
+          334123
+        ],
+        [
+          "Azraq Bank – Sharjah Industrial Area Branch, Industrial Area No. 11, Sharjah",
+          332826
+        ],
+        [
+          "Azraq Bank – Sheikh Zayed Road Branch (Al Hawai Tower), DIFC, Dubai",
+          333797
+        ]
+      ],
+      "id": "eval-085",
+      "luna_low_baseline": {
+        "category": "join",
+        "end_to_end_latency_ms": 2787.999290972948,
+        "execution_accuracy": false,
+        "execution_latency_ms": 903.7197079742327,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 1884.2795829987153,
+        "id": "eval-085",
+        "prompt_tokens": 13375,
+        "question": "Give the number of client counts by branch.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.name"
+      },
+      "question": "Give the number of client counts by branch.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "branches.id",
+          "branches.name",
+          "clients.branch_id"
+        ],
+        "relevant_relationships": [
+          "clients.branch_id__branches.id"
+        ],
+        "relevant_tables": [
+          "branches",
+          "clients"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "multi_table",
+      "expected_result": [
+        [
+          "Agriculture Loan",
+          17905
+        ],
+        [
+          "Asset-Based Lending",
+          17907
+        ],
+        [
+          "Auto Loan",
+          89519
+        ],
+        [
+          "Auto Loan Refinance",
+          89996
+        ],
+        [
+          "Bank Guarantee",
+          17692
+        ],
+        [
+          "Bridge Loan",
+          17678
+        ],
+        [
+          "Business Line of Credit (Secured)",
+          17838
+        ],
+        [
+          "Business Line of Credit (Unsecured)",
+          17690
+        ],
+        [
+          "Cheque Discounting",
+          17819
+        ],
+        [
+          "Commercial Real Estate Loan",
+          17908
+        ],
+        [
+          "Construction Loan",
+          17950
+        ],
+        [
+          "Debt Consolidation Loan",
+          89944
+        ],
+        [
+          "Equipment Financing",
+          17456
+        ],
+        [
+          "Escrow Agent Financing",
+          17730
+        ],
+        [
+          "Home Equity Line of Credit (HELOC)",
+          89750
+        ],
+        [
+          "Home Equity Loan",
+          90297
+        ],
+        [
+          "Home Mortgage (Adjustable)",
+          89720
+        ],
+        [
+          "Home Mortgage (Fixed)",
+          89701
+        ],
+        [
+          "Invoice Discounting",
+          17711
+        ],
+        [
+          "Lease Financing (Ijarah)",
+          17743
+        ],
+        [
+          "Merchant Finance Facility",
+          17552
+        ],
+        [
+          "Personal Loan",
+          90455
+        ],
+        [
+          "Post-shipment Finance",
+          17831
+        ],
+        [
+          "Pre-shipment Finance",
+          17655
+        ],
+        [
+          "Receivables Factoring",
+          17785
+        ],
+        [
+          "Refinancing Facility",
+          17692
+        ],
+        [
+          "SBA-Backed Business Loan",
+          17808
+        ],
+        [
+          "Secured Personal Loan",
+          89601
+        ],
+        [
+          "Small Business Loan",
+          18045
+        ],
+        [
+          "Standby Letter of Credit",
+          17520
+        ],
+        [
+          "Structured Trade Finance",
+          17860
+        ],
+        [
+          "Student Loan",
+          89908
+        ],
+        [
+          "Student Loan (Private)",
+          89668
+        ],
+        [
+          "Syndicated Loan",
+          17756
+        ],
+        [
+          "Term Loan Commercial",
+          17763
+        ],
+        [
+          "Unsecured Personal Loan",
+          89532
+        ],
+        [
+          "Warehouse Line of Credit",
+          17682
+        ],
+        [
+          "Working Capital Overdraft",
+          17933
+        ]
+      ],
+      "id": "eval-112",
+      "luna_low_baseline": {
+        "category": "multi_table",
+        "end_to_end_latency_ms": 3533.247501065489,
+        "execution_accuracy": true,
+        "execution_latency_ms": 372.2595840226859,
+        "execution_status": "passed",
+        "generation_latency_ms": 3160.987917042803,
+        "id": "eval-112",
+        "prompt_tokens": 13380,
+        "question": "Count the loan counts by product with a funding line in the dataset.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    lp.name AS product_name,\n    COUNT(l.id) AS loan_count\nFROM loans AS l\nJOIN loan_products AS lp\n    ON l.product_id = lp.id\nJOIN funding_lines AS fl\n    ON l.funding_line_id = fl.id\nGROUP BY lp.id, lp.name\nORDER BY lp.name"
+      },
+      "question": "Count the loan counts by product with a funding line in the dataset.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "funding_lines.id",
+          "loan_products.id",
+          "loan_products.name",
+          "loans.funding_line_id",
+          "loans.product_id"
+        ],
+        "relevant_relationships": [
+          "loans.funding_line_id__funding_lines.id",
+          "loans.product_id__loan_products.id"
+        ],
+        "relevant_tables": [
+          "funding_lines",
+          "loan_products",
+          "loans"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "multi_table",
+      "expected_result": [
+        [
+          "Agriculture Loan",
+          17905
+        ],
+        [
+          "Asset-Based Lending",
+          17907
+        ],
+        [
+          "Auto Loan",
+          89519
+        ],
+        [
+          "Auto Loan Refinance",
+          89996
+        ],
+        [
+          "Bank Guarantee",
+          17692
+        ],
+        [
+          "Bridge Loan",
+          17678
+        ],
+        [
+          "Business Line of Credit (Secured)",
+          17838
+        ],
+        [
+          "Business Line of Credit (Unsecured)",
+          17690
+        ],
+        [
+          "Cheque Discounting",
+          17819
+        ],
+        [
+          "Commercial Real Estate Loan",
+          17908
+        ],
+        [
+          "Construction Loan",
+          17950
+        ],
+        [
+          "Debt Consolidation Loan",
+          89944
+        ],
+        [
+          "Equipment Financing",
+          17456
+        ],
+        [
+          "Escrow Agent Financing",
+          17730
+        ],
+        [
+          "Home Equity Line of Credit (HELOC)",
+          89750
+        ],
+        [
+          "Home Equity Loan",
+          90297
+        ],
+        [
+          "Home Mortgage (Adjustable)",
+          89720
+        ],
+        [
+          "Home Mortgage (Fixed)",
+          89701
+        ],
+        [
+          "Invoice Discounting",
+          17711
+        ],
+        [
+          "Lease Financing (Ijarah)",
+          17743
+        ],
+        [
+          "Merchant Finance Facility",
+          17552
+        ],
+        [
+          "Personal Loan",
+          90455
+        ],
+        [
+          "Post-shipment Finance",
+          17831
+        ],
+        [
+          "Pre-shipment Finance",
+          17655
+        ],
+        [
+          "Receivables Factoring",
+          17785
+        ],
+        [
+          "Refinancing Facility",
+          17692
+        ],
+        [
+          "SBA-Backed Business Loan",
+          17808
+        ],
+        [
+          "Secured Personal Loan",
+          89601
+        ],
+        [
+          "Small Business Loan",
+          18045
+        ],
+        [
+          "Standby Letter of Credit",
+          17520
+        ],
+        [
+          "Structured Trade Finance",
+          17860
+        ],
+        [
+          "Student Loan",
+          89908
+        ],
+        [
+          "Student Loan (Private)",
+          89668
+        ],
+        [
+          "Syndicated Loan",
+          17756
+        ],
+        [
+          "Term Loan Commercial",
+          17763
+        ],
+        [
+          "Unsecured Personal Loan",
+          89532
+        ],
+        [
+          "Warehouse Line of Credit",
+          17682
+        ],
+        [
+          "Working Capital Overdraft",
+          17933
+        ]
+      ],
+      "id": "eval-114",
+      "luna_low_baseline": {
+        "category": "multi_table",
+        "end_to_end_latency_ms": 3650.4799160175025,
+        "execution_accuracy": false,
+        "execution_latency_ms": 529.559665999841,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 3120.9202500176616,
+        "id": "eval-114",
+        "prompt_tokens": 13380,
+        "question": "Show me the count of loan counts by product with a funding line.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    lp.name AS product_name,\n    fl.name AS funding_line_name,\n    COUNT(l.id) AS loan_count\nFROM loans AS l\nJOIN loan_products AS lp\n    ON l.product_id = lp.id\nJOIN funding_lines AS fl\n    ON lp.funding_line_id = fl.id\nGROUP BY lp.id, lp.name, fl.id, fl.name\nORDER BY lp.name, fl.name"
+      },
+      "question": "Show me the count of loan counts by product with a funding line.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "funding_lines.id",
+          "loan_products.id",
+          "loan_products.name",
+          "loans.funding_line_id",
+          "loans.product_id"
+        ],
+        "relevant_relationships": [
+          "loans.funding_line_id__funding_lines.id",
+          "loans.product_id__loan_products.id"
+        ],
+        "relevant_tables": [
+          "funding_lines",
+          "loan_products",
+          "loans"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "multi_table",
+      "expected_result": [
+        [
+          "Agriculture Loan",
+          17905
+        ],
+        [
+          "Asset-Based Lending",
+          17907
+        ],
+        [
+          "Auto Loan",
+          89519
+        ],
+        [
+          "Auto Loan Refinance",
+          89996
+        ],
+        [
+          "Bank Guarantee",
+          17692
+        ],
+        [
+          "Bridge Loan",
+          17678
+        ],
+        [
+          "Business Line of Credit (Secured)",
+          17838
+        ],
+        [
+          "Business Line of Credit (Unsecured)",
+          17690
+        ],
+        [
+          "Cheque Discounting",
+          17819
+        ],
+        [
+          "Commercial Real Estate Loan",
+          17908
+        ],
+        [
+          "Construction Loan",
+          17950
+        ],
+        [
+          "Debt Consolidation Loan",
+          89944
+        ],
+        [
+          "Equipment Financing",
+          17456
+        ],
+        [
+          "Escrow Agent Financing",
+          17730
+        ],
+        [
+          "Home Equity Line of Credit (HELOC)",
+          89750
+        ],
+        [
+          "Home Equity Loan",
+          90297
+        ],
+        [
+          "Home Mortgage (Adjustable)",
+          89720
+        ],
+        [
+          "Home Mortgage (Fixed)",
+          89701
+        ],
+        [
+          "Invoice Discounting",
+          17711
+        ],
+        [
+          "Lease Financing (Ijarah)",
+          17743
+        ],
+        [
+          "Merchant Finance Facility",
+          17552
+        ],
+        [
+          "Personal Loan",
+          90455
+        ],
+        [
+          "Post-shipment Finance",
+          17831
+        ],
+        [
+          "Pre-shipment Finance",
+          17655
+        ],
+        [
+          "Receivables Factoring",
+          17785
+        ],
+        [
+          "Refinancing Facility",
+          17692
+        ],
+        [
+          "SBA-Backed Business Loan",
+          17808
+        ],
+        [
+          "Secured Personal Loan",
+          89601
+        ],
+        [
+          "Small Business Loan",
+          18045
+        ],
+        [
+          "Standby Letter of Credit",
+          17520
+        ],
+        [
+          "Structured Trade Finance",
+          17860
+        ],
+        [
+          "Student Loan",
+          89908
+        ],
+        [
+          "Student Loan (Private)",
+          89668
+        ],
+        [
+          "Syndicated Loan",
+          17756
+        ],
+        [
+          "Term Loan Commercial",
+          17763
+        ],
+        [
+          "Unsecured Personal Loan",
+          89532
+        ],
+        [
+          "Warehouse Line of Credit",
+          17682
+        ],
+        [
+          "Working Capital Overdraft",
+          17933
+        ]
+      ],
+      "id": "eval-115",
+      "luna_low_baseline": {
+        "category": "multi_table",
+        "end_to_end_latency_ms": 3417.1452909940854,
+        "execution_accuracy": true,
+        "execution_latency_ms": 359.02291600359604,
+        "execution_status": "passed",
+        "generation_latency_ms": 3058.1223749904893,
+        "id": "eval-115",
+        "prompt_tokens": 13379,
+        "question": "Give the number of loan counts by product with a funding line.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    lp.name AS product_name,\n    COUNT(l.id) AS loan_count\nFROM loans AS l\nJOIN loan_products AS lp\n    ON l.product_id = lp.id\nJOIN funding_lines AS fl\n    ON l.funding_line_id = fl.id\nGROUP BY lp.id, lp.name\nORDER BY lp.name"
+      },
+      "question": "Give the number of loan counts by product with a funding line.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "funding_lines.id",
+          "loan_products.id",
+          "loan_products.name",
+          "loans.funding_line_id",
+          "loans.product_id"
+        ],
+        "relevant_relationships": [
+          "loans.funding_line_id__funding_lines.id",
+          "loans.product_id__loan_products.id"
+        ],
+        "relevant_tables": [
+          "funding_lines",
+          "loan_products",
+          "loans"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "multi_table",
+      "expected_result": [
+        [
+          "Abu Dhabi",
+          364503
+        ],
+        [
+          "Ajman",
+          363780
+        ],
+        [
+          "Al Ain",
+          363915
+        ],
+        [
+          "Alexandria",
+          363808
+        ],
+        [
+          "Cairo",
+          363546
+        ],
+        [
+          "Doha",
+          363824
+        ],
+        [
+          "Dubai",
+          363592
+        ],
+        [
+          "Giza",
+          363526
+        ],
+        [
+          "Mumbai",
+          363259
+        ],
+        [
+          "Ras Al Khaimah",
+          363201
+        ],
+        [
+          "Sharjah",
+          363046
+        ]
+      ],
+      "id": "eval-116",
+      "luna_low_baseline": {
+        "category": "multi_table",
+        "end_to_end_latency_ms": 3604.104332975112,
+        "execution_accuracy": true,
+        "execution_latency_ms": 1116.4466249756515,
+        "execution_status": "passed",
+        "generation_latency_ms": 2487.6577079994604,
+        "id": "eval-116",
+        "prompt_tokens": 13377,
+        "question": "How many clients by district through their city are there?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    d.name AS district_name,\n    COUNT(c.id) AS client_count\nFROM clients AS c\nJOIN cities AS ci\n    ON c.city_id = ci.id\nJOIN districts AS d\n    ON ci.district_id = d.id\nGROUP BY d.id, d.name\nORDER BY d.name"
+      },
+      "question": "How many clients by district through their city are there?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "cities.district_id",
+          "cities.id",
+          "clients.city_id",
+          "districts.id",
+          "districts.name"
+        ],
+        "relevant_relationships": [
+          "cities.district_id__districts.id",
+          "clients.city_id__cities.id"
+        ],
+        "relevant_tables": [
+          "cities",
+          "clients",
+          "districts"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "multi_table",
+      "expected_result": [
+        [
+          "Abu Dhabi",
+          364503
+        ],
+        [
+          "Ajman",
+          363780
+        ],
+        [
+          "Al Ain",
+          363915
+        ],
+        [
+          "Alexandria",
+          363808
+        ],
+        [
+          "Cairo",
+          363546
+        ],
+        [
+          "Doha",
+          363824
+        ],
+        [
+          "Dubai",
+          363592
+        ],
+        [
+          "Giza",
+          363526
+        ],
+        [
+          "Mumbai",
+          363259
+        ],
+        [
+          "Ras Al Khaimah",
+          363201
+        ],
+        [
+          "Sharjah",
+          363046
+        ]
+      ],
+      "id": "eval-117",
+      "luna_low_baseline": {
+        "category": "multi_table",
+        "end_to_end_latency_ms": 4142.223124974407,
+        "execution_accuracy": true,
+        "execution_latency_ms": 1766.2076249835081,
+        "execution_status": "passed",
+        "generation_latency_ms": 2376.015499990899,
+        "id": "eval-117",
+        "prompt_tokens": 13378,
+        "question": "Count the clients by district through their city in the dataset.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    d.name AS district_name,\n    COUNT(c.id) AS client_count\nFROM districts AS d\nJOIN cities AS ci\n    ON ci.district_id = d.id\nLEFT JOIN clients AS c\n    ON c.city_id = ci.id\nGROUP BY d.id, d.name\nORDER BY d.name"
+      },
+      "question": "Count the clients by district through their city in the dataset.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "cities.district_id",
+          "cities.id",
+          "clients.city_id",
+          "districts.id",
+          "districts.name"
+        ],
+        "relevant_relationships": [
+          "cities.district_id__districts.id",
+          "clients.city_id__cities.id"
+        ],
+        "relevant_tables": [
+          "cities",
+          "clients",
+          "districts"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "multi_table",
+      "expected_result": [
+        [
+          "Abu Dhabi",
+          364503
+        ],
+        [
+          "Ajman",
+          363780
+        ],
+        [
+          "Al Ain",
+          363915
+        ],
+        [
+          "Alexandria",
+          363808
+        ],
+        [
+          "Cairo",
+          363546
+        ],
+        [
+          "Doha",
+          363824
+        ],
+        [
+          "Dubai",
+          363592
+        ],
+        [
+          "Giza",
+          363526
+        ],
+        [
+          "Mumbai",
+          363259
+        ],
+        [
+          "Ras Al Khaimah",
+          363201
+        ],
+        [
+          "Sharjah",
+          363046
+        ]
+      ],
+      "id": "eval-118",
+      "luna_low_baseline": {
+        "category": "multi_table",
+        "end_to_end_latency_ms": 4406.064499984495,
+        "execution_accuracy": false,
+        "execution_latency_ms": 1769.2755419993773,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2636.788957985118,
+        "id": "eval-118",
+        "prompt_tokens": 13379,
+        "question": "What is the total number of clients by district through their city?",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    d.id AS district_id,\n    d.name AS district_name,\n    COUNT(c.id) AS client_count\nFROM districts AS d\nLEFT JOIN cities AS city\n    ON city.district_id = d.id\nLEFT JOIN clients AS c\n    ON c.city_id = city.id\nGROUP BY d.id, d.name\nORDER BY d.name"
+      },
+      "question": "What is the total number of clients by district through their city?",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "cities.district_id",
+          "cities.id",
+          "clients.city_id",
+          "districts.id",
+          "districts.name"
+        ],
+        "relevant_relationships": [
+          "cities.district_id__districts.id",
+          "clients.city_id__cities.id"
+        ],
+        "relevant_tables": [
+          "cities",
+          "clients",
+          "districts"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "multi_table",
+      "expected_result": [
+        [
+          "Abu Dhabi",
+          364503
+        ],
+        [
+          "Ajman",
+          363780
+        ],
+        [
+          "Al Ain",
+          363915
+        ],
+        [
+          "Alexandria",
+          363808
+        ],
+        [
+          "Cairo",
+          363546
+        ],
+        [
+          "Doha",
+          363824
+        ],
+        [
+          "Dubai",
+          363592
+        ],
+        [
+          "Giza",
+          363526
+        ],
+        [
+          "Mumbai",
+          363259
+        ],
+        [
+          "Ras Al Khaimah",
+          363201
+        ],
+        [
+          "Sharjah",
+          363046
+        ]
+      ],
+      "id": "eval-119",
+      "luna_low_baseline": {
+        "category": "multi_table",
+        "end_to_end_latency_ms": 3863.9296250767075,
+        "execution_accuracy": true,
+        "execution_latency_ms": 1696.4445420308039,
+        "execution_status": "passed",
+        "generation_latency_ms": 2167.4850830459036,
+        "id": "eval-119",
+        "prompt_tokens": 13378,
+        "question": "Show me the count of clients by district through their city.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    d.name AS district_name,\n    COUNT(c.id) AS client_count\nFROM districts AS d\nLEFT JOIN cities AS ct\n    ON ct.district_id = d.id\nLEFT JOIN clients AS c\n    ON c.city_id = ct.id\nGROUP BY d.id, d.name\nORDER BY d.name"
+      },
+      "question": "Show me the count of clients by district through their city.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "cities.district_id",
+          "cities.id",
+          "clients.city_id",
+          "districts.id",
+          "districts.name"
+        ],
+        "relevant_relationships": [
+          "cities.district_id__districts.id",
+          "clients.city_id__cities.id"
+        ],
+        "relevant_tables": [
+          "cities",
+          "clients",
+          "districts"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    },
+    {
+      "attempts": [],
+      "category": "multi_table",
+      "expected_result": [
+        [
+          "Abu Dhabi",
+          364503
+        ],
+        [
+          "Ajman",
+          363780
+        ],
+        [
+          "Al Ain",
+          363915
+        ],
+        [
+          "Alexandria",
+          363808
+        ],
+        [
+          "Cairo",
+          363546
+        ],
+        [
+          "Doha",
+          363824
+        ],
+        [
+          "Dubai",
+          363592
+        ],
+        [
+          "Giza",
+          363526
+        ],
+        [
+          "Mumbai",
+          363259
+        ],
+        [
+          "Ras Al Khaimah",
+          363201
+        ],
+        [
+          "Sharjah",
+          363046
+        ]
+      ],
+      "id": "eval-120",
+      "luna_low_baseline": {
+        "category": "multi_table",
+        "end_to_end_latency_ms": 3814.9957500281744,
+        "execution_accuracy": false,
+        "execution_latency_ms": 1721.6507500270382,
+        "execution_status": "result_mismatch",
+        "generation_latency_ms": 2093.345000001136,
+        "id": "eval-120",
+        "prompt_tokens": 13377,
+        "question": "Give the number of clients by district through their city.",
+        "retrieval_latency_ms": 0.0,
+        "sql": "SELECT\n    d.id AS district_id,\n    d.name AS district_name,\n    COUNT(c.id) AS client_count\nFROM districts AS d\nLEFT JOIN cities AS city\n    ON city.district_id = d.id\nLEFT JOIN clients AS c\n    ON c.city_id = city.id\nGROUP BY d.id, d.name\nORDER BY d.name"
+      },
+      "question": "Give the number of clients by district through their city.",
+      "retrieval_labels": {
+        "relevant_columns": [
+          "cities.district_id",
+          "cities.id",
+          "clients.city_id",
+          "districts.id",
+          "districts.name"
+        ],
+        "relevant_relationships": [
+          "cities.district_id__districts.id",
+          "clients.city_id__cities.id"
+        ],
+        "relevant_tables": [
+          "cities",
+          "clients",
+          "districts"
+        ],
+        "unresolved_relationships": []
+      },
+      "status": "not_started"
+    }
+  ],
+  "retry_budget": {
+    "per_request_limit": 2,
+    "total_limit": 50,
+    "total_used": 0,
+    "used_by_request": {}
+  },
+  "stop_reason": {
+    "at": "2026-11-28T00:56:10.241944+00:00",
+    "query_id": "eval-114",
+    "type": "malformed_model_output"
+  }
+}
