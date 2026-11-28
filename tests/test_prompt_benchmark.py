@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 from types import SimpleNamespace
 
 from triage_sql.prompt_benchmark import build_prompt, validate_generated_sql
@@ -12,7 +12,15 @@ class FakeResponses:
 
     def create(self, **kwargs):
         self.kwargs = kwargs
-        return SimpleNamespace(output_text="SELECT count(*) FROM loans", usage=SimpleNamespace(input_tokens=21))
+        return SimpleNamespace(
+            output_text="SELECT count(*) FROM loans",
+            usage=SimpleNamespace(
+                input_tokens=21,
+                output_tokens=13,
+                input_tokens_details=SimpleNamespace(cached_tokens=5),
+                output_tokens_details=SimpleNamespace(reasoning_tokens=7),
+            ),
+        )
 
 
 class FakeClient:
@@ -36,9 +44,20 @@ class PromptBenchmarkTests(unittest.TestCase):
         generated = adapter.generate("schema and question")
         self.assertEqual(generated.model, "configured-test-model")
         self.assertEqual(generated.input_tokens, 21)
+        self.assertEqual(generated.output_tokens, 13)
+        self.assertEqual(generated.reasoning_tokens, 7)
+        self.assertEqual(generated.cached_input_tokens, 5)
         self.assertEqual(generated.text, "SELECT count(*) FROM loans")
         self.assertEqual(client.responses.kwargs["model"], "configured-test-model")
         self.assertEqual(client.responses.kwargs["reasoning"], {"effort": "low"})
+
+    def test_openai_client_disables_hidden_retries(self):
+        factory = Mock()
+        with patch("triage_sql.sql_generation.load_dotenv"), patch.dict(
+            "os.environ", {"OPENAI_MODEL": "gpt-6-luna", "OPENAI_REASONING_EFFORT": "high"}
+        ), patch.dict("sys.modules", {"openai": SimpleNamespace(OpenAI=factory)}):
+            OpenAIResponsesGenerator()
+        factory.assert_called_once_with(max_retries=0)
 
     def test_generated_sql_must_be_single_read_only_safe_select(self):
         self.assertEqual(validate_generated_sql("```sql\nSELECT count(*) FROM loans;\n```"), "SELECT count(*) FROM loans")

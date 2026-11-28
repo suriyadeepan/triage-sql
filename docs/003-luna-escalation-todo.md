@@ -12,16 +12,16 @@ Tasks are the canonical status source. Lineage: requirement → plan → task �
 - [x] **T001.1** Add pre-run checks for the cohort, baseline artifacts, query set, index manifest, and snapshot identities. **Accept:** verify exactly the frozen 53 retrieved-schema failure IDs; verify the recorded hashes/snapshot; fail before generation on any mismatch; never write to baseline/cohort paths. **Depends on:** none.
 - [x] **T001.2** Join cohort IDs to both existing Luna-low conditions. **Accept:** preserve exact expected outputs and statuses; establish 0/53 retrieved-schema and 19/53 full-schema successes; never run Luna-high on other IDs. **Depends on:** T001.1.
 
-## T002 — Extend the generation adapter with bounded usage and retry accounting [ ]
+## T002 — Extend the generation adapter with bounded usage and retry accounting [x]
 
 **Requirements:** R002.1–R002.3, R002.5, R003.1–R003.4, A004
 **Plan:** P002.1, P002.3, P002.5
 **Files:** `src/triage_sql/sql_generation.py`, adapter tests, experiment configuration in `scripts/`
 **Depends on:** none
 
-- [ ] **T002.1** Configure the experiment explicitly for `gpt-6-luna` and high reasoning effort while preserving model-neutral adapter behavior. **Accept:** verify effective model/effort before any request and leave existing baseline files/configuration untouched. **Depends on:** none.
-- [ ] **T002.2** Capture input, output, cached-input, and reasoning token usage where returned, plus model ID, effort, and request latency; calculate per-request cost from recorded rate-card/tier data without double-counting reasoning tokens. **Accept:** missing usage remains explicitly unavailable; rate card source/date and per-token rates are recorded. **Depends on:** T002.1.
-- [ ] **T002.3** Replace opaque SDK retry behavior in the experiment path with explicit bounded retries for transient API errors only. **Accept:** maximum two retries per initial request and 50 total; every request/retry is counted; malformed outputs and non-transient errors are recorded and stop without another generation. **Depends on:** T002.1.
+- [x] **T002.1** Configure the experiment explicitly for `gpt-6-luna` and high reasoning effort while preserving model-neutral adapter behavior. **Accept:** verify effective model/effort before any request and leave existing baseline files/configuration untouched. **Depends on:** none.
+- [x] **T002.2** Capture input, output, cached-input, and reasoning token usage where returned, plus model ID, effort, and request latency; calculate per-request cost from recorded rate-card/tier data without double-counting reasoning tokens. **Accept:** missing usage remains explicitly unavailable; rate card source/date and per-token rates are recorded. **Depends on:** T002.1.
+- [x] **T002.3** Replace opaque SDK retry behavior in the experiment path with explicit bounded retries for transient API errors only. **Accept:** maximum two retries per initial request and 50 total; every request/retry is counted; malformed outputs and non-transient errors are recorded and stop without another generation. **Depends on:** T002.1.
 
 ## T003 — Implement the fixed two-condition checkpointed runner [ ]
 

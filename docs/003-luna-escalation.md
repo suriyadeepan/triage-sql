@@ -23,3 +23,11 @@ The Luna-low baseline uses `gpt-6-luna` at low reasoning effort. Of the same 53 
 - Added a pairing helper that joins each cohort ID to both original SQL baseline conditions and fails unless the known Luna-low comparison remains 0/53 retrieved and 19/53 full-schema successes.
 - Verification: `uv run pytest -q tests/test_experiment_inputs.py` — 4 passed. All frozen hashes listed above matched at implementation time.
 - No Luna-high or Cohere service calls were made. Original baseline and cohort files were read only.
+
+### T002 — Usage capture and bounded retry primitives
+
+- Extended the generation response with output, reasoning, and cached-input token counts when supplied by the Responses API. The OpenAI client created by the adapter now disables SDK-managed retries; FS-03 applies its own explicit limits.
+- Added a high-effort/model guard, a serializable retry budget (two retries per request, 50 overall), and a classifier limited to OpenAI connection/timeouts and HTTP 408/409/429/5xx errors. SQL/output validation failures are not retryable.
+- Added cost calculation from a captured rate card. Cached input is priced separately when usage and a cached rate are available; reasoning is included once within output tokens. Cost is unavailable when input or output usage is missing.
+- Verification: `uv run pytest -q tests/test_prompt_benchmark.py tests/test_api_retry.py tests/test_costing.py` — 19 passed, 14 subtests passed. An initial retry-classifier test fixture used an invalid direct exception allocation; replacing it with actual SDK exception instances fixed the fixture. Chroma emitted one existing deprecation warning.
+- No Luna-high or Cohere service calls were made.

@@ -16,6 +16,9 @@ class Generation:
     input_tokens: int | None
     latency_ms: float
     model: str
+    output_tokens: int | None = None
+    reasoning_tokens: int | None = None
+    cached_input_tokens: int | None = None
 
 
 class SQLGenerator(Protocol):
@@ -36,7 +39,8 @@ class OpenAIResponsesGenerator:
         if client is None:
             import openai
 
-            client = openai.OpenAI()
+            # FS-03 owns retry accounting so each attempt can be checkpointed and capped.
+            client = openai.OpenAI(max_retries=0)
         self.client = client
 
     def generate(self, prompt: str) -> Generation:
@@ -56,9 +60,14 @@ class OpenAIResponsesGenerator:
         response = self.client.responses.create(**request)
         elapsed = (time.perf_counter() - start) * 1000
         usage = getattr(response, "usage", None)
+        input_details = getattr(usage, "input_tokens_details", None)
+        output_details = getattr(usage, "output_tokens_details", None)
         return Generation(
             text=str(response.output_text).strip(),
             input_tokens=getattr(usage, "input_tokens", None),
             latency_ms=elapsed,
             model=self.model,
+            output_tokens=getattr(usage, "output_tokens", None),
+            reasoning_tokens=getattr(output_details, "reasoning_tokens", None),
+            cached_input_tokens=getattr(input_details, "cached_tokens", None),
         )
