@@ -31,7 +31,12 @@ class FakeCohereClient:
 
     def rerank(self, **kwargs):
         self.request = kwargs
-        return SimpleNamespace(results=[SimpleNamespace(index=1), SimpleNamespace(index=0)])
+        return SimpleNamespace(
+            results=[SimpleNamespace(index=1), SimpleNamespace(index=0)],
+            meta=SimpleNamespace(
+                billed_units=SimpleNamespace(input_tokens=500, output_tokens=None, search_units=1.0)
+            ),
+        )
 
 
 class RetrievalIndexTests(unittest.TestCase):
@@ -103,6 +108,11 @@ class RetrievalIndexTests(unittest.TestCase):
         self.assertEqual(ranked, [records[1], records[0]])
         self.assertEqual(client.request["model"], COHERE_RERANK_MODEL)
         self.assertEqual(client.request["top_n"], 2)
+        self.assertEqual(reranker.last_usage, {
+            "billed_input_tokens": 500,
+            "billed_output_tokens": None,
+            "search_units": 1.0,
+        })
 
     def test_cohere_adapter_loads_dotenv_without_overriding_environment(self):
         with patch("triage_sql.rerank.find_dotenv", return_value="test.env") as find, patch(

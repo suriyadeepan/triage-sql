@@ -38,4 +38,11 @@ class CohereReranker:
             documents=documents,
             top_n=min(top_k, len(records)),
         )
+        meta = getattr(response, "meta", None)
+        billed = getattr(meta, "billed_units", None)
+        self.last_usage = {
+            "billed_input_tokens": getattr(billed, "input_tokens", None),
+            "billed_output_tokens": getattr(billed, "output_tokens", None),
+            "search_units": getattr(billed, "search_units", None),
+        }
         return [records[result.index] for result in response.results]

@@ -39,8 +39,7 @@ class OpenAIResponsesGenerator:
         if client is None:
             import openai
 
-            # FS-03 owns retry accounting so each attempt can be checkpointed and capped.
-            client = openai.OpenAI(max_retries=0)
+            client = openai.OpenAI()
         self.client = client
 
     def generate(self, prompt: str) -> Generation:

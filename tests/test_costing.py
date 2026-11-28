@@ -1,6 +1,11 @@
 import unittest
 
-from triage_sql.costing import TokenRateCard, estimate_token_cost_usd
+from triage_sql.costing import (
+    RerankRateCard,
+    TokenRateCard,
+    estimate_rerank_cost_usd,
+    estimate_token_cost_usd,
+)
 
 
 class TokenCostingTests(unittest.TestCase):
@@ -38,6 +43,17 @@ class TokenCostingTests(unittest.TestCase):
                 model="gpt-6-luna", input_usd_per_million=-1, output_usd_per_million=0,
                 source_url="source", checked_at="today",
             )
+
+    def test_cohere_trial_cost_is_zero_and_production_uses_billed_input_tokens(self):
+        trial = RerankRateCard(
+            "rerank-v5.0-fast", 0.02, "https://cohere.com/pricing", "2026-11-28", "trial"
+        )
+        production = RerankRateCard(
+            "rerank-v5.0-fast", 0.02, "https://cohere.com/pricing", "2026-11-28", "production"
+        )
+        self.assertEqual(estimate_rerank_cost_usd(trial, None), 0.0)
+        self.assertAlmostEqual(estimate_rerank_cost_usd(production, 500), 500 * 0.02 / 1_000_000)
+        self.assertIsNone(estimate_rerank_cost_usd(production, None))
 
 
 if __name__ == "__main__":

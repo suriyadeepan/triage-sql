@@ -51,13 +51,13 @@ class PromptBenchmarkTests(unittest.TestCase):
         self.assertEqual(client.responses.kwargs["model"], "configured-test-model")
         self.assertEqual(client.responses.kwargs["reasoning"], {"effort": "low"})
 
-    def test_openai_client_disables_hidden_retries(self):
+    def test_openai_adapter_preserves_existing_sdk_retry_defaults(self):
         factory = Mock()
         with patch("triage_sql.sql_generation.load_dotenv"), patch.dict(
             "os.environ", {"OPENAI_MODEL": "gpt-6-luna", "OPENAI_REASONING_EFFORT": "high"}
         ), patch.dict("sys.modules", {"openai": SimpleNamespace(OpenAI=factory)}):
             OpenAIResponsesGenerator()
-        factory.assert_called_once_with(max_retries=0)
+        factory.assert_called_once_with()
 
     def test_generated_sql_must_be_single_read_only_safe_select(self):
         self.assertEqual(validate_generated_sql("```sql\nSELECT count(*) FROM loans;\n```"), "SELECT count(*) FROM loans")
