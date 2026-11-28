@@ -1,7 +1,7 @@
 {
   "condition": "retrieved_schema",
   "experiment_status": "stopped",
-  "initial_requests_used": 66,
+  "initial_requests_used": 101,
   "metadata": {
     "cohere_min_request_interval_seconds": 6.5,
     "cohort_count": 53,
@@ -18610,9 +18610,9 @@
     "used_by_request": {}
   },
   "stop_reason": {
-    "at": "2026-11-28T01:49:30.178300+00:00",
+    "at": "2026-11-28T01:54:25.579500+00:00",
     "condition": "full_schema",
-    "query_id": "eval-026",
+    "query_id": "eval-115",
     "type": "malformed_model_output"
   }
 }

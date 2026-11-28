@@ -82,6 +82,13 @@ Verification after the final implementation changes: `uv run pytest -q` — 79 p
 - The user approved a second checkpoint continuation on 2026-11-28, explicitly preserving and skipping both malformed outputs and all completed queries. Execution evidence will be appended after this continuation stops or completes.
 - The user approved a third checkpoint continuation on 2026-11-28, preserving and skipping all three malformed outputs and all completed queries. It is limited to the 40 remaining full-schema initial requests within the original budget.
 
+## T006 approved checkpoint continuation 3 — stopped on a fourth malformed condition/query
+
+- This continuation skipped the three prior malformed condition/query outputs and all completed rows. It stopped on the first new malformed response, `full_schema/eval-115` (empty output, 512 output tokens, all 512 reasoning tokens). No retry or follow-up request occurred.
+- Current checkpoint: 101/106 initial requests used, zero retries. Retrieved-schema is resolved at 51 completed and two malformed. Full-schema has 46 completed, two malformed (`eval-026`, `eval-115`), and five not started. Four malformed outputs across condition/query pairs are preserved; `retrieved_schema/eval-115` and `full_schema/eval-115` are distinct first-pass evaluations.
+- Partial metrics: retrieved schema 7/53 correct at estimated $0.0113926, a completed condition compared with Luna-low's 0/53. Full schema has 16 correct among 46 executed, two malformed, and five not started; its final 53-query result is incomplete. Estimated OpenAI costs so far are $0.0113926 retrieved and $0.0683072 full; trial Cohere cost is $0. Total across 101 model responses is 711,183 input, 17,163 output, and 13,172 reasoning tokens, with estimated OpenAI spend $0.0796998.
+- Full-schema output remains capped at 512 tokens for comparability; the malformed outputs exhausted that budget. No setting changes or correction calls were made. Five full-schema initial requests remain. TODO T006.6 requires explicit approval before another continuation.
+
 ## T006 approved checkpoint continuation 2 — stopped on a third malformed response
 
 - After explicit approval, continuation 2 skipped all completed rows and the two prior malformed rows. It completed the retrieved-schema condition (51 SQL-valid, executed results; 2 malformed failures) and began full schema. It stopped on `eval-026`, which returned truncated SQL: `SELECT COUNT(*) AS loan_count\nFROM loans\nWHERE disbursed_date IS NOT` (13,377 input tokens, 512 output tokens, including 490 reasoning tokens).

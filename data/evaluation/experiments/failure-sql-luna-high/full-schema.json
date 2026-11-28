@@ -1,7 +1,7 @@
 {
   "condition": "full_schema",
   "experiment_status": "stopped",
-  "initial_requests_used": 66,
+  "initial_requests_used": 101,
   "metadata": {
     "cohere_min_request_interval_seconds": 6.5,
     "cohort_count": 53,
@@ -1260,14 +1260,52 @@
       "validation_error": "generated SQL could not be parsed"
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0014468000000000003,
+          "latency_ms": 4933.642124990001,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:51:15.872896+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13378,
+            "output_tokens": 218,
+            "reasoning_tokens": 172
+          }
+        }
+      ],
       "category": "date",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:51:21.143348+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0014468000000000003,
+      "estimated_total_cost_usd": 0.0014468000000000003,
+      "execution_accuracy": false,
+      "execution_latency_ms": 222.1893749665469,
+      "execution_rows": [
+        [
+          1540000,
+          "2020-06-09",
+          "2025-06-09"
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "2020-06-09",
           "2025-06-09"
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 4933.642124990001,
       "id": "eval-027",
       "luna_low_baseline": {
         "category": "date",
@@ -1282,7 +1320,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    COUNT(*) AS loan_count,\n    MIN(disbursed_date) AS earliest_disbursement_date,\n    MAX(disbursed_date) AS latest_disbursement_date\nFROM loans"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "f4d342ccb8994e92e49120573fef06d686441a7cd82dfa736ef3a607b7786591",
       "question": "Count the loan disbursement date range in the dataset.",
+      "raw_output": "SELECT\n    COUNT(*) AS loan_count,\n    MIN(disbursed_date) AS earliest_disbursement_date,\n    MAX(disbursed_date) AS latest_disbursement_date\nFROM loans;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:51:20.842440+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "loans.disbursed_date"
@@ -1293,17 +1337,67 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    COUNT(*) AS loan_count,\n    MIN(disbursed_date) AS earliest_disbursement_date,\n    MAX(disbursed_date) AS latest_disbursement_date\nFROM loans",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13378,
+        "output_tokens": 218,
+        "reasoning_tokens": 172
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0014629,
+          "latency_ms": 3832.375499943737,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:51:21.261980+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13379,
+            "output_tokens": 250,
+            "reasoning_tokens": 199
+          }
+        }
+      ],
       "category": "date",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:51:25.350881+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0014629,
+      "estimated_total_cost_usd": 0.0014629,
+      "execution_accuracy": false,
+      "execution_latency_ms": 103.12287497799844,
+      "execution_rows": [
+        [
+          1540000,
+          "2020-06-09",
+          "2025-06-09"
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "2020-06-09",
           "2025-06-09"
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3832.375499943737,
       "id": "eval-028",
       "luna_low_baseline": {
         "category": "date",
@@ -1318,7 +1412,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    COUNT(*) AS total_loans,\n    MIN(disbursed_date) AS earliest_disbursement_date,\n    MAX(disbursed_date) AS latest_disbursement_date\nFROM loans\nWHERE disbursed_date IS NOT NULL"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "c7b0a9379eb6fe626d22766f265f359b33293f636780596023699f9dae5e5077",
       "question": "What is the total number of loan disbursement date range?",
+      "raw_output": "SELECT\n    COUNT(*) AS total_loan_disbursements,\n    MIN(disbursed_date) AS earliest_disbursement_date,\n    MAX(disbursed_date) AS latest_disbursement_date\nFROM loans;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:51:25.129515+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "loans.disbursed_date"
@@ -1329,17 +1429,67 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    COUNT(*) AS total_loan_disbursements,\n    MIN(disbursed_date) AS earliest_disbursement_date,\n    MAX(disbursed_date) AS latest_disbursement_date\nFROM loans",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13379,
+        "output_tokens": 250,
+        "reasoning_tokens": 199
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0015173000000000003,
+          "latency_ms": 5155.523209017701,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:51:25.429414+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13378,
+            "output_tokens": 359,
+            "reasoning_tokens": 304
+          }
+        }
+      ],
       "category": "date",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:51:30.832504+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0015173000000000003,
+      "estimated_total_cost_usd": 0.0015173000000000003,
+      "execution_accuracy": false,
+      "execution_latency_ms": 101.7875830293633,
+      "execution_rows": [
+        [
+          "2020-06-09",
+          "2025-06-09",
+          1540000
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "2020-06-09",
           "2025-06-09"
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 5155.523209017701,
       "id": "eval-029",
       "luna_low_baseline": {
         "category": "date",
@@ -1354,7 +1504,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    COUNT(*) AS loan_count,\n    MIN(disbursed_date) AS earliest_disbursement_date,\n    MAX(disbursed_date) AS latest_disbursement_date\nFROM loans"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "430a386edde51e308ce0946eebc814a5200d380209f42154dd4433c80fcaca7d",
       "question": "Show me the count of loan disbursement date range.",
+      "raw_output": "SELECT\n    MIN(disbursed_date) AS earliest_disbursement_date,\n    MAX(disbursed_date) AS latest_disbursement_date,\n    COUNT(*) AS loan_count\nFROM loans\nWHERE disbursed_date IS NOT NULL;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:51:30.620769+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "loans.disbursed_date"
@@ -1365,17 +1521,67 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    MIN(disbursed_date) AS earliest_disbursement_date,\n    MAX(disbursed_date) AS latest_disbursement_date,\n    COUNT(*) AS loan_count\nFROM loans\nWHERE disbursed_date IS NOT NULL",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13378,
+        "output_tokens": 359,
+        "reasoning_tokens": 304
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0015052,
+          "latency_ms": 5448.490708018653,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:51:30.910608+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13377,
+            "output_tokens": 335,
+            "reasoning_tokens": 279
+          }
+        }
+      ],
       "category": "date",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:51:36.625684+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0015052,
+      "estimated_total_cost_usd": 0.0015052,
+      "execution_accuracy": false,
+      "execution_latency_ms": 117.00116598512977,
+      "execution_rows": [
+        [
+          1540000,
+          "2020-06-09",
+          "2025-06-09"
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "2020-06-09",
           "2025-06-09"
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 5448.490708018653,
       "id": "eval-030",
       "luna_low_baseline": {
         "category": "date",
@@ -1390,7 +1596,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    disbursed_date,\n    COUNT(*) AS loan_count\nFROM loans\nGROUP BY disbursed_date\nORDER BY disbursed_date"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "e286bc4677c025339ea52fcb3a0f32d15c4a2d1638a8bf4ab38639e7f789b2b1",
       "question": "Give the number of loan disbursement date range.",
+      "raw_output": "SELECT\n    COUNT(disbursed_date) AS number_of_loan_disbursements,\n    MIN(disbursed_date) AS earliest_disbursement_date,\n    MAX(disbursed_date) AS latest_disbursement_date\nFROM loans;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:51:36.395568+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "loans.disbursed_date"
@@ -1401,17 +1613,67 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    COUNT(disbursed_date) AS number_of_loan_disbursements,\n    MIN(disbursed_date) AS earliest_disbursement_date,\n    MAX(disbursed_date) AS latest_disbursement_date\nFROM loans",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13377,
+        "output_tokens": 335,
+        "reasoning_tokens": 279
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0015059000000000001,
+          "latency_ms": 4670.775166014209,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:51:36.704652+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13374,
+            "output_tokens": 337,
+            "reasoning_tokens": 299
+          }
+        }
+      ],
       "category": "date",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:51:44.849148+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0015059000000000001,
+      "estimated_total_cost_usd": 0.0015059000000000001,
+      "execution_accuracy": false,
+      "execution_latency_ms": 3332.3999169515446,
+      "execution_rows": [
+        [
+          42009735,
+          "2020-06-09",
+          "2025-06-10"
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "2020-06-09",
           "2025-06-10"
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 4670.775166014209,
       "id": "eval-031",
       "luna_low_baseline": {
         "category": "date",
@@ -1426,7 +1688,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    COUNT(*) AS repayment_count,\n    MIN(payment_date) AS earliest_payment_date,\n    MAX(payment_date) AS latest_payment_date\nFROM repayments"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "7b2f1590ecd056cf750b7ceb27d45d792c602147b6a775317fded8b94cf9df42",
       "question": "How many repayment date range are there?",
+      "raw_output": "SELECT\n    COUNT(*) AS repayment_count,\n    MIN(payment_date) AS earliest_payment_date,\n    MAX(payment_date) AS latest_payment_date\nFROM repayments;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:51:41.411082+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "repayments.payment_date"
@@ -1437,17 +1705,67 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    COUNT(*) AS repayment_count,\n    MIN(payment_date) AS earliest_payment_date,\n    MAX(payment_date) AS latest_payment_date\nFROM repayments",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13374,
+        "output_tokens": 337,
+        "reasoning_tokens": 299
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0014005,
+          "latency_ms": 2966.86970803421,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:51:44.970052+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13375,
+            "output_tokens": 126,
+            "reasoning_tokens": 88
+          }
+        }
+      ],
       "category": "date",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:51:51.067478+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0014005,
+      "estimated_total_cost_usd": 0.0014005,
+      "execution_accuracy": false,
+      "execution_latency_ms": 2973.74933300307,
+      "execution_rows": [
+        [
+          42009735,
+          "2020-06-09",
+          "2025-06-10"
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "2020-06-09",
           "2025-06-10"
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 2966.86970803421,
       "id": "eval-032",
       "luna_low_baseline": {
         "category": "date",
@@ -1462,7 +1780,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    COUNT(*) AS repayment_count,\n    MIN(payment_date) AS earliest_repayment_date,\n    MAX(payment_date) AS latest_repayment_date\nFROM repayments"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "20fc5eea13e019013728b4a5c09ee857dd60c87d84fdc2c8a9f3c6d9aa66a759",
       "question": "Count the repayment date range in the dataset.",
+      "raw_output": "SELECT\n    COUNT(*) AS repayment_count,\n    MIN(payment_date) AS earliest_payment_date,\n    MAX(payment_date) AS latest_payment_date\nFROM repayments;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:51:47.973059+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "repayments.payment_date"
@@ -1473,17 +1797,67 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    COUNT(*) AS repayment_count,\n    MIN(payment_date) AS earliest_payment_date,\n    MAX(payment_date) AS latest_payment_date\nFROM repayments",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13375,
+        "output_tokens": 126,
+        "reasoning_tokens": 88
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0014856000000000001,
+          "latency_ms": 4279.674167046323,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:51:51.155365+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13376,
+            "output_tokens": 296,
+            "reasoning_tokens": 257
+          }
+        }
+      ],
       "category": "date",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:51:58.771566+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0014856000000000001,
+      "estimated_total_cost_usd": 0.0014856000000000001,
+      "execution_accuracy": false,
+      "execution_latency_ms": 3189.136166998651,
+      "execution_rows": [
+        [
+          42009735,
+          "2020-06-09",
+          "2025-06-10"
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "2020-06-09",
           "2025-06-10"
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 4279.674167046323,
       "id": "eval-033",
       "luna_low_baseline": {
         "category": "date",
@@ -1498,7 +1872,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    COUNT(*) AS total_repayments,\n    MIN(payment_date) AS earliest_repayment_date,\n    MAX(payment_date) AS latest_repayment_date\nFROM repayments"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "3a7fe2205cfbb386f1a59cf8f2cfc5e4ff3cec31a68aa8ba4ed6e2396c14fbf3",
       "question": "What is the total number of repayment date range?",
+      "raw_output": "SELECT\n    COUNT(*) AS total_repayments,\n    MIN(payment_date) AS earliest_payment_date,\n    MAX(payment_date) AS latest_payment_date\nFROM repayments;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:51:55.471676+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "repayments.payment_date"
@@ -1509,17 +1889,67 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    COUNT(*) AS total_repayments,\n    MIN(payment_date) AS earliest_payment_date,\n    MAX(payment_date) AS latest_payment_date\nFROM repayments",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13376,
+        "output_tokens": 296,
+        "reasoning_tokens": 257
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.001487,
+          "latency_ms": 4096.5457919519395,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:51:58.882559+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13375,
+            "output_tokens": 299,
+            "reasoning_tokens": 261
+          }
+        }
+      ],
       "category": "date",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:52:05.992847+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.001487,
+      "estimated_total_cost_usd": 0.001487,
+      "execution_accuracy": false,
+      "execution_latency_ms": 2863.4927080129273,
+      "execution_rows": [
+        [
+          42009735,
+          "2020-06-09",
+          "2025-06-10"
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "2020-06-09",
           "2025-06-10"
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 4096.5457919519395,
       "id": "eval-034",
       "luna_low_baseline": {
         "category": "date",
@@ -1534,7 +1964,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    COUNT(*) AS repayment_count,\n    MIN(payment_date) AS earliest_payment_date,\n    MAX(payment_date) AS latest_payment_date\nFROM repayments"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "405329a7cb0732bcd563318bbd6e7675d6cc7e3ad8ee8c460d68b453d71f1723",
       "question": "Show me the count of repayment date range.",
+      "raw_output": "SELECT\n    COUNT(*) AS repayment_count,\n    MIN(payment_date) AS earliest_payment_date,\n    MAX(payment_date) AS latest_payment_date\nFROM repayments;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:52:03.018622+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "repayments.payment_date"
@@ -1545,17 +1981,65 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    COUNT(*) AS repayment_count,\n    MIN(payment_date) AS earliest_payment_date,\n    MAX(payment_date) AS latest_payment_date\nFROM repayments",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13375,
+        "output_tokens": 299,
+        "reasoning_tokens": 261
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0014809,
+          "latency_ms": 4186.196832975838,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:52:06.108186+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13374,
+            "output_tokens": 287,
+            "reasoning_tokens": 269
+          }
+        }
+      ],
       "category": "date",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:52:13.129702+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0014809,
+      "estimated_total_cost_usd": 0.0014809,
+      "execution_accuracy": false,
+      "execution_latency_ms": 2685.8245829935186,
+      "execution_rows": [
+        [
+          42009735
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "2020-06-09",
           "2025-06-10"
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 4186.196832975838,
       "id": "eval-035",
       "luna_low_baseline": {
         "category": "date",
@@ -1570,7 +2054,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    COUNT(*) AS repayment_count,\n    MIN(payment_date) AS earliest_payment_date,\n    MAX(payment_date) AS latest_payment_date\nFROM repayments"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "0209ecddace41b6c3cdd10c9a1cc5559524334147d28e36585413d83b855e17c",
       "question": "Give the number of repayment date range.",
+      "raw_output": "SELECT COUNT(*) AS number_of_repayments\nFROM repayments;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:52:10.330851+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "repayments.payment_date"
@@ -1581,16 +2071,64 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT COUNT(*) AS number_of_repayments\nFROM repayments",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13374,
+        "output_tokens": 287,
+        "reasoning_tokens": 269
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013784000000000001,
+          "latency_ms": 3969.3905410240404,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:52:13.252734+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13379,
+            "output_tokens": 81,
+            "reasoning_tokens": 38
+          }
+        }
+      ],
       "category": "date",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:52:17.738744+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013784000000000001,
+      "estimated_total_cost_usd": 0.0013784000000000001,
+      "execution_accuracy": true,
+      "execution_latency_ms": 366.28162499982864,
+      "execution_rows": [
+        [
+          798128
+        ]
+      ],
+      "execution_status": "passed",
+      "execution_success": true,
       "expected_result": [
         [
           798128
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3969.3905410240404,
       "id": "eval-038",
       "luna_low_baseline": {
         "category": "date",
@@ -1605,7 +2143,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT COUNT(*) AS total_clients\nFROM clients\nWHERE registration_date >= DATE '2021-01-01'\n  AND registration_date < DATE '2022-01-01'"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "70a3948daa75ba93bda90a03d20db11e6d45186db1755836ad90835146ec944d",
       "question": "What is the total number of clients registered in 2021?",
+      "raw_output": "SELECT COUNT(*) AS total_clients\nFROM clients\nWHERE registration_date >= DATE '2021-01-01'\n  AND registration_date < DATE '2022-01-01';",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:52:17.258359+00:00",
+      "result_correct": true,
       "retrieval_labels": {
         "relevant_columns": [
           "clients.registration_date"
@@ -1616,11 +2160,78 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT COUNT(*) AS total_clients\nFROM clients\nWHERE registration_date >= DATE '2021-01-01'\n  AND registration_date < DATE '2022-01-01'",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13379,
+        "output_tokens": 81,
+        "reasoning_tokens": 38
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013935,
+          "latency_ms": 3078.741458011791,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:52:17.859156+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13375,
+            "output_tokens": 112,
+            "reasoning_tokens": 67
+          }
+        }
+      ],
       "category": "aggregation",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:52:26.028237+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013935,
+      "estimated_total_cost_usd": 0.0013935,
+      "execution_accuracy": false,
+      "execution_latency_ms": 4938.887708005495,
+      "execution_rows": [
+        [
+          2020,
+          640501
+        ],
+        [
+          2021,
+          3886317
+        ],
+        [
+          2022,
+          7146905
+        ],
+        [
+          2023,
+          10315594
+        ],
+        [
+          2024,
+          13396197
+        ],
+        [
+          2025,
+          6624221
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "2020-01-01",
@@ -1647,6 +2258,8 @@
           6624221
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3078.741458011791,
       "id": "eval-051",
       "luna_low_baseline": {
         "category": "aggregation",
@@ -1661,7 +2274,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n  EXTRACT(YEAR FROM payment_date)::INTEGER AS year,\n  COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "380b90b5a8392b991e61ce43fcc057297489c6d88729807b8354d154f8f3796e",
       "question": "How many repayment counts by year are there?",
+      "raw_output": "SELECT\n    EXTRACT(YEAR FROM payment_date)::integer AS year,\n    COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:52:20.976181+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "repayments.payment_date"
@@ -1672,11 +2291,78 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    EXTRACT(YEAR FROM payment_date)::integer AS year,\n    COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13375,
+        "output_tokens": 112,
+        "reasoning_tokens": 67
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0014321000000000002,
+          "latency_ms": 4919.426542008296,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:52:26.145493+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13376,
+            "output_tokens": 189,
+            "reasoning_tokens": 144
+          }
+        }
+      ],
       "category": "aggregation",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:52:36.225713+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0014321000000000002,
+      "estimated_total_cost_usd": 0.0014321000000000002,
+      "execution_accuracy": false,
+      "execution_latency_ms": 5018.438708968461,
+      "execution_rows": [
+        [
+          2020,
+          640501
+        ],
+        [
+          2021,
+          3886317
+        ],
+        [
+          2022,
+          7146905
+        ],
+        [
+          2023,
+          10315594
+        ],
+        [
+          2024,
+          13396197
+        ],
+        [
+          2025,
+          6624221
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "2020-01-01",
@@ -1703,6 +2389,8 @@
           6624221
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 4919.426542008296,
       "id": "eval-052",
       "luna_low_baseline": {
         "category": "aggregation",
@@ -1717,7 +2405,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT EXTRACT(YEAR FROM payment_date)::INTEGER AS year,\n       COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "28a0d07f9b8376cd625a3fcaca151540df64f54396b2697f13e1c9b211de79b9",
       "question": "Count the repayment counts by year in the dataset.",
+      "raw_output": "SELECT\n    EXTRACT(YEAR FROM payment_date)::INTEGER AS year,\n    COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:52:31.101428+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "repayments.payment_date"
@@ -1728,11 +2422,78 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    EXTRACT(YEAR FROM payment_date)::INTEGER AS year,\n    COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13376,
+        "output_tokens": 189,
+        "reasoning_tokens": 144
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013852,
+          "latency_ms": 3508.814667002298,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:52:36.336916+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13377,
+            "output_tokens": 95,
+            "reasoning_tokens": 50
+          }
+        }
+      ],
       "category": "aggregation",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:52:44.882902+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013852,
+      "estimated_total_cost_usd": 0.0013852,
+      "execution_accuracy": false,
+      "execution_latency_ms": 4889.670707983896,
+      "execution_rows": [
+        [
+          2020,
+          640501
+        ],
+        [
+          2021,
+          3886317
+        ],
+        [
+          2022,
+          7146905
+        ],
+        [
+          2023,
+          10315594
+        ],
+        [
+          2024,
+          13396197
+        ],
+        [
+          2025,
+          6624221
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "2020-01-01",
@@ -1759,6 +2520,8 @@
           6624221
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3508.814667002298,
       "id": "eval-053",
       "luna_low_baseline": {
         "category": "aggregation",
@@ -1773,7 +2536,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    EXTRACT(YEAR FROM payment_date)::INTEGER AS year,\n    COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "2b8a7dd3a0ad792b34145d9e2959db6ce61d2860be263c1059d01c252f2f740a",
       "question": "What is the total number of repayment counts by year?",
+      "raw_output": "SELECT\n    EXTRACT(YEAR FROM payment_date)::INTEGER AS year,\n    COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:52:39.885191+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "repayments.payment_date"
@@ -1784,11 +2553,78 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    EXTRACT(YEAR FROM payment_date)::INTEGER AS year,\n    COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13377,
+        "output_tokens": 95,
+        "reasoning_tokens": 50
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013886,
+          "latency_ms": 3255.2717909566127,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:52:44.997105+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13376,
+            "output_tokens": 102,
+            "reasoning_tokens": 57
+          }
+        }
+      ],
       "category": "aggregation",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:52:53.320028+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013886,
+      "estimated_total_cost_usd": 0.0013886,
+      "execution_accuracy": false,
+      "execution_latency_ms": 4906.411209027283,
+      "execution_rows": [
+        [
+          2020,
+          640501
+        ],
+        [
+          2021,
+          3886317
+        ],
+        [
+          2022,
+          7146905
+        ],
+        [
+          2023,
+          10315594
+        ],
+        [
+          2024,
+          13396197
+        ],
+        [
+          2025,
+          6624221
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "2020-01-01",
@@ -1815,6 +2651,8 @@
           6624221
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3255.2717909566127,
       "id": "eval-054",
       "luna_low_baseline": {
         "category": "aggregation",
@@ -1829,7 +2667,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    EXTRACT(YEAR FROM payment_date)::INTEGER AS year,\n    COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "e72de51bd44eaefaf7221b3145387d77ac0b9efdae63f16e2bb3980708e4626c",
       "question": "Show me the count of repayment counts by year.",
+      "raw_output": "SELECT\n    EXTRACT(YEAR FROM payment_date)::INTEGER AS year,\n    COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:52:48.290180+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "repayments.payment_date"
@@ -1840,11 +2684,78 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    EXTRACT(YEAR FROM payment_date)::INTEGER AS year,\n    COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13376,
+        "output_tokens": 102,
+        "reasoning_tokens": 57
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.001403,
+          "latency_ms": 3146.275916020386,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:52:53.439033+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13375,
+            "output_tokens": 131,
+            "reasoning_tokens": 86
+          }
+        }
+      ],
       "category": "aggregation",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:53:01.975342+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.001403,
+      "estimated_total_cost_usd": 0.001403,
+      "execution_accuracy": false,
+      "execution_latency_ms": 5217.952249979135,
+      "execution_rows": [
+        [
+          2020,
+          640501
+        ],
+        [
+          2021,
+          3886317
+        ],
+        [
+          2022,
+          7146905
+        ],
+        [
+          2023,
+          10315594
+        ],
+        [
+          2024,
+          13396197
+        ],
+        [
+          2025,
+          6624221
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "2020-01-01",
@@ -1871,6 +2782,8 @@
           6624221
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3146.275916020386,
       "id": "eval-055",
       "luna_low_baseline": {
         "category": "aggregation",
@@ -1885,7 +2798,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    EXTRACT(YEAR FROM payment_date)::integer AS year,\n    COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "3ffe6e03c3bbedb28de77153833da918805defd1cb44d6e127e12560b79dda3b",
       "question": "Give the number of repayment counts by year.",
+      "raw_output": "SELECT\n    EXTRACT(YEAR FROM payment_date)::integer AS year,\n    COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:52:56.622704+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "repayments.payment_date"
@@ -1896,11 +2815,69 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    EXTRACT(YEAR FROM payment_date)::integer AS year,\n    COUNT(*) AS repayment_count\nFROM repayments\nGROUP BY EXTRACT(YEAR FROM payment_date)\nORDER BY year",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13375,
+        "output_tokens": 131,
+        "reasoning_tokens": 86
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013849,
+          "latency_ms": 3043.846292013768,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:53:02.055975+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13379,
+            "output_tokens": 94,
+            "reasoning_tokens": 55
+          }
+        }
+      ],
       "category": "aggregation",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:53:05.611838+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013849,
+      "estimated_total_cost_usd": 0.0013849,
+      "execution_accuracy": false,
+      "execution_latency_ms": 349.41529197385535,
+      "execution_rows": [
+        [
+          "Active",
+          2208300,
+          "86421.434680686501"
+        ],
+        [
+          "Closed",
+          138315,
+          "87175.811251780356"
+        ],
+        [
+          "Dormant",
+          413385,
+          "86318.675794743399"
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Active",
@@ -1918,6 +2895,8 @@
           "86318.68"
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3043.846292013768,
       "id": "eval-056",
       "luna_low_baseline": {
         "category": "aggregation",
@@ -1932,7 +2911,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status\nORDER BY status"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "cba73c4c23432a5610db33cde5b8d3342bc00fa0650053b667d3d9f5b92b941c",
       "question": "How many savings account counts and average balances by status are there?",
+      "raw_output": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status\nORDER BY status;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:53:05.137070+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "savings_accounts.balance",
@@ -1944,11 +2929,69 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status\nORDER BY status",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13379,
+        "output_tokens": 94,
+        "reasoning_tokens": 55
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.001394,
+          "latency_ms": 2769.363750005141,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:53:05.717349+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13380,
+            "output_tokens": 112,
+            "reasoning_tokens": 73
+          }
+        }
+      ],
       "category": "aggregation",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:53:08.898502+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.001394,
+      "estimated_total_cost_usd": 0.001394,
+      "execution_accuracy": false,
+      "execution_latency_ms": 244.76708297152072,
+      "execution_rows": [
+        [
+          "Active",
+          2208300,
+          "86421.434680686501"
+        ],
+        [
+          "Closed",
+          138315,
+          "87175.811251780356"
+        ],
+        [
+          "Dormant",
+          413385,
+          "86318.675794743399"
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Active",
@@ -1966,6 +3009,8 @@
           "86318.68"
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 2769.363750005141,
       "id": "eval-057",
       "luna_low_baseline": {
         "category": "aggregation",
@@ -1980,7 +3025,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status\nORDER BY status"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "0a9071aff238cd4aca2165672aa51ad777ee5518e9916966044aa3b6b2aa2fa1",
       "question": "Count the savings account counts and average balances by status in the dataset.",
+      "raw_output": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status\nORDER BY status;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:53:08.524609+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "savings_accounts.balance",
@@ -1992,11 +3043,69 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status\nORDER BY status",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13380,
+        "output_tokens": 112,
+        "reasoning_tokens": 73
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013911000000000001,
+          "latency_ms": 2769.925125001464,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:53:09.023661+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13381,
+            "output_tokens": 106,
+            "reasoning_tokens": 71
+          }
+        }
+      ],
       "category": "aggregation",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:53:12.181855+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013911000000000001,
+      "estimated_total_cost_usd": 0.0013911000000000001,
+      "execution_accuracy": false,
+      "execution_latency_ms": 234.58737501641735,
+      "execution_rows": [
+        [
+          "Active",
+          2208300,
+          "86421.434680686501"
+        ],
+        [
+          "Closed",
+          138315,
+          "87175.811251780356"
+        ],
+        [
+          "Dormant",
+          413385,
+          "86318.675794743399"
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Active",
@@ -2014,6 +3123,8 @@
           "86318.68"
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 2769.925125001464,
       "id": "eval-058",
       "luna_low_baseline": {
         "category": "aggregation",
@@ -2028,7 +3139,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status\nORDER BY status"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "112101bb90c768d16141b4b5cefd24cafdf1d1f6ebebea95c6a85a4b5acd5d2b",
       "question": "What is the total number of savings account counts and average balances by status?",
+      "raw_output": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:53:11.831605+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "savings_accounts.balance",
@@ -2040,11 +3157,69 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13381,
+        "output_tokens": 106,
+        "reasoning_tokens": 71
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.001395,
+          "latency_ms": 3036.606915993616,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:53:12.305151+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13380,
+            "output_tokens": 114,
+            "reasoning_tokens": 75
+          }
+        }
+      ],
       "category": "aggregation",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:53:15.710863+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.001395,
+      "estimated_total_cost_usd": 0.001395,
+      "execution_accuracy": false,
+      "execution_latency_ms": 222.18645800603554,
+      "execution_rows": [
+        [
+          "Active",
+          2208300,
+          "86421.434680686501"
+        ],
+        [
+          "Closed",
+          138315,
+          "87175.811251780356"
+        ],
+        [
+          "Dormant",
+          413385,
+          "86318.675794743399"
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Active",
@@ -2062,6 +3237,8 @@
           "86318.68"
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3036.606915993616,
       "id": "eval-059",
       "luna_low_baseline": {
         "category": "aggregation",
@@ -2076,7 +3253,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status\nORDER BY status"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "0e3454b5f2537ac56a74633aad467739a9a8ac12a4f6417e291f510a85f223bc",
       "question": "Show me the count of savings account counts and average balances by status.",
+      "raw_output": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status\nORDER BY status;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:53:15.379471+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "savings_accounts.balance",
@@ -2088,11 +3271,69 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status\nORDER BY status",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13380,
+        "output_tokens": 114,
+        "reasoning_tokens": 75
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013854000000000002,
+          "latency_ms": 2721.080166986212,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:53:15.832770+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13379,
+            "output_tokens": 95,
+            "reasoning_tokens": 56
+          }
+        }
+      ],
       "category": "aggregation",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:53:18.938690+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013854000000000002,
+      "estimated_total_cost_usd": 0.0013854000000000002,
+      "execution_accuracy": false,
+      "execution_latency_ms": 227.6562500046566,
+      "execution_rows": [
+        [
+          "Active",
+          2208300,
+          "86421.434680686501"
+        ],
+        [
+          "Closed",
+          138315,
+          "87175.811251780356"
+        ],
+        [
+          "Dormant",
+          413385,
+          "86318.675794743399"
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Active",
@@ -2110,6 +3351,8 @@
           "86318.68"
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 2721.080166986212,
       "id": "eval-060",
       "luna_low_baseline": {
         "category": "aggregation",
@@ -2124,7 +3367,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status\nORDER BY status"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "a8853de476319feb5ed5a70133172568f1c541ab79a110f05cce46dfbdb49026",
       "question": "Give the number of savings account counts and average balances by status.",
+      "raw_output": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status\nORDER BY status;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:53:18.592739+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "savings_accounts.balance",
@@ -2136,11 +3385,66 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    status,\n    COUNT(*) AS savings_account_count,\n    AVG(balance) AS average_balance\nFROM savings_accounts\nGROUP BY status\nORDER BY status",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13379,
+        "output_tokens": 95,
+        "reasoning_tokens": 56
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013776,
+          "latency_ms": 2835.644749982748,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:53:19.060148+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13376,
+            "output_tokens": 80,
+            "reasoning_tokens": 53
+          }
+        }
+      ],
       "category": "aggregation",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:53:22.075029+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013776,
+      "estimated_total_cost_usd": 0.0013776,
+      "execution_accuracy": true,
+      "execution_latency_ms": 9.578042023349553,
+      "execution_rows": [
+        [
+          "30 days",
+          1
+        ],
+        [
+          "Monthly",
+          22
+        ],
+        [
+          "Quarterly",
+          2
+        ]
+      ],
+      "execution_status": "passed",
+      "execution_success": true,
       "expected_result": [
         [
           "30 days",
@@ -2155,6 +3459,8 @@
           2
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 2835.644749982748,
       "id": "eval-066",
       "luna_low_baseline": {
         "category": "aggregation",
@@ -2169,7 +3475,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT frequency, COUNT(*) AS savings_product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "6e8f688685fb90a61e9fe471b4389a8a6f947f7361a5307851ce4d916172db2e",
       "question": "How many savings product counts by frequency are there?",
+      "raw_output": "SELECT frequency, COUNT(*) AS product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:53:21.934613+00:00",
+      "result_correct": true,
       "retrieval_labels": {
         "relevant_columns": [
           "savings_products.frequency"
@@ -2180,11 +3492,66 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT frequency, COUNT(*) AS product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13376,
+        "output_tokens": 80,
+        "reasoning_tokens": 53
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013797,
+          "latency_ms": 2651.378625014331,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:53:22.150285+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13377,
+            "output_tokens": 84,
+            "reasoning_tokens": 57
+          }
+        }
+      ],
       "category": "aggregation",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:53:24.966203+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013797,
+      "estimated_total_cost_usd": 0.0013797,
+      "execution_accuracy": true,
+      "execution_latency_ms": 8.265457989182323,
+      "execution_rows": [
+        [
+          "30 days",
+          1
+        ],
+        [
+          "Monthly",
+          22
+        ],
+        [
+          "Quarterly",
+          2
+        ]
+      ],
+      "execution_status": "passed",
+      "execution_success": true,
       "expected_result": [
         [
           "30 days",
@@ -2199,6 +3566,8 @@
           2
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 2651.378625014331,
       "id": "eval-067",
       "luna_low_baseline": {
         "category": "aggregation",
@@ -2213,7 +3582,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT frequency, COUNT(*) AS product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "f2ebfe2b25c31b6d5252499014aae4eab5fbf6de7a6a213a8c6ec12b13cdc80c",
       "question": "Count the savings product counts by frequency in the dataset.",
+      "raw_output": "SELECT frequency, COUNT(*) AS product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:53:24.839502+00:00",
+      "result_correct": true,
       "retrieval_labels": {
         "relevant_columns": [
           "savings_products.frequency"
@@ -2224,11 +3599,66 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT frequency, COUNT(*) AS product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13377,
+        "output_tokens": 84,
+        "reasoning_tokens": 57
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013808000000000002,
+          "latency_ms": 2828.1504589831457,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:53:25.042217+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13378,
+            "output_tokens": 86,
+            "reasoning_tokens": 58
+          }
+        }
+      ],
       "category": "aggregation",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:53:28.044115+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013808000000000002,
+      "estimated_total_cost_usd": 0.0013808000000000002,
+      "execution_accuracy": true,
+      "execution_latency_ms": 7.701875001657754,
+      "execution_rows": [
+        [
+          "30 days",
+          1
+        ],
+        [
+          "Monthly",
+          22
+        ],
+        [
+          "Quarterly",
+          2
+        ]
+      ],
+      "execution_status": "passed",
+      "execution_success": true,
       "expected_result": [
         [
           "30 days",
@@ -2243,6 +3673,8 @@
           2
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 2828.1504589831457,
       "id": "eval-068",
       "luna_low_baseline": {
         "category": "aggregation",
@@ -2257,7 +3689,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    frequency,\n    COUNT(*) AS savings_product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "62529fd0bf00264e8ade6519760fc9607e16a23bf75982171dd4a5230a79419d",
       "question": "What is the total number of savings product counts by frequency?",
+      "raw_output": "SELECT frequency, COUNT(*) AS savings_product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:53:27.908063+00:00",
+      "result_correct": true,
       "retrieval_labels": {
         "relevant_columns": [
           "savings_products.frequency"
@@ -2268,11 +3706,66 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT frequency, COUNT(*) AS savings_product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13378,
+        "output_tokens": 86,
+        "reasoning_tokens": 58
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013772,
+          "latency_ms": 2386.867166031152,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:53:28.119115+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13377,
+            "output_tokens": 79,
+            "reasoning_tokens": 51
+          }
+        }
+      ],
       "category": "aggregation",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:53:30.676407+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013772,
+      "estimated_total_cost_usd": 0.0013772,
+      "execution_accuracy": true,
+      "execution_latency_ms": 6.99749996419996,
+      "execution_rows": [
+        [
+          "30 days",
+          1
+        ],
+        [
+          "Monthly",
+          22
+        ],
+        [
+          "Quarterly",
+          2
+        ]
+      ],
+      "execution_status": "passed",
+      "execution_success": true,
       "expected_result": [
         [
           "30 days",
@@ -2287,6 +3780,8 @@
           2
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 2386.867166031152,
       "id": "eval-069",
       "luna_low_baseline": {
         "category": "aggregation",
@@ -2301,7 +3796,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    frequency,\n    COUNT(*) AS savings_product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "19c05b23349e79d4181773d3bf56f260215c83c144e80269c216f326bde77220",
       "question": "Show me the count of savings product counts by frequency.",
+      "raw_output": "SELECT frequency, COUNT(*) AS savings_product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:53:30.544346+00:00",
+      "result_correct": true,
       "retrieval_labels": {
         "relevant_columns": [
           "savings_products.frequency"
@@ -2312,11 +3813,66 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT frequency, COUNT(*) AS savings_product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13377,
+        "output_tokens": 79,
+        "reasoning_tokens": 51
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013776,
+          "latency_ms": 2658.6930829798803,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:53:30.753428+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13376,
+            "output_tokens": 80,
+            "reasoning_tokens": 52
+          }
+        }
+      ],
       "category": "aggregation",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:53:33.546177+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013776,
+      "estimated_total_cost_usd": 0.0013776,
+      "execution_accuracy": true,
+      "execution_latency_ms": 6.526083045173436,
+      "execution_rows": [
+        [
+          "30 days",
+          1
+        ],
+        [
+          "Monthly",
+          22
+        ],
+        [
+          "Quarterly",
+          2
+        ]
+      ],
+      "execution_status": "passed",
+      "execution_success": true,
       "expected_result": [
         [
           "30 days",
@@ -2331,6 +3887,8 @@
           2
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 2658.6930829798803,
       "id": "eval-070",
       "luna_low_baseline": {
         "category": "aggregation",
@@ -2345,7 +3903,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT frequency, COUNT(*) AS savings_product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "30b69b079e78a0743a48be3daafdb62af98dc02fb4c57e149dc089cf1cb27b21",
       "question": "Give the number of savings product counts by frequency.",
+      "raw_output": "SELECT frequency, COUNT(*) AS savings_product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:53:33.451019+00:00",
+      "result_correct": true,
       "retrieval_labels": {
         "relevant_columns": [
           "savings_products.frequency"
@@ -2356,11 +3920,70 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT frequency, COUNT(*) AS savings_product_count\nFROM savings_products\nGROUP BY frequency\nORDER BY frequency",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13376,
+        "output_tokens": 80,
+        "reasoning_tokens": 52
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0014593000000000002,
+          "latency_ms": 5139.566916041076,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:53:33.622923+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13378,
+            "output_tokens": 243,
+            "reasoning_tokens": 189
+          }
+        }
+      ],
       "category": "join",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:53:40.297315+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0014593000000000002,
+      "estimated_total_cost_usd": 0.0014593000000000002,
+      "execution_accuracy": true,
+      "execution_latency_ms": 1379.9946670187637,
+      "execution_rows": [
+        [
+          "Corporate",
+          230799
+        ],
+        [
+          "Group",
+          153953
+        ],
+        [
+          "Individual",
+          1078091
+        ],
+        [
+          "NSG",
+          77157
+        ]
+      ],
+      "execution_status": "passed",
+      "execution_success": true,
       "expected_result": [
         [
           "Corporate",
@@ -2379,6 +4002,8 @@
           77157
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 5139.566916041076,
       "id": "eval-078",
       "luna_low_baseline": {
         "category": "join",
@@ -2393,7 +4018,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    c.type AS client_type,\n    COUNT(l.id) AS loan_count\nFROM clients AS c\nLEFT JOIN loans AS l\n    ON l.client_id = c.id\nGROUP BY c.type\nORDER BY c.type"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "5cba9ddbb19199588b7c4ebe798939417cc64e44f713a06f9ad1ef1baccafed8",
       "question": "What is the total number of loan counts by client type?",
+      "raw_output": "SELECT\n    c.type AS client_type,\n    COUNT(l.id) AS loan_count\nFROM clients AS c\nLEFT JOIN loans AS l\n    ON l.client_id = c.id\nGROUP BY c.type\nORDER BY c.type;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:53:38.800089+00:00",
+      "result_correct": true,
       "retrieval_labels": {
         "relevant_columns": [
           "clients.id",
@@ -2409,11 +4040,70 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    c.type AS client_type,\n    COUNT(l.id) AS loan_count\nFROM clients AS c\nLEFT JOIN loans AS l\n    ON l.client_id = c.id\nGROUP BY c.type\nORDER BY c.type",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13378,
+        "output_tokens": 243,
+        "reasoning_tokens": 189
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0014436000000000002,
+          "latency_ms": 3876.565832993947,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:53:40.422725+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13376,
+            "output_tokens": 212,
+            "reasoning_tokens": 161
+          }
+        }
+      ],
       "category": "join",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:53:45.587776+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0014436000000000002,
+      "estimated_total_cost_usd": 0.0014436000000000002,
+      "execution_accuracy": true,
+      "execution_latency_ms": 1122.0521670184098,
+      "execution_rows": [
+        [
+          "Corporate",
+          230799
+        ],
+        [
+          "Group",
+          153953
+        ],
+        [
+          "Individual",
+          1078091
+        ],
+        [
+          "NSG",
+          77157
+        ]
+      ],
+      "execution_status": "passed",
+      "execution_success": true,
       "expected_result": [
         [
           "Corporate",
@@ -2432,6 +4122,8 @@
           77157
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3876.565832993947,
       "id": "eval-080",
       "luna_low_baseline": {
         "category": "join",
@@ -2446,7 +4138,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    c.type AS client_type,\n    COUNT(l.id) AS loan_count\nFROM clients AS c\nLEFT JOIN loans AS l\n    ON l.client_id = c.id\nGROUP BY c.type\nORDER BY c.type"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "0c92a66b816d0f1f53d7dfbd1ca9f560ee43d5b0540aece6d231310cf1620bfa",
       "question": "Give the number of loan counts by client type.",
+      "raw_output": "SELECT c.type AS client_type, COUNT(l.id) AS loan_count\nFROM clients AS c\nLEFT JOIN loans AS l\n    ON l.client_id = c.id\nGROUP BY c.type\nORDER BY c.type;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:53:44.337176+00:00",
+      "result_correct": true,
       "retrieval_labels": {
         "relevant_columns": [
           "clients.id",
@@ -2462,11 +4160,229 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT c.type AS client_type, COUNT(l.id) AS loan_count\nFROM clients AS c\nLEFT JOIN loans AS l\n    ON l.client_id = c.id\nGROUP BY c.type\nORDER BY c.type",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13376,
+        "output_tokens": 212,
+        "reasoning_tokens": 161
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.001413,
+          "latency_ms": 3594.8552500340156,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:53:45.711769+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13375,
+            "output_tokens": 151,
+            "reasoning_tokens": 87
+          }
+        }
+      ],
       "category": "join",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:53:50.378692+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.001413,
+      "estimated_total_cost_usd": 0.001413,
+      "execution_accuracy": false,
+      "execution_latency_ms": 912.32195898192,
+      "execution_rows": [
+        [
+          34,
+          "Azraq Bank – 6th of October Branch, Giza, Egypt",
+          0
+        ],
+        [
+          1,
+          "Azraq Bank – Abu Dhabi Main Branch, Blue Tower, Khalifa St., Corniche Road, Abu Dhabi",
+          332688
+        ],
+        [
+          10,
+          "Azraq Bank – Ajman Main Branch, near Ajman Gold Souq, Ajman",
+          332896
+        ],
+        [
+          2,
+          "Azraq Bank – Al Ain Main Branch, Al Ain Mall area, Al Ain",
+          333532
+        ],
+        [
+          4,
+          "Azraq Bank – Al Aweer Express Banking, Ras Al Khor, Dubai",
+          332265
+        ],
+        [
+          13,
+          "Azraq Bank – Al Khaleej Express Banking, Deira, Dubai",
+          0
+        ],
+        [
+          11,
+          "Azraq Bank – Al Nakheel Express Banking, Ras Al Khaimah",
+          333762
+        ],
+        [
+          14,
+          "Azraq Bank – Al Quoz Branch, Sheikh Zayed Road, Dubai",
+          0
+        ],
+        [
+          5,
+          "Azraq Bank – Burjuman Branch, Bur Dubai (Near Burjuman Metro)",
+          332814
+        ],
+        [
+          21,
+          "Azraq Bank – C‑Ring Road Branch, Al Emadi Building, Doha, Qatar",
+          0
+        ],
+        [
+          15,
+          "Azraq Bank – Dafza Branch, Dubai Airport Free Zone",
+          0
+        ],
+        [
+          6,
+          "Azraq Bank – Dubai Internet City Branch, Sheikh Zayed Road, Dubai",
+          333725
+        ],
+        [
+          16,
+          "Azraq Bank – Dubai Mall Express Banking",
+          0
+        ],
+        [
+          7,
+          "Azraq Bank – Ghusais Branch, Amman Street, Dubai",
+          333105
+        ],
+        [
+          25,
+          "Azraq Bank – Grand Hamad Branch, Bank Street, Doha, Qatar",
+          0
+        ],
+        [
+          28,
+          "Azraq Bank – Heliopolis Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          29,
+          "Azraq Bank – Heliopolis Mall Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          17,
+          "Azraq Bank – Ibn Battuta Mall Express Banking",
+          0
+        ],
+        [
+          26,
+          "Azraq Bank – Kasr El Ainy Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          30,
+          "Azraq Bank – Maadi Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          18,
+          "Azraq Bank – Mall of the Emirates Express Banking",
+          0
+        ],
+        [
+          19,
+          "Azraq Bank – Mirdif City Centre Express Banking",
+          0
+        ],
+        [
+          35,
+          "Azraq Bank – Mumbai Branch, Raheja Centre, Nariman Point, India",
+          0
+        ],
+        [
+          8,
+          "Azraq Bank – Muraqqabat Branch, Abu Bakr Al Siddique Road, Dubai",
+          334467
+        ],
+        [
+          3,
+          "Azraq Bank – Mussaffah Branch, Musaffah Industrial Area, Abu Dhabi",
+          334123
+        ],
+        [
+          31,
+          "Azraq Bank – Nasr City Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          32,
+          "Azraq Bank – New Cairo Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          22,
+          "Azraq Bank – Ramada Branch, Salwa Road, Doha, Qatar",
+          0
+        ],
+        [
+          27,
+          "Azraq Bank – Semouha Branch, Alexandria, Egypt",
+          0
+        ],
+        [
+          12,
+          "Azraq Bank – Sharjah Industrial Area Branch, Industrial Area No. 11, Sharjah",
+          332826
+        ],
+        [
+          9,
+          "Azraq Bank – Sheikh Zayed Road Branch (Al Hawai Tower), DIFC, Dubai",
+          333797
+        ],
+        [
+          23,
+          "Azraq Bank – TV Roundabout Branch, Bin Tuar Center, Doha, Qatar",
+          0
+        ],
+        [
+          20,
+          "Azraq Bank – Umm Suqeim Branch, Dubai",
+          0
+        ],
+        [
+          24,
+          "Azraq Bank – West Bay Branch, Palm Tower B, Doha, Qatar",
+          0
+        ],
+        [
+          33,
+          "Azraq Bank – Zamalek Branch, Cairo, Egypt",
+          0
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Azraq Bank – Abu Dhabi Main Branch, Blue Tower, Khalifa St., Corniche Road, Abu Dhabi",
@@ -2517,6 +4433,8 @@
           333797
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3594.8552500340156,
       "id": "eval-081",
       "luna_low_baseline": {
         "category": "join",
@@ -2531,7 +4449,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.name"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "7489961a4b70e62ebd0102d0ba97c7486ee54db561b3a2e4ab4a1fad489fefe8",
       "question": "How many client counts by branch are there?",
+      "raw_output": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.name;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:53:49.345503+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "branches.id",
@@ -2547,11 +4471,229 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.name",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13375,
+        "output_tokens": 151,
+        "reasoning_tokens": 87
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0014446,
+          "latency_ms": 3396.8387079657987,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:53:50.489355+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13376,
+            "output_tokens": 214,
+            "reasoning_tokens": 150
+          }
+        }
+      ],
       "category": "join",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:53:54.974938+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0014446,
+      "estimated_total_cost_usd": 0.0014446,
+      "execution_accuracy": false,
+      "execution_latency_ms": 922.3953749751672,
+      "execution_rows": [
+        [
+          34,
+          "Azraq Bank – 6th of October Branch, Giza, Egypt",
+          0
+        ],
+        [
+          1,
+          "Azraq Bank – Abu Dhabi Main Branch, Blue Tower, Khalifa St., Corniche Road, Abu Dhabi",
+          332688
+        ],
+        [
+          10,
+          "Azraq Bank – Ajman Main Branch, near Ajman Gold Souq, Ajman",
+          332896
+        ],
+        [
+          2,
+          "Azraq Bank – Al Ain Main Branch, Al Ain Mall area, Al Ain",
+          333532
+        ],
+        [
+          4,
+          "Azraq Bank – Al Aweer Express Banking, Ras Al Khor, Dubai",
+          332265
+        ],
+        [
+          13,
+          "Azraq Bank – Al Khaleej Express Banking, Deira, Dubai",
+          0
+        ],
+        [
+          11,
+          "Azraq Bank – Al Nakheel Express Banking, Ras Al Khaimah",
+          333762
+        ],
+        [
+          14,
+          "Azraq Bank – Al Quoz Branch, Sheikh Zayed Road, Dubai",
+          0
+        ],
+        [
+          5,
+          "Azraq Bank – Burjuman Branch, Bur Dubai (Near Burjuman Metro)",
+          332814
+        ],
+        [
+          21,
+          "Azraq Bank – C‑Ring Road Branch, Al Emadi Building, Doha, Qatar",
+          0
+        ],
+        [
+          15,
+          "Azraq Bank – Dafza Branch, Dubai Airport Free Zone",
+          0
+        ],
+        [
+          6,
+          "Azraq Bank – Dubai Internet City Branch, Sheikh Zayed Road, Dubai",
+          333725
+        ],
+        [
+          16,
+          "Azraq Bank – Dubai Mall Express Banking",
+          0
+        ],
+        [
+          7,
+          "Azraq Bank – Ghusais Branch, Amman Street, Dubai",
+          333105
+        ],
+        [
+          25,
+          "Azraq Bank – Grand Hamad Branch, Bank Street, Doha, Qatar",
+          0
+        ],
+        [
+          28,
+          "Azraq Bank – Heliopolis Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          29,
+          "Azraq Bank – Heliopolis Mall Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          17,
+          "Azraq Bank – Ibn Battuta Mall Express Banking",
+          0
+        ],
+        [
+          26,
+          "Azraq Bank – Kasr El Ainy Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          30,
+          "Azraq Bank – Maadi Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          18,
+          "Azraq Bank – Mall of the Emirates Express Banking",
+          0
+        ],
+        [
+          19,
+          "Azraq Bank – Mirdif City Centre Express Banking",
+          0
+        ],
+        [
+          35,
+          "Azraq Bank – Mumbai Branch, Raheja Centre, Nariman Point, India",
+          0
+        ],
+        [
+          8,
+          "Azraq Bank – Muraqqabat Branch, Abu Bakr Al Siddique Road, Dubai",
+          334467
+        ],
+        [
+          3,
+          "Azraq Bank – Mussaffah Branch, Musaffah Industrial Area, Abu Dhabi",
+          334123
+        ],
+        [
+          31,
+          "Azraq Bank – Nasr City Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          32,
+          "Azraq Bank – New Cairo Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          22,
+          "Azraq Bank – Ramada Branch, Salwa Road, Doha, Qatar",
+          0
+        ],
+        [
+          27,
+          "Azraq Bank – Semouha Branch, Alexandria, Egypt",
+          0
+        ],
+        [
+          12,
+          "Azraq Bank – Sharjah Industrial Area Branch, Industrial Area No. 11, Sharjah",
+          332826
+        ],
+        [
+          9,
+          "Azraq Bank – Sheikh Zayed Road Branch (Al Hawai Tower), DIFC, Dubai",
+          333797
+        ],
+        [
+          23,
+          "Azraq Bank – TV Roundabout Branch, Bin Tuar Center, Doha, Qatar",
+          0
+        ],
+        [
+          20,
+          "Azraq Bank – Umm Suqeim Branch, Dubai",
+          0
+        ],
+        [
+          24,
+          "Azraq Bank – West Bay Branch, Palm Tower B, Doha, Qatar",
+          0
+        ],
+        [
+          33,
+          "Azraq Bank – Zamalek Branch, Cairo, Egypt",
+          0
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Azraq Bank – Abu Dhabi Main Branch, Blue Tower, Khalifa St., Corniche Road, Abu Dhabi",
@@ -2602,6 +4744,8 @@
           333797
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3396.8387079657987,
       "id": "eval-082",
       "luna_low_baseline": {
         "category": "join",
@@ -2616,7 +4760,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.id"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "1ebc6bc39aae212fcdd57f43db1a5375dc1da622b07c54e27b2e705787590ac2",
       "question": "Count the client counts by branch in the dataset.",
+      "raw_output": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.name;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:53:53.925029+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "branches.id",
@@ -2632,11 +4782,229 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.name",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13376,
+        "output_tokens": 214,
+        "reasoning_tokens": 150
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0014022000000000001,
+          "latency_ms": 3105.385958973784,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:53:55.091987+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13377,
+            "output_tokens": 129,
+            "reasoning_tokens": 65
+          }
+        }
+      ],
       "category": "join",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:53:59.393611+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0014022000000000001,
+      "estimated_total_cost_usd": 0.0014022000000000001,
+      "execution_accuracy": false,
+      "execution_latency_ms": 1031.9058750174008,
+      "execution_rows": [
+        [
+          34,
+          "Azraq Bank – 6th of October Branch, Giza, Egypt",
+          0
+        ],
+        [
+          1,
+          "Azraq Bank – Abu Dhabi Main Branch, Blue Tower, Khalifa St., Corniche Road, Abu Dhabi",
+          332688
+        ],
+        [
+          10,
+          "Azraq Bank – Ajman Main Branch, near Ajman Gold Souq, Ajman",
+          332896
+        ],
+        [
+          2,
+          "Azraq Bank – Al Ain Main Branch, Al Ain Mall area, Al Ain",
+          333532
+        ],
+        [
+          4,
+          "Azraq Bank – Al Aweer Express Banking, Ras Al Khor, Dubai",
+          332265
+        ],
+        [
+          13,
+          "Azraq Bank – Al Khaleej Express Banking, Deira, Dubai",
+          0
+        ],
+        [
+          11,
+          "Azraq Bank – Al Nakheel Express Banking, Ras Al Khaimah",
+          333762
+        ],
+        [
+          14,
+          "Azraq Bank – Al Quoz Branch, Sheikh Zayed Road, Dubai",
+          0
+        ],
+        [
+          5,
+          "Azraq Bank – Burjuman Branch, Bur Dubai (Near Burjuman Metro)",
+          332814
+        ],
+        [
+          21,
+          "Azraq Bank – C‑Ring Road Branch, Al Emadi Building, Doha, Qatar",
+          0
+        ],
+        [
+          15,
+          "Azraq Bank – Dafza Branch, Dubai Airport Free Zone",
+          0
+        ],
+        [
+          6,
+          "Azraq Bank – Dubai Internet City Branch, Sheikh Zayed Road, Dubai",
+          333725
+        ],
+        [
+          16,
+          "Azraq Bank – Dubai Mall Express Banking",
+          0
+        ],
+        [
+          7,
+          "Azraq Bank – Ghusais Branch, Amman Street, Dubai",
+          333105
+        ],
+        [
+          25,
+          "Azraq Bank – Grand Hamad Branch, Bank Street, Doha, Qatar",
+          0
+        ],
+        [
+          28,
+          "Azraq Bank – Heliopolis Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          29,
+          "Azraq Bank – Heliopolis Mall Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          17,
+          "Azraq Bank – Ibn Battuta Mall Express Banking",
+          0
+        ],
+        [
+          26,
+          "Azraq Bank – Kasr El Ainy Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          30,
+          "Azraq Bank – Maadi Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          18,
+          "Azraq Bank – Mall of the Emirates Express Banking",
+          0
+        ],
+        [
+          19,
+          "Azraq Bank – Mirdif City Centre Express Banking",
+          0
+        ],
+        [
+          35,
+          "Azraq Bank – Mumbai Branch, Raheja Centre, Nariman Point, India",
+          0
+        ],
+        [
+          8,
+          "Azraq Bank – Muraqqabat Branch, Abu Bakr Al Siddique Road, Dubai",
+          334467
+        ],
+        [
+          3,
+          "Azraq Bank – Mussaffah Branch, Musaffah Industrial Area, Abu Dhabi",
+          334123
+        ],
+        [
+          31,
+          "Azraq Bank – Nasr City Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          32,
+          "Azraq Bank – New Cairo Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          22,
+          "Azraq Bank – Ramada Branch, Salwa Road, Doha, Qatar",
+          0
+        ],
+        [
+          27,
+          "Azraq Bank – Semouha Branch, Alexandria, Egypt",
+          0
+        ],
+        [
+          12,
+          "Azraq Bank – Sharjah Industrial Area Branch, Industrial Area No. 11, Sharjah",
+          332826
+        ],
+        [
+          9,
+          "Azraq Bank – Sheikh Zayed Road Branch (Al Hawai Tower), DIFC, Dubai",
+          333797
+        ],
+        [
+          23,
+          "Azraq Bank – TV Roundabout Branch, Bin Tuar Center, Doha, Qatar",
+          0
+        ],
+        [
+          20,
+          "Azraq Bank – Umm Suqeim Branch, Dubai",
+          0
+        ],
+        [
+          24,
+          "Azraq Bank – West Bay Branch, Palm Tower B, Doha, Qatar",
+          0
+        ],
+        [
+          33,
+          "Azraq Bank – Zamalek Branch, Cairo, Egypt",
+          0
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Azraq Bank – Abu Dhabi Main Branch, Blue Tower, Khalifa St., Corniche Road, Abu Dhabi",
@@ -2687,6 +5055,8 @@
           333797
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3105.385958973784,
       "id": "eval-083",
       "luna_low_baseline": {
         "category": "join",
@@ -2701,7 +5071,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.name"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "5f22784920d99c95133830a83a1c047815361316bd27e766701fd2b4a2f821e3",
       "question": "What is the total number of client counts by branch?",
+      "raw_output": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.name;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:53:58.237335+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "branches.id",
@@ -2717,11 +5093,229 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.name",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13377,
+        "output_tokens": 129,
+        "reasoning_tokens": 65
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0014191000000000002,
+          "latency_ms": 3277.64816704439,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:53:59.509589+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13376,
+            "output_tokens": 163,
+            "reasoning_tokens": 99
+          }
+        }
+      ],
       "category": "join",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:54:03.874880+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0014191000000000002,
+      "estimated_total_cost_usd": 0.0014191000000000002,
+      "execution_accuracy": false,
+      "execution_latency_ms": 928.2772919978015,
+      "execution_rows": [
+        [
+          34,
+          "Azraq Bank – 6th of October Branch, Giza, Egypt",
+          0
+        ],
+        [
+          1,
+          "Azraq Bank – Abu Dhabi Main Branch, Blue Tower, Khalifa St., Corniche Road, Abu Dhabi",
+          332688
+        ],
+        [
+          10,
+          "Azraq Bank – Ajman Main Branch, near Ajman Gold Souq, Ajman",
+          332896
+        ],
+        [
+          2,
+          "Azraq Bank – Al Ain Main Branch, Al Ain Mall area, Al Ain",
+          333532
+        ],
+        [
+          4,
+          "Azraq Bank – Al Aweer Express Banking, Ras Al Khor, Dubai",
+          332265
+        ],
+        [
+          13,
+          "Azraq Bank – Al Khaleej Express Banking, Deira, Dubai",
+          0
+        ],
+        [
+          11,
+          "Azraq Bank – Al Nakheel Express Banking, Ras Al Khaimah",
+          333762
+        ],
+        [
+          14,
+          "Azraq Bank – Al Quoz Branch, Sheikh Zayed Road, Dubai",
+          0
+        ],
+        [
+          5,
+          "Azraq Bank – Burjuman Branch, Bur Dubai (Near Burjuman Metro)",
+          332814
+        ],
+        [
+          21,
+          "Azraq Bank – C‑Ring Road Branch, Al Emadi Building, Doha, Qatar",
+          0
+        ],
+        [
+          15,
+          "Azraq Bank – Dafza Branch, Dubai Airport Free Zone",
+          0
+        ],
+        [
+          6,
+          "Azraq Bank – Dubai Internet City Branch, Sheikh Zayed Road, Dubai",
+          333725
+        ],
+        [
+          16,
+          "Azraq Bank – Dubai Mall Express Banking",
+          0
+        ],
+        [
+          7,
+          "Azraq Bank – Ghusais Branch, Amman Street, Dubai",
+          333105
+        ],
+        [
+          25,
+          "Azraq Bank – Grand Hamad Branch, Bank Street, Doha, Qatar",
+          0
+        ],
+        [
+          28,
+          "Azraq Bank – Heliopolis Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          29,
+          "Azraq Bank – Heliopolis Mall Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          17,
+          "Azraq Bank – Ibn Battuta Mall Express Banking",
+          0
+        ],
+        [
+          26,
+          "Azraq Bank – Kasr El Ainy Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          30,
+          "Azraq Bank – Maadi Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          18,
+          "Azraq Bank – Mall of the Emirates Express Banking",
+          0
+        ],
+        [
+          19,
+          "Azraq Bank – Mirdif City Centre Express Banking",
+          0
+        ],
+        [
+          35,
+          "Azraq Bank – Mumbai Branch, Raheja Centre, Nariman Point, India",
+          0
+        ],
+        [
+          8,
+          "Azraq Bank – Muraqqabat Branch, Abu Bakr Al Siddique Road, Dubai",
+          334467
+        ],
+        [
+          3,
+          "Azraq Bank – Mussaffah Branch, Musaffah Industrial Area, Abu Dhabi",
+          334123
+        ],
+        [
+          31,
+          "Azraq Bank – Nasr City Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          32,
+          "Azraq Bank – New Cairo Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          22,
+          "Azraq Bank – Ramada Branch, Salwa Road, Doha, Qatar",
+          0
+        ],
+        [
+          27,
+          "Azraq Bank – Semouha Branch, Alexandria, Egypt",
+          0
+        ],
+        [
+          12,
+          "Azraq Bank – Sharjah Industrial Area Branch, Industrial Area No. 11, Sharjah",
+          332826
+        ],
+        [
+          9,
+          "Azraq Bank – Sheikh Zayed Road Branch (Al Hawai Tower), DIFC, Dubai",
+          333797
+        ],
+        [
+          23,
+          "Azraq Bank – TV Roundabout Branch, Bin Tuar Center, Doha, Qatar",
+          0
+        ],
+        [
+          20,
+          "Azraq Bank – Umm Suqeim Branch, Dubai",
+          0
+        ],
+        [
+          24,
+          "Azraq Bank – West Bay Branch, Palm Tower B, Doha, Qatar",
+          0
+        ],
+        [
+          33,
+          "Azraq Bank – Zamalek Branch, Cairo, Egypt",
+          0
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Azraq Bank – Abu Dhabi Main Branch, Blue Tower, Khalifa St., Corniche Road, Abu Dhabi",
@@ -2772,6 +5366,8 @@
           333797
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3277.64816704439,
       "id": "eval-084",
       "luna_low_baseline": {
         "category": "join",
@@ -2786,7 +5382,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.name"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "e9c207cf2ccd10912b5c0f406a5408dd9103452a2a5e7e54317078d9a4b69513",
       "question": "Show me the count of client counts by branch.",
+      "raw_output": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.name;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:54:02.827257+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "branches.id",
@@ -2802,11 +5404,229 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.name",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13376,
+        "output_tokens": 163,
+        "reasoning_tokens": 99
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.001408,
+          "latency_ms": 3127.2500840132125,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:54:03.993495+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13375,
+            "output_tokens": 141,
+            "reasoning_tokens": 74
+          }
+        }
+      ],
       "category": "join",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:54:08.211172+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.001408,
+      "estimated_total_cost_usd": 0.001408,
+      "execution_accuracy": false,
+      "execution_latency_ms": 939.7860830067657,
+      "execution_rows": [
+        [
+          34,
+          "Azraq Bank – 6th of October Branch, Giza, Egypt",
+          0
+        ],
+        [
+          1,
+          "Azraq Bank – Abu Dhabi Main Branch, Blue Tower, Khalifa St., Corniche Road, Abu Dhabi",
+          332688
+        ],
+        [
+          10,
+          "Azraq Bank – Ajman Main Branch, near Ajman Gold Souq, Ajman",
+          332896
+        ],
+        [
+          2,
+          "Azraq Bank – Al Ain Main Branch, Al Ain Mall area, Al Ain",
+          333532
+        ],
+        [
+          4,
+          "Azraq Bank – Al Aweer Express Banking, Ras Al Khor, Dubai",
+          332265
+        ],
+        [
+          13,
+          "Azraq Bank – Al Khaleej Express Banking, Deira, Dubai",
+          0
+        ],
+        [
+          11,
+          "Azraq Bank – Al Nakheel Express Banking, Ras Al Khaimah",
+          333762
+        ],
+        [
+          14,
+          "Azraq Bank – Al Quoz Branch, Sheikh Zayed Road, Dubai",
+          0
+        ],
+        [
+          5,
+          "Azraq Bank – Burjuman Branch, Bur Dubai (Near Burjuman Metro)",
+          332814
+        ],
+        [
+          21,
+          "Azraq Bank – C‑Ring Road Branch, Al Emadi Building, Doha, Qatar",
+          0
+        ],
+        [
+          15,
+          "Azraq Bank – Dafza Branch, Dubai Airport Free Zone",
+          0
+        ],
+        [
+          6,
+          "Azraq Bank – Dubai Internet City Branch, Sheikh Zayed Road, Dubai",
+          333725
+        ],
+        [
+          16,
+          "Azraq Bank – Dubai Mall Express Banking",
+          0
+        ],
+        [
+          7,
+          "Azraq Bank – Ghusais Branch, Amman Street, Dubai",
+          333105
+        ],
+        [
+          25,
+          "Azraq Bank – Grand Hamad Branch, Bank Street, Doha, Qatar",
+          0
+        ],
+        [
+          28,
+          "Azraq Bank – Heliopolis Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          29,
+          "Azraq Bank – Heliopolis Mall Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          17,
+          "Azraq Bank – Ibn Battuta Mall Express Banking",
+          0
+        ],
+        [
+          26,
+          "Azraq Bank – Kasr El Ainy Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          30,
+          "Azraq Bank – Maadi Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          18,
+          "Azraq Bank – Mall of the Emirates Express Banking",
+          0
+        ],
+        [
+          19,
+          "Azraq Bank – Mirdif City Centre Express Banking",
+          0
+        ],
+        [
+          35,
+          "Azraq Bank – Mumbai Branch, Raheja Centre, Nariman Point, India",
+          0
+        ],
+        [
+          8,
+          "Azraq Bank – Muraqqabat Branch, Abu Bakr Al Siddique Road, Dubai",
+          334467
+        ],
+        [
+          3,
+          "Azraq Bank – Mussaffah Branch, Musaffah Industrial Area, Abu Dhabi",
+          334123
+        ],
+        [
+          31,
+          "Azraq Bank – Nasr City Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          32,
+          "Azraq Bank – New Cairo Branch, Cairo, Egypt",
+          0
+        ],
+        [
+          22,
+          "Azraq Bank – Ramada Branch, Salwa Road, Doha, Qatar",
+          0
+        ],
+        [
+          27,
+          "Azraq Bank – Semouha Branch, Alexandria, Egypt",
+          0
+        ],
+        [
+          12,
+          "Azraq Bank – Sharjah Industrial Area Branch, Industrial Area No. 11, Sharjah",
+          332826
+        ],
+        [
+          9,
+          "Azraq Bank – Sheikh Zayed Road Branch (Al Hawai Tower), DIFC, Dubai",
+          333797
+        ],
+        [
+          23,
+          "Azraq Bank – TV Roundabout Branch, Bin Tuar Center, Doha, Qatar",
+          0
+        ],
+        [
+          20,
+          "Azraq Bank – Umm Suqeim Branch, Dubai",
+          0
+        ],
+        [
+          24,
+          "Azraq Bank – West Bay Branch, Palm Tower B, Doha, Qatar",
+          0
+        ],
+        [
+          33,
+          "Azraq Bank – Zamalek Branch, Cairo, Egypt",
+          0
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Azraq Bank – Abu Dhabi Main Branch, Blue Tower, Khalifa St., Corniche Road, Abu Dhabi",
@@ -2857,6 +5677,8 @@
           333797
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3127.2500840132125,
       "id": "eval-085",
       "luna_low_baseline": {
         "category": "join",
@@ -2871,7 +5693,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.name"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "eb19bd9a43011a6296fcbe3466effcc6e384ba15cf121f1f037e4b488477095d",
       "question": "Give the number of client counts by branch.",
+      "raw_output": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.name, b.id;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:54:07.160785+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "branches.id",
@@ -2887,11 +5715,244 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    b.id AS branch_id,\n    b.name AS branch_name,\n    COUNT(c.id) AS client_count\nFROM branches AS b\nLEFT JOIN clients AS c\n    ON c.branch_id = b.id\nGROUP BY b.id, b.name\nORDER BY b.name, b.id",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13375,
+        "output_tokens": 141,
+        "reasoning_tokens": 74
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.00155,
+          "latency_ms": 5095.2259579789825,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:54:08.343191+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13380,
+            "output_tokens": 424,
+            "reasoning_tokens": 333
+          }
+        }
+      ],
       "category": "multi_table",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:54:14.148921+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.00155,
+      "estimated_total_cost_usd": 0.00155,
+      "execution_accuracy": false,
+      "execution_latency_ms": 548.2101250090636,
+      "execution_rows": [
+        [
+          "Agriculture Loan",
+          "Term Loans – Commercial",
+          17905
+        ],
+        [
+          "Asset-Based Lending",
+          "Syndicated Financing",
+          17907
+        ],
+        [
+          "Auto Loan",
+          "Working Capital Overdraft",
+          89519
+        ],
+        [
+          "Auto Loan Refinance",
+          "Working Capital Overdraft",
+          89996
+        ],
+        [
+          "Bank Guarantee",
+          "Bank Guarantees",
+          17692
+        ],
+        [
+          "Bridge Loan",
+          "Construction Financing",
+          17678
+        ],
+        [
+          "Business Line of Credit (Secured)",
+          "Construction Financing",
+          17838
+        ],
+        [
+          "Business Line of Credit (Unsecured)",
+          "Construction Financing",
+          17690
+        ],
+        [
+          "Cheque Discounting",
+          "Cheque Discounting",
+          17819
+        ],
+        [
+          "Commercial Real Estate Loan",
+          "Working Capital Overdraft",
+          17908
+        ],
+        [
+          "Construction Loan",
+          "Construction Financing",
+          17950
+        ],
+        [
+          "Debt Consolidation Loan",
+          "Working Capital Overdraft",
+          89944
+        ],
+        [
+          "Equipment Financing",
+          "Lease / Ijarah Financing",
+          17456
+        ],
+        [
+          "Escrow Agent Financing",
+          "Escrow Agent Services",
+          17730
+        ],
+        [
+          "Home Equity Line of Credit (HELOC)",
+          "Term Loans – Commercial",
+          89750
+        ],
+        [
+          "Home Equity Loan",
+          "Term Loans – Commercial",
+          90297
+        ],
+        [
+          "Home Mortgage (Adjustable)",
+          "Pre‑shipment Financing",
+          89720
+        ],
+        [
+          "Home Mortgage (Fixed)",
+          "Pre‑shipment Financing",
+          89701
+        ],
+        [
+          "Invoice Discounting",
+          "Invoice Discounting",
+          17711
+        ],
+        [
+          "Lease Financing (Ijarah)",
+          "Lease / Ijarah Financing",
+          17743
+        ],
+        [
+          "Merchant Finance Facility",
+          "Merchant Finance Facility",
+          17552
+        ],
+        [
+          "Personal Loan",
+          "Working Capital Overdraft",
+          90455
+        ],
+        [
+          "Post-shipment Finance",
+          "Post‑shipment Financing",
+          17831
+        ],
+        [
+          "Pre-shipment Finance",
+          "Pre‑shipment Financing",
+          17655
+        ],
+        [
+          "Receivables Factoring",
+          "Receivables Finance (Factoring)",
+          17785
+        ],
+        [
+          "Refinancing Facility",
+          "Refinancing Facilities",
+          17692
+        ],
+        [
+          "SBA-Backed Business Loan",
+          "Term Loans – Commercial",
+          17808
+        ],
+        [
+          "Secured Personal Loan",
+          "Working Capital Overdraft",
+          89601
+        ],
+        [
+          "Small Business Loan",
+          "Term Loans – Commercial",
+          18045
+        ],
+        [
+          "Standby Letter of Credit",
+          "Standby Letters of Credit",
+          17520
+        ],
+        [
+          "Structured Trade Finance",
+          "Structured Trade Finance Solutions",
+          17860
+        ],
+        [
+          "Student Loan",
+          "Pre‑shipment Financing",
+          89908
+        ],
+        [
+          "Student Loan (Private)",
+          "Pre‑shipment Financing",
+          89668
+        ],
+        [
+          "Syndicated Loan",
+          "Syndicated Financing",
+          17756
+        ],
+        [
+          "Term Loan Commercial",
+          "Term Loans – Commercial",
+          17763
+        ],
+        [
+          "Unsecured Personal Loan",
+          "Working Capital Overdraft",
+          89532
+        ],
+        [
+          "Warehouse Line of Credit",
+          "Syndicated Financing",
+          17682
+        ],
+        [
+          "Working Capital Overdraft",
+          "Working Capital Overdraft",
+          17933
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Agriculture Loan",
@@ -3046,6 +6107,8 @@
           17933
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 5095.2259579789825,
       "id": "eval-112",
       "luna_low_baseline": {
         "category": "multi_table",
@@ -3060,7 +6123,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    lp.name AS product_name,\n    COUNT(l.id) AS loan_count\nFROM loans AS l\nJOIN loan_products AS lp\n    ON l.product_id = lp.id\nJOIN funding_lines AS fl\n    ON l.funding_line_id = fl.id\nGROUP BY lp.id, lp.name\nORDER BY lp.name"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "3d0358f24fbd6da6b6d929fd351b467085f8378ec8ea31e5c82799e30966afe8",
       "question": "Count the loan counts by product with a funding line in the dataset.",
+      "raw_output": "SELECT\n    lp.name AS product_name,\n    fl.name AS funding_line_name,\n    COUNT(l.id) AS loan_count\nFROM loans AS l\nJOIN loan_products AS lp\n    ON l.product_id = lp.id\nJOIN funding_lines AS fl\n    ON lp.funding_line_id = fl.id\nGROUP BY lp.id, lp.name, fl.id, fl.name\nORDER BY lp.name, fl.name;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:54:13.477279+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "funding_lines.id",
@@ -3080,11 +6149,244 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    lp.name AS product_name,\n    fl.name AS funding_line_name,\n    COUNT(l.id) AS loan_count\nFROM loans AS l\nJOIN loan_products AS lp\n    ON l.product_id = lp.id\nJOIN funding_lines AS fl\n    ON lp.funding_line_id = fl.id\nGROUP BY lp.id, lp.name, fl.id, fl.name\nORDER BY lp.name, fl.name",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13380,
+        "output_tokens": 424,
+        "reasoning_tokens": 333
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0015325,
+          "latency_ms": 4995.837374997791,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:54:14.281646+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13380,
+            "output_tokens": 389,
+            "reasoning_tokens": 304
+          }
+        }
+      ],
       "category": "multi_table",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:54:19.826647+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0015325,
+      "estimated_total_cost_usd": 0.0015325,
+      "execution_accuracy": false,
+      "execution_latency_ms": 385.4444169555791,
+      "execution_rows": [
+        [
+          "Agriculture Loan",
+          "Term Loans – Commercial",
+          17905
+        ],
+        [
+          "Asset-Based Lending",
+          "Syndicated Financing",
+          17907
+        ],
+        [
+          "Auto Loan",
+          "Working Capital Overdraft",
+          89519
+        ],
+        [
+          "Auto Loan Refinance",
+          "Working Capital Overdraft",
+          89996
+        ],
+        [
+          "Bank Guarantee",
+          "Bank Guarantees",
+          17692
+        ],
+        [
+          "Bridge Loan",
+          "Construction Financing",
+          17678
+        ],
+        [
+          "Business Line of Credit (Secured)",
+          "Construction Financing",
+          17838
+        ],
+        [
+          "Business Line of Credit (Unsecured)",
+          "Construction Financing",
+          17690
+        ],
+        [
+          "Cheque Discounting",
+          "Cheque Discounting",
+          17819
+        ],
+        [
+          "Commercial Real Estate Loan",
+          "Working Capital Overdraft",
+          17908
+        ],
+        [
+          "Construction Loan",
+          "Construction Financing",
+          17950
+        ],
+        [
+          "Debt Consolidation Loan",
+          "Working Capital Overdraft",
+          89944
+        ],
+        [
+          "Equipment Financing",
+          "Lease / Ijarah Financing",
+          17456
+        ],
+        [
+          "Escrow Agent Financing",
+          "Escrow Agent Services",
+          17730
+        ],
+        [
+          "Home Equity Line of Credit (HELOC)",
+          "Term Loans – Commercial",
+          89750
+        ],
+        [
+          "Home Equity Loan",
+          "Term Loans – Commercial",
+          90297
+        ],
+        [
+          "Home Mortgage (Adjustable)",
+          "Pre‑shipment Financing",
+          89720
+        ],
+        [
+          "Home Mortgage (Fixed)",
+          "Pre‑shipment Financing",
+          89701
+        ],
+        [
+          "Invoice Discounting",
+          "Invoice Discounting",
+          17711
+        ],
+        [
+          "Lease Financing (Ijarah)",
+          "Lease / Ijarah Financing",
+          17743
+        ],
+        [
+          "Merchant Finance Facility",
+          "Merchant Finance Facility",
+          17552
+        ],
+        [
+          "Personal Loan",
+          "Working Capital Overdraft",
+          90455
+        ],
+        [
+          "Post-shipment Finance",
+          "Post‑shipment Financing",
+          17831
+        ],
+        [
+          "Pre-shipment Finance",
+          "Pre‑shipment Financing",
+          17655
+        ],
+        [
+          "Receivables Factoring",
+          "Receivables Finance (Factoring)",
+          17785
+        ],
+        [
+          "Refinancing Facility",
+          "Refinancing Facilities",
+          17692
+        ],
+        [
+          "SBA-Backed Business Loan",
+          "Term Loans – Commercial",
+          17808
+        ],
+        [
+          "Secured Personal Loan",
+          "Working Capital Overdraft",
+          89601
+        ],
+        [
+          "Small Business Loan",
+          "Term Loans – Commercial",
+          18045
+        ],
+        [
+          "Standby Letter of Credit",
+          "Standby Letters of Credit",
+          17520
+        ],
+        [
+          "Structured Trade Finance",
+          "Structured Trade Finance Solutions",
+          17860
+        ],
+        [
+          "Student Loan",
+          "Pre‑shipment Financing",
+          89908
+        ],
+        [
+          "Student Loan (Private)",
+          "Pre‑shipment Financing",
+          89668
+        ],
+        [
+          "Syndicated Loan",
+          "Syndicated Financing",
+          17756
+        ],
+        [
+          "Term Loan Commercial",
+          "Term Loans – Commercial",
+          17763
+        ],
+        [
+          "Unsecured Personal Loan",
+          "Working Capital Overdraft",
+          89532
+        ],
+        [
+          "Warehouse Line of Credit",
+          "Syndicated Financing",
+          17682
+        ],
+        [
+          "Working Capital Overdraft",
+          "Working Capital Overdraft",
+          17933
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Agriculture Loan",
@@ -3239,6 +6541,8 @@
           17933
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 4995.837374997791,
       "id": "eval-114",
       "luna_low_baseline": {
         "category": "multi_table",
@@ -3253,7 +6557,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    lp.name AS product_name,\n    fl.name AS funding_line_name,\n    COUNT(l.id) AS loan_count\nFROM loans AS l\nJOIN loan_products AS lp\n    ON l.product_id = lp.id\nJOIN funding_lines AS fl\n    ON lp.funding_line_id = fl.id\nGROUP BY lp.id, lp.name, fl.id, fl.name\nORDER BY lp.name, fl.name"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "c5cc37178be7ec93b789e192d8b742c0ea99fca6a8f37c65404a1085214cb5a3",
       "question": "Show me the count of loan counts by product with a funding line.",
+      "raw_output": "SELECT\n    lp.name AS product_name,\n    fl.name AS funding_line_name,\n    COUNT(l.id) AS loan_count\nFROM loans AS l\nJOIN loan_products AS lp\n    ON l.product_id = lp.id\nJOIN funding_lines AS fl\n    ON l.funding_line_id = fl.id\nGROUP BY lp.name, fl.name\nORDER BY lp.name, fl.name;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:54:19.317989+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "funding_lines.id",
@@ -3273,11 +6583,48 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    lp.name AS product_name,\n    fl.name AS funding_line_name,\n    COUNT(l.id) AS loan_count\nFROM loans AS l\nJOIN loan_products AS lp\n    ON l.product_id = lp.id\nJOIN funding_lines AS fl\n    ON l.funding_line_id = fl.id\nGROUP BY lp.name, fl.name\nORDER BY lp.name, fl.name",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13380,
+        "output_tokens": 389,
+        "reasoning_tokens": 304
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0015939,
+          "latency_ms": 5476.595415966585,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:54:19.949826+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13379,
+            "output_tokens": 512,
+            "reasoning_tokens": 512
+          }
+        }
+      ],
       "category": "multi_table",
+      "cohere_latency_ms": 0.0,
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "error_type": "SQLValidationError",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0015939,
+      "estimated_total_cost_usd": 0.0015939,
       "expected_result": [
         [
           "Agriculture Loan",
@@ -3432,6 +6779,8 @@
           17933
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 5476.595415966585,
       "id": "eval-115",
       "luna_low_baseline": {
         "category": "multi_table",
@@ -3446,7 +6795,12 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    lp.name AS product_name,\n    COUNT(l.id) AS loan_count\nFROM loans AS l\nJOIN loan_products AS lp\n    ON l.product_id = lp.id\nJOIN funding_lines AS fl\n    ON l.funding_line_id = fl.id\nGROUP BY lp.id, lp.name\nORDER BY lp.name"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "3e2d18c7ae3e49be3e7b273c8b99e2ebd06ed8d9d450aa97f8f722f0e7430056",
       "question": "Give the number of loan counts by product with a funding line.",
+      "raw_output": "",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:54:25.467529+00:00",
       "retrieval_labels": {
         "relevant_columns": [
           "funding_lines.id",
@@ -3466,7 +6820,19 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql_valid": false,
+      "status": "malformed_output",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13379,
+        "output_tokens": 512,
+        "reasoning_tokens": 512
+      },
+      "validation_error": "generated SQL must contain exactly one SELECT query"
     },
     {
       "attempts": [],
@@ -3901,9 +7267,9 @@
     "used_by_request": {}
   },
   "stop_reason": {
-    "at": "2026-11-28T01:49:30.178300+00:00",
+    "at": "2026-11-28T01:54:25.579500+00:00",
     "condition": "full_schema",
-    "query_id": "eval-026",
+    "query_id": "eval-115",
     "type": "malformed_model_output"
   }
 }
