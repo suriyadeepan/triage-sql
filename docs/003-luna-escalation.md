@@ -81,6 +81,7 @@ Verification after the final implementation changes: `uv run pytest -q` — 79 p
 - The checkpoint records the first explicit continuation approval and both malformed query IDs. A second continuation requires further explicit approval per R003.3; no further requests have been made. No final comparative report can be produced until both conditions cover all 53 IDs.
 - The user approved a second checkpoint continuation on 2026-11-28, explicitly preserving and skipping both malformed outputs and all completed queries. Execution evidence will be appended after this continuation stops or completes.
 - The user approved a third checkpoint continuation on 2026-11-28, preserving and skipping all three malformed outputs and all completed queries. It is limited to the 40 remaining full-schema initial requests within the original budget.
+- The user approved a fourth checkpoint continuation on 2026-11-28, preserving and skipping all completed and malformed outputs. It is limited to the five remaining full-schema initial requests within the original budget.
 
 ## T006 approved checkpoint continuation 3 — stopped on a fourth malformed condition/query
 
