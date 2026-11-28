@@ -1,7 +1,7 @@
 {
   "condition": "full_schema",
   "experiment_status": "stopped",
-  "initial_requests_used": 48,
+  "initial_requests_used": 66,
   "metadata": {
     "cohere_min_request_interval_seconds": 6.5,
     "cohort_count": 53,
@@ -112,13 +112,49 @@
   },
   "queries": [
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013747,
+          "latency_ms": 2748.9212499931455,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:48:43.008466+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13377,
+            "output_tokens": 74,
+            "reasoning_tokens": 45
+          }
+        }
+      ],
       "category": "filter",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:48:46.084725+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013747,
+      "estimated_total_cost_usd": 0.0013747,
+      "execution_accuracy": true,
+      "execution_latency_ms": 184.77791699115187,
+      "execution_rows": [
+        [
+          4000000
+        ]
+      ],
+      "execution_status": "passed",
+      "execution_success": true,
       "expected_result": [
         [
           4000000
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 2748.9212499931455,
       "id": "eval-011",
       "luna_low_baseline": {
         "category": "filter",
@@ -133,7 +169,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT COUNT(*) AS client_count\nFROM clients\nWHERE registration_date >= DATE '2020-01-01'"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "e734d973297f16a4cdb81209d767c4de721adfe516fc2b5d4a6537b63e79c79f",
       "question": "How many clients registered since 2020 are there?",
+      "raw_output": "SELECT COUNT(*) AS client_count\nFROM clients\nWHERE registration_date >= DATE '2020-01-01';",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:48:45.792326+00:00",
+      "result_correct": true,
       "retrieval_labels": {
         "relevant_columns": [
           "clients.registration_date"
@@ -144,16 +186,64 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT COUNT(*) AS client_count\nFROM clients\nWHERE registration_date >= DATE '2020-01-01'",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13377,
+        "output_tokens": 74,
+        "reasoning_tokens": 45
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013728000000000002,
+          "latency_ms": 2542.762207973283,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:48:46.182802+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13378,
+            "output_tokens": 70,
+            "reasoning_tokens": 41
+          }
+        }
+      ],
       "category": "filter",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:48:49.070815+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013728000000000002,
+      "estimated_total_cost_usd": 0.0013728000000000002,
+      "execution_accuracy": true,
+      "execution_latency_ms": 186.90904194954783,
+      "execution_rows": [
+        [
+          4000000
+        ]
+      ],
+      "execution_status": "passed",
+      "execution_success": true,
       "expected_result": [
         [
           4000000
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 2542.762207973283,
       "id": "eval-014",
       "luna_low_baseline": {
         "category": "filter",
@@ -168,7 +258,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT COUNT(*) AS client_count\nFROM clients\nWHERE registration_date >= DATE '2020-01-01'"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "49d92dc75cc0d1f0fec1fd1cec2b3a37fdd28219687c2fc591d7963190a20e04",
       "question": "Show me the count of clients registered since 2020.",
+      "raw_output": "SELECT COUNT(*) AS client_count\nFROM clients\nWHERE registration_date >= DATE '2020-01-01';",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:48:48.762006+00:00",
+      "result_correct": true,
       "retrieval_labels": {
         "relevant_columns": [
           "clients.registration_date"
@@ -179,16 +275,64 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT COUNT(*) AS client_count\nFROM clients\nWHERE registration_date >= DATE '2020-01-01'",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13378,
+        "output_tokens": 70,
+        "reasoning_tokens": 41
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013732,
+          "latency_ms": 2409.3334999633953,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:48:49.175995+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13377,
+            "output_tokens": 71,
+            "reasoning_tokens": 42
+          }
+        }
+      ],
       "category": "filter",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:48:51.901435+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013732,
+      "estimated_total_cost_usd": 0.0013732,
+      "execution_accuracy": true,
+      "execution_latency_ms": 173.37862501153722,
+      "execution_rows": [
+        [
+          4000000
+        ]
+      ],
+      "execution_status": "passed",
+      "execution_success": true,
       "expected_result": [
         [
           4000000
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 2409.3334999633953,
       "id": "eval-015",
       "luna_low_baseline": {
         "category": "filter",
@@ -203,7 +347,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT COUNT(*) AS client_count\nFROM clients\nWHERE registration_date >= DATE '2020-01-01'"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "7be36f409b519d1c627e24b6b9de1edd94b1d3a3a92e8f987da738327ea3232a",
       "question": "Give the number of clients registered since 2020.",
+      "raw_output": "SELECT COUNT(*) AS client_count\nFROM clients\nWHERE registration_date >= DATE '2020-01-01';",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:48:51.620417+00:00",
+      "result_correct": true,
       "retrieval_labels": {
         "relevant_columns": [
           "clients.registration_date"
@@ -214,16 +364,64 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT COUNT(*) AS client_count\nFROM clients\nWHERE registration_date >= DATE '2020-01-01'",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13377,
+        "output_tokens": 71,
+        "reasoning_tokens": 42
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013738,
+          "latency_ms": 2973.7772919470444,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:48:51.998954+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13373,
+            "output_tokens": 73,
+            "reasoning_tokens": 49
+          }
+        }
+      ],
       "category": "filter",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:48:55.258468+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013738,
+      "estimated_total_cost_usd": 0.0013738,
+      "execution_accuracy": true,
+      "execution_latency_ms": 148.43974995892495,
+      "execution_rows": [
+        [
+          0
+        ]
+      ],
+      "execution_status": "passed",
+      "execution_success": true,
       "expected_result": [
         [
           0
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 2973.7772919470444,
       "id": "eval-016",
       "luna_low_baseline": {
         "category": "filter",
@@ -238,7 +436,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT COUNT(*) AS active_loan_count\nFROM loans\nWHERE LOWER(status) = 'active'"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "df798882cb54bef2669eb89af47e74d6caba71da0890436351d2463bdb64a438",
       "question": "How many active loans are there?",
+      "raw_output": "SELECT COUNT(*) AS active_loan_count\nFROM loans\nWHERE status = 'Active';",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:48:55.007622+00:00",
+      "result_correct": true,
       "retrieval_labels": {
         "relevant_columns": [
           "loans.status"
@@ -249,16 +453,64 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT COUNT(*) AS active_loan_count\nFROM loans\nWHERE status = 'Active'",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13373,
+        "output_tokens": 73,
+        "reasoning_tokens": 49
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013899000000000001,
+          "latency_ms": 4153.353292029351,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:48:55.338830+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13374,
+            "output_tokens": 105,
+            "reasoning_tokens": 77
+          }
+        }
+      ],
       "category": "filter",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:48:59.935179+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013899000000000001,
+      "estimated_total_cost_usd": 0.0013899000000000001,
+      "execution_accuracy": false,
+      "execution_latency_ms": 304.86158304847777,
+      "execution_rows": [
+        [
+          513991
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           0
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 4153.353292029351,
       "id": "eval-017",
       "luna_low_baseline": {
         "category": "filter",
@@ -273,7 +525,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT COUNT(*) AS active_loan_count\nFROM loans\nWHERE status = 'Active'"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "0f4cbf5b7f7a36f8ab93316cfbfd050e5e2915ef4e948609911684fb8be102be",
       "question": "Count the active loans in the dataset.",
+      "raw_output": "SELECT COUNT(*) AS active_loan_count\nFROM loans\nWHERE LOWER(TRIM(status)) = 'active';",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:48:59.527476+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "loans.status"
@@ -284,16 +542,64 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT COUNT(*) AS active_loan_count\nFROM loans\nWHERE LOWER(TRIM(status)) = 'active'",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13374,
+        "output_tokens": 105,
+        "reasoning_tokens": 77
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.001382,
+          "latency_ms": 2902.402665989939,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:49:00.058164+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13375,
+            "output_tokens": 89,
+            "reasoning_tokens": 63
+          }
+        }
+      ],
       "category": "filter",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:49:03.332002+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.001382,
+      "estimated_total_cost_usd": 0.001382,
+      "execution_accuracy": false,
+      "execution_latency_ms": 239.0440829913132,
+      "execution_rows": [
+        [
+          513991
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           0
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 2902.402665989939,
       "id": "eval-018",
       "luna_low_baseline": {
         "category": "filter",
@@ -308,7 +614,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT COUNT(*) AS total_active_loans\nFROM loans\nWHERE LOWER(status) = 'active'"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "a3d2d4f94b17e80f80a5f7e23e400dc1833bdfc5a8a53d629e8a4ca4abe772aa",
       "question": "What is the total number of active loans?",
+      "raw_output": "SELECT COUNT(*) AS total_active_loans\nFROM loans\nWHERE LOWER(status) = 'active';",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:49:02.994867+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "loans.status"
@@ -319,16 +631,64 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT COUNT(*) AS total_active_loans\nFROM loans\nWHERE LOWER(status) = 'active'",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13375,
+        "output_tokens": 89,
+        "reasoning_tokens": 63
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013654000000000001,
+          "latency_ms": 2494.4367499556392,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:49:03.434730+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13374,
+            "output_tokens": 56,
+            "reasoning_tokens": 32
+          }
+        }
+      ],
       "category": "filter",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:49:06.212693+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013654000000000001,
+      "estimated_total_cost_usd": 0.0013654000000000001,
+      "execution_accuracy": true,
+      "execution_latency_ms": 124.19562501600012,
+      "execution_rows": [
+        [
+          0
+        ]
+      ],
+      "execution_status": "passed",
+      "execution_success": true,
       "expected_result": [
         [
           0
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 2494.4367499556392,
       "id": "eval-019",
       "luna_low_baseline": {
         "category": "filter",
@@ -343,7 +703,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT COUNT(*) AS active_loan_count\nFROM loans\nWHERE LOWER(status) = 'active'"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "5742db094ac5d1c5ffac12abc1430f301c00714967a3718b49198ecba277713d",
       "question": "Show me the count of active loans.",
+      "raw_output": "SELECT COUNT(*) AS active_loan_count\nFROM loans\nWHERE status = 'Active';",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:49:05.965149+00:00",
+      "result_correct": true,
       "retrieval_labels": {
         "relevant_columns": [
           "loans.status"
@@ -354,16 +720,64 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT COUNT(*) AS active_loan_count\nFROM loans\nWHERE status = 'Active'",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13374,
+        "output_tokens": 56,
+        "reasoning_tokens": 32
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013913000000000003,
+          "latency_ms": 3125.326666980982,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:49:06.292222+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13373,
+            "output_tokens": 108,
+            "reasoning_tokens": 82
+          }
+        }
+      ],
       "category": "filter",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:49:09.819035+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013913000000000003,
+      "estimated_total_cost_usd": 0.0013913000000000003,
+      "execution_accuracy": false,
+      "execution_latency_ms": 251.3256249949336,
+      "execution_rows": [
+        [
+          513991
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           0
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3125.326666980982,
       "id": "eval-020",
       "luna_low_baseline": {
         "category": "filter",
@@ -378,7 +792,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT COUNT(*) AS active_loan_count\nFROM loans\nWHERE status = 'Active'"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "c814bafd7cc2b87edf09a2cad825260ca28803c25f7946222866f3f3d07a55f5",
       "question": "Give the number of active loans.",
+      "raw_output": "SELECT COUNT(*) AS active_loan_count\nFROM loans\nWHERE LOWER(status) = 'active';",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:49:09.453056+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "loans.status"
@@ -389,16 +809,64 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT COUNT(*) AS active_loan_count\nFROM loans\nWHERE LOWER(status) = 'active'",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13373,
+        "output_tokens": 108,
+        "reasoning_tokens": 82
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.00137,
+          "latency_ms": 3059.992416005116,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:49:09.937832+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13375,
+            "output_tokens": 65,
+            "reasoning_tokens": 39
+          }
+        }
+      ],
       "category": "filter",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:49:13.384679+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.00137,
+      "estimated_total_cost_usd": 0.00137,
+      "execution_accuracy": false,
+      "execution_latency_ms": 239.59137499332428,
+      "execution_rows": [
+        [
+          0
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           2208300
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3059.992416005116,
       "id": "eval-022",
       "luna_low_baseline": {
         "category": "filter",
@@ -413,7 +881,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT COUNT(*) AS active_savings_account_count\nFROM savings_accounts\nWHERE status = 'active'"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "61cc44fe8ee644578b83ab7e4b6a3405967332efd629c179222b042d0da65608",
       "question": "Count the active savings accounts in the dataset.",
+      "raw_output": "SELECT COUNT(*) AS active_savings_account_count\nFROM savings_accounts\nWHERE status = 'active';",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:49:13.032429+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "savings_accounts.status"
@@ -424,16 +898,64 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT COUNT(*) AS active_savings_account_count\nFROM savings_accounts\nWHERE status = 'active'",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13375,
+        "output_tokens": 65,
+        "reasoning_tokens": 39
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013781000000000002,
+          "latency_ms": 2885.591291997116,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:49:13.492739+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13376,
+            "output_tokens": 81,
+            "reasoning_tokens": 53
+          }
+        }
+      ],
       "category": "filter",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:49:16.917848+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013781000000000002,
+      "estimated_total_cost_usd": 0.0013781000000000002,
+      "execution_accuracy": true,
+      "execution_latency_ms": 395.7961670239456,
+      "execution_rows": [
+        [
+          2208300
+        ]
+      ],
+      "execution_status": "passed",
+      "execution_success": true,
       "expected_result": [
         [
           2208300
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 2885.591291997116,
       "id": "eval-023",
       "luna_low_baseline": {
         "category": "filter",
@@ -448,7 +970,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT COUNT(*) AS total_active_savings_accounts\nFROM savings_accounts\nWHERE LOWER(status) = 'active'"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "33d4bb1c05425002043c5905f447d3c78a0ac1512124cc45401d8676e3303892",
       "question": "What is the total number of active savings accounts?",
+      "raw_output": "SELECT COUNT(*) AS total_active_savings_accounts\nFROM savings_accounts\nWHERE LOWER(status) = 'active';",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:49:16.414422+00:00",
+      "result_correct": true,
       "retrieval_labels": {
         "relevant_columns": [
           "savings_accounts.status"
@@ -459,16 +987,64 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT COUNT(*) AS total_active_savings_accounts\nFROM savings_accounts\nWHERE LOWER(status) = 'active'",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13376,
+        "output_tokens": 81,
+        "reasoning_tokens": 53
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013815,
+          "latency_ms": 2817.6613749819808,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:49:17.039392+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13375,
+            "output_tokens": 88,
+            "reasoning_tokens": 60
+          }
+        }
+      ],
       "category": "filter",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:49:20.407683+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013815,
+      "estimated_total_cost_usd": 0.0013815,
+      "execution_accuracy": true,
+      "execution_latency_ms": 396.5301249991171,
+      "execution_rows": [
+        [
+          2208300
+        ]
+      ],
+      "execution_status": "passed",
+      "execution_success": true,
       "expected_result": [
         [
           2208300
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 2817.6613749819808,
       "id": "eval-024",
       "luna_low_baseline": {
         "category": "filter",
@@ -483,7 +1059,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT COUNT(*) AS active_savings_account_count\nFROM savings_accounts\nWHERE status = 'active'"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "a3f1ee059aeb99cb39f551ebeb04b1377000d054b121056745618ed7f0f3e94a",
       "question": "Show me the count of active savings accounts.",
+      "raw_output": "SELECT COUNT(*) AS active_savings_account_count\nFROM savings_accounts\nWHERE LOWER(status) = 'active';",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:49:19.892812+00:00",
+      "result_correct": true,
       "retrieval_labels": {
         "relevant_columns": [
           "savings_accounts.status"
@@ -494,16 +1076,64 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT COUNT(*) AS active_savings_account_count\nFROM savings_accounts\nWHERE LOWER(status) = 'active'",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13375,
+        "output_tokens": 88,
+        "reasoning_tokens": 60
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0013784000000000001,
+          "latency_ms": 2879.7325830091722,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:49:20.527327+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13374,
+            "output_tokens": 82,
+            "reasoning_tokens": 60
+          }
+        }
+      ],
       "category": "filter",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:49:23.947109+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0013784000000000001,
+      "estimated_total_cost_usd": 0.0013784000000000001,
+      "execution_accuracy": true,
+      "execution_latency_ms": 402.0251669571735,
+      "execution_rows": [
+        [
+          2208300
+        ]
+      ],
+      "execution_status": "passed",
+      "execution_success": true,
       "expected_result": [
         [
           2208300
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 2879.7325830091722,
       "id": "eval-025",
       "luna_low_baseline": {
         "category": "filter",
@@ -518,7 +1148,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT COUNT(*) AS active_savings_account_count\nFROM savings_accounts\nWHERE status = 'active'"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "f660fdd707dbdb294f7a1b7530899fd16503394b8af2ba8651ae86e76dc05d92",
       "question": "Give the number of active savings accounts.",
+      "raw_output": "SELECT COUNT(*)\nFROM savings_accounts\nWHERE LOWER(status) = 'active';",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:49:23.442781+00:00",
+      "result_correct": true,
       "retrieval_labels": {
         "relevant_columns": [
           "savings_accounts.status"
@@ -529,17 +1165,56 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT COUNT(*)\nFROM savings_accounts\nWHERE LOWER(status) = 'active'",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13374,
+        "output_tokens": 82,
+        "reasoning_tokens": 60
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0015937,
+          "latency_ms": 6007.735166000202,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:49:24.028030+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13377,
+            "output_tokens": 512,
+            "reasoning_tokens": 490
+          }
+        }
+      ],
       "category": "date",
+      "cohere_latency_ms": 0.0,
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "error_type": "SQLValidationError",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0015937,
+      "estimated_total_cost_usd": 0.0015937,
       "expected_result": [
         [
           "2020-06-09",
           "2025-06-09"
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 6007.735166000202,
       "id": "eval-026",
       "luna_low_baseline": {
         "category": "date",
@@ -554,7 +1229,12 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    COUNT(*) AS loan_count,\n    MIN(disbursed_date) AS earliest_disbursement_date,\n    MAX(disbursed_date) AS latest_disbursement_date\nFROM loans\nWHERE disbursed_date IS NOT NULL"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "ab3192e0cdcf7050af3c282a29131d7f067c827b378760837888d8d0caae8244",
       "question": "How many loan disbursement date range are there?",
+      "raw_output": "SELECT COUNT(*) AS loan_count\nFROM loans\nWHERE disbursed_date IS NOT",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:49:30.070674+00:00",
       "retrieval_labels": {
         "relevant_columns": [
           "loans.disbursed_date"
@@ -565,7 +1245,19 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql_valid": false,
+      "status": "malformed_output",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13377,
+        "output_tokens": 512,
+        "reasoning_tokens": 490
+      },
+      "validation_error": "generated SQL could not be parsed"
     },
     {
       "attempts": [],
@@ -3209,9 +3901,9 @@
     "used_by_request": {}
   },
   "stop_reason": {
-    "at": "2026-11-28T01:39:10.904001+00:00",
-    "condition": "retrieved_schema",
-    "query_id": "eval-115",
+    "at": "2026-11-28T01:49:30.178300+00:00",
+    "condition": "full_schema",
+    "query_id": "eval-026",
     "type": "malformed_model_output"
   }
 }

@@ -1,7 +1,7 @@
 {
   "condition": "retrieved_schema",
   "experiment_status": "stopped",
-  "initial_requests_used": 48,
+  "initial_requests_used": 66,
   "metadata": {
     "cohere_min_request_interval_seconds": 6.5,
     "cohort_count": 53,
@@ -16754,8 +16754,90 @@
       "validation_error": "generated SQL could not be parsed"
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0002405,
+          "latency_ms": 4438.176166033372,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:48:11.764479+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 1315,
+            "output_tokens": 218,
+            "reasoning_tokens": 157
+          }
+        }
+      ],
       "category": "multi_table",
+      "cohere_latency_ms": 612.2177499928512,
+      "cohere_request_started_at": "2026-11-28T01:48:11.050132+00:00",
+      "cohere_usage": {
+        "billed_input_tokens": 6861.0,
+        "billed_output_tokens": null,
+        "search_units": null
+      },
+      "completed_at": "2026-11-28T01:48:17.625226+00:00",
+      "context_record_count": 5,
+      "context_sha256": "bd89e4e6dbc2adccd5d843b7f1541df34d58812f4c535cef7fe2387a27e4f381",
+      "context_started_at": "2026-11-28T01:48:10.794213+00:00",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0002405,
+      "estimated_total_cost_usd": 0.0002405,
+      "execution_accuracy": false,
+      "execution_latency_ms": 1314.505874994211,
+      "execution_rows": [
+        [
+          1,
+          364503
+        ],
+        [
+          2,
+          363915
+        ],
+        [
+          3,
+          363592
+        ],
+        [
+          4,
+          363046
+        ],
+        [
+          5,
+          363780
+        ],
+        [
+          6,
+          363201
+        ],
+        [
+          7,
+          363824
+        ],
+        [
+          8,
+          363546
+        ],
+        [
+          9,
+          363808
+        ],
+        [
+          10,
+          363526
+        ],
+        [
+          11,
+          363259
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Abu Dhabi",
@@ -16802,6 +16884,8 @@
           363046
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 4438.176166033372,
       "id": "eval-116",
       "luna_low_baseline": {
         "category": "multi_table",
@@ -16816,7 +16900,13 @@
         "retrieval_latency_ms": 33.26129197375849,
         "sql": "SELECT\n    cities.district_id,\n    COUNT(*) AS client_count\nFROM clients\nJOIN cities\n    ON clients.city_id = cities.id\nGROUP BY cities.district_id\nORDER BY cities.district_id"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "0a3f4940d14c8b2db7b3525e76709fbf82be2bd6677f7dc96b93344bbee76866",
       "question": "How many clients by district through their city are there?",
+      "raw_output": "SELECT d.id AS district_id, COUNT(c.id) AS client_count\nFROM clients AS c\nJOIN cities AS ci ON c.city_id = ci.id\nJOIN districts AS d ON ci.district_id = d.id\nGROUP BY d.id\nORDER BY d.id;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:48:16.238689+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "cities.district_id",
@@ -16836,11 +16926,300 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 223.08483300730586,
+      "retrieved_records": [
+        {
+          "columns": [
+            {
+              "name": "id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "type",
+              "type": "TEXT"
+            },
+            {
+              "name": "name",
+              "type": "TEXT"
+            },
+            {
+              "name": "registration_date",
+              "type": "DATE"
+            },
+            {
+              "name": "economic_activity_id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "branch_id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "city_id",
+              "type": "BIGINT"
+            }
+          ],
+          "description": "The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys.",
+          "id": "table:clients",
+          "kind": "table",
+          "searchable_text": "table clients The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys. id BIGINT type TEXT name TEXT registration_date DATE economic_activity_id BIGINT branch_id BIGINT city_id BIGINT",
+          "table": "clients"
+        },
+        {
+          "cardinality": "many_to_one",
+          "confidence": 0.99,
+          "evidence": [
+            "matching_id_semantics",
+            "source_relationship_note",
+            "full_postgresql_validation",
+            "manual_semantic_review"
+          ],
+          "from": {
+            "column": "city_id",
+            "table": "clients"
+          },
+          "id": "clients.city_id__cities.id",
+          "join_predicate": "clients.city_id = cities.id",
+          "kind": "relationship",
+          "provenance": {
+            "cardinality": "many_to_one",
+            "confidence": 0.99,
+            "evidence": [
+              "matching_id_semantics",
+              "source_relationship_note",
+              "full_postgresql_validation",
+              "manual_semantic_review"
+            ],
+            "from": {
+              "column": "city_id",
+              "table": "clients"
+            },
+            "id": "clients.city_id__cities.id",
+            "semantic_review": "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+            "status": "validated",
+            "to": {
+              "column": "id",
+              "table": "cities"
+            }
+          },
+          "searchable_text": "clients.city_id__cities.id clients city_id cities id many_to_one clients.city_id = cities.id matching_id_semantics source_relationship_note full_postgresql_validation manual_semantic_review validated Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+          "status": "validated",
+          "target_filter": null,
+          "to": {
+            "column": "id",
+            "table": "cities"
+          }
+        },
+        {
+          "cardinality": "many_to_one",
+          "confidence": 0.99,
+          "evidence": [
+            "matching_id_semantics",
+            "source_relationship_note",
+            "full_postgresql_validation",
+            "manual_semantic_review"
+          ],
+          "from": {
+            "column": "district_id",
+            "table": "cities"
+          },
+          "id": "cities.district_id__districts.id",
+          "join_predicate": "cities.district_id = districts.id",
+          "kind": "relationship",
+          "provenance": {
+            "cardinality": "many_to_one",
+            "confidence": 0.99,
+            "evidence": [
+              "matching_id_semantics",
+              "source_relationship_note",
+              "full_postgresql_validation",
+              "manual_semantic_review"
+            ],
+            "from": {
+              "column": "district_id",
+              "table": "cities"
+            },
+            "id": "cities.district_id__districts.id",
+            "semantic_review": "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+            "status": "validated",
+            "to": {
+              "column": "id",
+              "table": "districts"
+            }
+          },
+          "searchable_text": "cities.district_id__districts.id cities district_id districts id many_to_one cities.district_id = districts.id matching_id_semantics source_relationship_note full_postgresql_validation manual_semantic_review validated Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+          "status": "validated",
+          "target_filter": null,
+          "to": {
+            "column": "id",
+            "table": "districts"
+          }
+        },
+        {
+          "columns": [
+            {
+              "name": "id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "name",
+              "type": "TEXT"
+            },
+            {
+              "name": "district_id",
+              "type": "BIGINT"
+            }
+          ],
+          "description": "The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys.",
+          "id": "table:cities",
+          "kind": "table",
+          "searchable_text": "table cities The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys. id BIGINT name TEXT district_id BIGINT",
+          "table": "cities"
+        },
+        {
+          "cardinality": "many_to_one",
+          "confidence": 0.99,
+          "evidence": [
+            "matching_id_semantics",
+            "source_relationship_note",
+            "full_postgresql_validation",
+            "manual_semantic_review"
+          ],
+          "from": {
+            "column": "region_id",
+            "table": "districts"
+          },
+          "id": "districts.region_id__regions.id",
+          "join_predicate": "districts.region_id = regions.id",
+          "kind": "relationship",
+          "provenance": {
+            "cardinality": "many_to_one",
+            "confidence": 0.99,
+            "evidence": [
+              "matching_id_semantics",
+              "source_relationship_note",
+              "full_postgresql_validation",
+              "manual_semantic_review"
+            ],
+            "from": {
+              "column": "region_id",
+              "table": "districts"
+            },
+            "id": "districts.region_id__regions.id",
+            "semantic_review": "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+            "status": "validated",
+            "to": {
+              "column": "id",
+              "table": "regions"
+            }
+          },
+          "searchable_text": "districts.region_id__regions.id districts region_id regions id many_to_one districts.region_id = regions.id matching_id_semantics source_relationship_note full_postgresql_validation manual_semantic_review validated Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+          "status": "validated",
+          "target_filter": null,
+          "to": {
+            "column": "id",
+            "table": "regions"
+          }
+        }
+      ],
+      "retry_preclaimed": false,
+      "sql": "SELECT d.id AS district_id, COUNT(c.id) AS client_count\nFROM clients AS c\nJOIN cities AS ci ON c.city_id = ci.id\nJOIN districts AS d ON ci.district_id = d.id\nGROUP BY d.id\nORDER BY d.id",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 1315,
+        "output_tokens": 218,
+        "reasoning_tokens": 157
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.00019460000000000001,
+          "latency_ms": 3275.5213340278715,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:48:18.631768+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 1171,
+            "output_tokens": 155,
+            "reasoning_tokens": 112
+          }
+        }
+      ],
       "category": "multi_table",
+      "cohere_latency_ms": 783.285082958173,
+      "cohere_request_started_at": "2026-11-28T01:48:17.740205+00:00",
+      "cohere_usage": {
+        "billed_input_tokens": 5942.0,
+        "billed_output_tokens": null,
+        "search_units": null
+      },
+      "completed_at": "2026-11-28T01:48:22.528514+00:00",
+      "context_record_count": 5,
+      "context_sha256": "bf0ac9d44587fe1f195ca964adb3f36703ca400d7f239df5a068f940c6bc307d",
+      "context_started_at": "2026-11-28T01:48:17.679503+00:00",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.00019460000000000001,
+      "estimated_total_cost_usd": 0.00019460000000000001,
+      "execution_accuracy": false,
+      "execution_latency_ms": 493.7181670102291,
+      "execution_rows": [
+        [
+          1,
+          364503
+        ],
+        [
+          2,
+          363915
+        ],
+        [
+          3,
+          363592
+        ],
+        [
+          4,
+          363046
+        ],
+        [
+          5,
+          363780
+        ],
+        [
+          6,
+          363201
+        ],
+        [
+          7,
+          363824
+        ],
+        [
+          8,
+          363546
+        ],
+        [
+          9,
+          363808
+        ],
+        [
+          10,
+          363526
+        ],
+        [
+          11,
+          363259
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Abu Dhabi",
@@ -16887,6 +17266,8 @@
           363046
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3275.5213340278715,
       "id": "eval-117",
       "luna_low_baseline": {
         "category": "multi_table",
@@ -16901,7 +17282,13 @@
         "retrieval_latency_ms": 29.67370901023969,
         "sql": "SELECT\n    cities.district_id,\n    COUNT(*) AS client_count\nFROM clients\nJOIN cities\n    ON clients.city_id = cities.id\nGROUP BY cities.district_id\nORDER BY cities.district_id"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "6b2aca0e63aa6092eba14f12ee7a1a5d449e54c21aacace71b1cb6897a017139",
       "question": "Count the clients by district through their city in the dataset.",
+      "raw_output": "SELECT\n    cities.district_id,\n    COUNT(*) AS client_count\nFROM clients\nJOIN cities\n    ON clients.city_id = cities.id\nGROUP BY cities.district_id;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:48:21.943072+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "cities.district_id",
@@ -16921,11 +17308,284 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 17.30637502623722,
+      "retrieved_records": [
+        {
+          "cardinality": "many_to_one",
+          "confidence": 0.99,
+          "evidence": [
+            "matching_id_semantics",
+            "source_relationship_note",
+            "full_postgresql_validation",
+            "manual_semantic_review"
+          ],
+          "from": {
+            "column": "city_id",
+            "table": "clients"
+          },
+          "id": "clients.city_id__cities.id",
+          "join_predicate": "clients.city_id = cities.id",
+          "kind": "relationship",
+          "provenance": {
+            "cardinality": "many_to_one",
+            "confidence": 0.99,
+            "evidence": [
+              "matching_id_semantics",
+              "source_relationship_note",
+              "full_postgresql_validation",
+              "manual_semantic_review"
+            ],
+            "from": {
+              "column": "city_id",
+              "table": "clients"
+            },
+            "id": "clients.city_id__cities.id",
+            "semantic_review": "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+            "status": "validated",
+            "to": {
+              "column": "id",
+              "table": "cities"
+            }
+          },
+          "searchable_text": "clients.city_id__cities.id clients city_id cities id many_to_one clients.city_id = cities.id matching_id_semantics source_relationship_note full_postgresql_validation manual_semantic_review validated Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+          "status": "validated",
+          "target_filter": null,
+          "to": {
+            "column": "id",
+            "table": "cities"
+          }
+        },
+        {
+          "columns": [
+            {
+              "name": "id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "type",
+              "type": "TEXT"
+            },
+            {
+              "name": "name",
+              "type": "TEXT"
+            },
+            {
+              "name": "registration_date",
+              "type": "DATE"
+            },
+            {
+              "name": "economic_activity_id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "branch_id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "city_id",
+              "type": "BIGINT"
+            }
+          ],
+          "description": "The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys.",
+          "id": "table:clients",
+          "kind": "table",
+          "searchable_text": "table clients The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys. id BIGINT type TEXT name TEXT registration_date DATE economic_activity_id BIGINT branch_id BIGINT city_id BIGINT",
+          "table": "clients"
+        },
+        {
+          "cardinality": "many_to_one",
+          "confidence": 0.99,
+          "evidence": [
+            "matching_id_semantics",
+            "source_relationship_note",
+            "full_postgresql_validation",
+            "manual_semantic_review"
+          ],
+          "from": {
+            "column": "district_id",
+            "table": "cities"
+          },
+          "id": "cities.district_id__districts.id",
+          "join_predicate": "cities.district_id = districts.id",
+          "kind": "relationship",
+          "provenance": {
+            "cardinality": "many_to_one",
+            "confidence": 0.99,
+            "evidence": [
+              "matching_id_semantics",
+              "source_relationship_note",
+              "full_postgresql_validation",
+              "manual_semantic_review"
+            ],
+            "from": {
+              "column": "district_id",
+              "table": "cities"
+            },
+            "id": "cities.district_id__districts.id",
+            "semantic_review": "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+            "status": "validated",
+            "to": {
+              "column": "id",
+              "table": "districts"
+            }
+          },
+          "searchable_text": "cities.district_id__districts.id cities district_id districts id many_to_one cities.district_id = districts.id matching_id_semantics source_relationship_note full_postgresql_validation manual_semantic_review validated Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+          "status": "validated",
+          "target_filter": null,
+          "to": {
+            "column": "id",
+            "table": "districts"
+          }
+        },
+        {
+          "columns": [
+            {
+              "name": "id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "name",
+              "type": "TEXT"
+            },
+            {
+              "name": "district_id",
+              "type": "BIGINT"
+            }
+          ],
+          "description": "The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys.",
+          "id": "table:cities",
+          "kind": "table",
+          "searchable_text": "table cities The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys. id BIGINT name TEXT district_id BIGINT",
+          "table": "cities"
+        },
+        {
+          "columns": [
+            {
+              "name": "id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "client_id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "latitude",
+              "type": "NUMERIC"
+            },
+            {
+              "name": "longitude",
+              "type": "NUMERIC"
+            },
+            {
+              "name": "recorded_at",
+              "type": "TIMESTAMP"
+            }
+          ],
+          "description": "The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys.",
+          "id": "table:client_locations",
+          "kind": "table",
+          "searchable_text": "table client_locations The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys. id BIGINT client_id BIGINT latitude NUMERIC longitude NUMERIC recorded_at TIMESTAMP",
+          "table": "client_locations"
+        }
+      ],
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    cities.district_id,\n    COUNT(*) AS client_count\nFROM clients\nJOIN cities\n    ON clients.city_id = cities.id\nGROUP BY cities.district_id",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 1171,
+        "output_tokens": 155,
+        "reasoning_tokens": 112
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0002487,
+          "latency_ms": 4548.693708027713,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:48:25.024486+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 1172,
+            "output_tokens": 263,
+            "reasoning_tokens": 197
+          }
+        }
+      ],
       "category": "multi_table",
+      "cohere_latency_ms": 629.5341670047492,
+      "cohere_request_started_at": "2026-11-28T01:48:24.245243+00:00",
+      "cohere_usage": {
+        "billed_input_tokens": 6059.0,
+        "billed_output_tokens": null,
+        "search_units": null
+      },
+      "completed_at": "2026-11-28T01:48:30.694655+00:00",
+      "context_record_count": 5,
+      "context_sha256": "18dd2c11b03c0fb1bc964848847e9c8243768caa7254971a0d4d50c51714e71d",
+      "context_started_at": "2026-11-28T01:48:22.599001+00:00",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0002487,
+      "estimated_total_cost_usd": 0.0002487,
+      "execution_accuracy": false,
+      "execution_latency_ms": 963.2650839630514,
+      "execution_rows": [
+        [
+          1,
+          364503
+        ],
+        [
+          2,
+          363915
+        ],
+        [
+          3,
+          363592
+        ],
+        [
+          4,
+          363046
+        ],
+        [
+          5,
+          363780
+        ],
+        [
+          6,
+          363201
+        ],
+        [
+          7,
+          363824
+        ],
+        [
+          8,
+          363546
+        ],
+        [
+          9,
+          363808
+        ],
+        [
+          10,
+          363526
+        ],
+        [
+          11,
+          363259
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Abu Dhabi",
@@ -16972,6 +17632,8 @@
           363046
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 4548.693708027713,
       "id": "eval-118",
       "luna_low_baseline": {
         "category": "multi_table",
@@ -16986,7 +17648,13 @@
         "retrieval_latency_ms": 29.725958011113107,
         "sql": "SELECT\n  cities.district_id,\n  COUNT(clients.id) AS total_clients\nFROM clients\nJOIN cities ON clients.city_id = cities.id\nGROUP BY cities.district_id\nORDER BY cities.district_id"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "e2724e29f2809e62a8d2f747b229b0cccace10405958ca59da5e976d7da4903d",
       "question": "What is the total number of clients by district through their city?",
+      "raw_output": "SELECT\n    d.id AS district_id,\n    COUNT(*) AS total_clients\nFROM clients AS c\nJOIN cities AS ci\n    ON c.city_id = ci.id\nJOIN districts AS d\n    ON ci.district_id = d.id\nGROUP BY d.id\nORDER BY d.id;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:48:29.612312+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "cities.district_id",
@@ -17006,11 +17674,284 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 11.301124992314726,
+      "retrieved_records": [
+        {
+          "columns": [
+            {
+              "name": "id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "type",
+              "type": "TEXT"
+            },
+            {
+              "name": "name",
+              "type": "TEXT"
+            },
+            {
+              "name": "registration_date",
+              "type": "DATE"
+            },
+            {
+              "name": "economic_activity_id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "branch_id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "city_id",
+              "type": "BIGINT"
+            }
+          ],
+          "description": "The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys.",
+          "id": "table:clients",
+          "kind": "table",
+          "searchable_text": "table clients The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys. id BIGINT type TEXT name TEXT registration_date DATE economic_activity_id BIGINT branch_id BIGINT city_id BIGINT",
+          "table": "clients"
+        },
+        {
+          "cardinality": "many_to_one",
+          "confidence": 0.99,
+          "evidence": [
+            "matching_id_semantics",
+            "source_relationship_note",
+            "full_postgresql_validation",
+            "manual_semantic_review"
+          ],
+          "from": {
+            "column": "city_id",
+            "table": "clients"
+          },
+          "id": "clients.city_id__cities.id",
+          "join_predicate": "clients.city_id = cities.id",
+          "kind": "relationship",
+          "provenance": {
+            "cardinality": "many_to_one",
+            "confidence": 0.99,
+            "evidence": [
+              "matching_id_semantics",
+              "source_relationship_note",
+              "full_postgresql_validation",
+              "manual_semantic_review"
+            ],
+            "from": {
+              "column": "city_id",
+              "table": "clients"
+            },
+            "id": "clients.city_id__cities.id",
+            "semantic_review": "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+            "status": "validated",
+            "to": {
+              "column": "id",
+              "table": "cities"
+            }
+          },
+          "searchable_text": "clients.city_id__cities.id clients city_id cities id many_to_one clients.city_id = cities.id matching_id_semantics source_relationship_note full_postgresql_validation manual_semantic_review validated Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+          "status": "validated",
+          "target_filter": null,
+          "to": {
+            "column": "id",
+            "table": "cities"
+          }
+        },
+        {
+          "cardinality": "many_to_one",
+          "confidence": 0.99,
+          "evidence": [
+            "matching_id_semantics",
+            "source_relationship_note",
+            "full_postgresql_validation",
+            "manual_semantic_review"
+          ],
+          "from": {
+            "column": "district_id",
+            "table": "cities"
+          },
+          "id": "cities.district_id__districts.id",
+          "join_predicate": "cities.district_id = districts.id",
+          "kind": "relationship",
+          "provenance": {
+            "cardinality": "many_to_one",
+            "confidence": 0.99,
+            "evidence": [
+              "matching_id_semantics",
+              "source_relationship_note",
+              "full_postgresql_validation",
+              "manual_semantic_review"
+            ],
+            "from": {
+              "column": "district_id",
+              "table": "cities"
+            },
+            "id": "cities.district_id__districts.id",
+            "semantic_review": "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+            "status": "validated",
+            "to": {
+              "column": "id",
+              "table": "districts"
+            }
+          },
+          "searchable_text": "cities.district_id__districts.id cities district_id districts id many_to_one cities.district_id = districts.id matching_id_semantics source_relationship_note full_postgresql_validation manual_semantic_review validated Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+          "status": "validated",
+          "target_filter": null,
+          "to": {
+            "column": "id",
+            "table": "districts"
+          }
+        },
+        {
+          "columns": [
+            {
+              "name": "id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "name",
+              "type": "TEXT"
+            },
+            {
+              "name": "district_id",
+              "type": "BIGINT"
+            }
+          ],
+          "description": "The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys.",
+          "id": "table:cities",
+          "kind": "table",
+          "searchable_text": "table cities The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys. id BIGINT name TEXT district_id BIGINT",
+          "table": "cities"
+        },
+        {
+          "columns": [
+            {
+              "name": "id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "client_id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "latitude",
+              "type": "NUMERIC"
+            },
+            {
+              "name": "longitude",
+              "type": "NUMERIC"
+            },
+            {
+              "name": "recorded_at",
+              "type": "TIMESTAMP"
+            }
+          ],
+          "description": "The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys.",
+          "id": "table:client_locations",
+          "kind": "table",
+          "searchable_text": "table client_locations The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys. id BIGINT client_id BIGINT latitude NUMERIC longitude NUMERIC recorded_at TIMESTAMP",
+          "table": "client_locations"
+        }
+      ],
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    d.id AS district_id,\n    COUNT(*) AS total_clients\nFROM clients AS c\nJOIN cities AS ci\n    ON c.city_id = ci.id\nJOIN districts AS d\n    ON ci.district_id = d.id\nGROUP BY d.id\nORDER BY d.id",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 1172,
+        "output_tokens": 263,
+        "reasoning_tokens": 197
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.00019910000000000001,
+          "latency_ms": 3195.7379169762135,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:48:31.455557+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 1171,
+            "output_tokens": 164,
+            "reasoning_tokens": 100
+          }
+        }
+      ],
       "category": "multi_table",
+      "cohere_latency_ms": 532.5011250097305,
+      "cohere_request_started_at": "2026-11-28T01:48:30.811526+00:00",
+      "cohere_usage": {
+        "billed_input_tokens": 6039.0,
+        "billed_output_tokens": null,
+        "search_units": null
+      },
+      "completed_at": "2026-11-28T01:48:35.771406+00:00",
+      "context_record_count": 5,
+      "context_sha256": "18dd2c11b03c0fb1bc964848847e9c8243768caa7254971a0d4d50c51714e71d",
+      "context_started_at": "2026-11-28T01:48:30.759840+00:00",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.00019910000000000001,
+      "estimated_total_cost_usd": 0.00019910000000000001,
+      "execution_accuracy": false,
+      "execution_latency_ms": 973.806332971435,
+      "execution_rows": [
+        [
+          1,
+          364503
+        ],
+        [
+          2,
+          363915
+        ],
+        [
+          3,
+          363592
+        ],
+        [
+          4,
+          363046
+        ],
+        [
+          5,
+          363780
+        ],
+        [
+          6,
+          363201
+        ],
+        [
+          7,
+          363824
+        ],
+        [
+          8,
+          363546
+        ],
+        [
+          9,
+          363808
+        ],
+        [
+          10,
+          363526
+        ],
+        [
+          11,
+          363259
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Abu Dhabi",
@@ -17057,6 +17998,8 @@
           363046
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3195.7379169762135,
       "id": "eval-119",
       "luna_low_baseline": {
         "category": "multi_table",
@@ -17071,7 +18014,13 @@
         "retrieval_latency_ms": 31.213166017550975,
         "sql": "SELECT\n    cities.district_id,\n    COUNT(*) AS client_count\nFROM clients\nJOIN cities\n    ON clients.city_id = cities.id\nGROUP BY cities.district_id"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "c92ad8268c777423b2b870aa77f5cf040d66c740355a9705ee1d0591a114931d",
       "question": "Show me the count of clients by district through their city.",
+      "raw_output": "SELECT\n    d.id AS district_id,\n    COUNT(c.id) AS client_count\nFROM clients AS c\nJOIN cities AS ci ON c.city_id = ci.id\nJOIN districts AS d ON ci.district_id = d.id\nGROUP BY d.id\nORDER BY d.id;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:48:34.686843+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "cities.district_id",
@@ -17091,11 +18040,295 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 11.092750006355345,
+      "retrieved_records": [
+        {
+          "columns": [
+            {
+              "name": "id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "type",
+              "type": "TEXT"
+            },
+            {
+              "name": "name",
+              "type": "TEXT"
+            },
+            {
+              "name": "registration_date",
+              "type": "DATE"
+            },
+            {
+              "name": "economic_activity_id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "branch_id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "city_id",
+              "type": "BIGINT"
+            }
+          ],
+          "description": "The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys.",
+          "id": "table:clients",
+          "kind": "table",
+          "searchable_text": "table clients The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys. id BIGINT type TEXT name TEXT registration_date DATE economic_activity_id BIGINT branch_id BIGINT city_id BIGINT",
+          "table": "clients"
+        },
+        {
+          "cardinality": "many_to_one",
+          "confidence": 0.99,
+          "evidence": [
+            "matching_id_semantics",
+            "source_relationship_note",
+            "full_postgresql_validation",
+            "manual_semantic_review"
+          ],
+          "from": {
+            "column": "city_id",
+            "table": "clients"
+          },
+          "id": "clients.city_id__cities.id",
+          "join_predicate": "clients.city_id = cities.id",
+          "kind": "relationship",
+          "provenance": {
+            "cardinality": "many_to_one",
+            "confidence": 0.99,
+            "evidence": [
+              "matching_id_semantics",
+              "source_relationship_note",
+              "full_postgresql_validation",
+              "manual_semantic_review"
+            ],
+            "from": {
+              "column": "city_id",
+              "table": "clients"
+            },
+            "id": "clients.city_id__cities.id",
+            "semantic_review": "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+            "status": "validated",
+            "to": {
+              "column": "id",
+              "table": "cities"
+            }
+          },
+          "searchable_text": "clients.city_id__cities.id clients city_id cities id many_to_one clients.city_id = cities.id matching_id_semantics source_relationship_note full_postgresql_validation manual_semantic_review validated Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+          "status": "validated",
+          "target_filter": null,
+          "to": {
+            "column": "id",
+            "table": "cities"
+          }
+        },
+        {
+          "cardinality": "many_to_one",
+          "confidence": 0.99,
+          "evidence": [
+            "matching_id_semantics",
+            "source_relationship_note",
+            "full_postgresql_validation",
+            "manual_semantic_review"
+          ],
+          "from": {
+            "column": "district_id",
+            "table": "cities"
+          },
+          "id": "cities.district_id__districts.id",
+          "join_predicate": "cities.district_id = districts.id",
+          "kind": "relationship",
+          "provenance": {
+            "cardinality": "many_to_one",
+            "confidence": 0.99,
+            "evidence": [
+              "matching_id_semantics",
+              "source_relationship_note",
+              "full_postgresql_validation",
+              "manual_semantic_review"
+            ],
+            "from": {
+              "column": "district_id",
+              "table": "cities"
+            },
+            "id": "cities.district_id__districts.id",
+            "semantic_review": "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+            "status": "validated",
+            "to": {
+              "column": "id",
+              "table": "districts"
+            }
+          },
+          "searchable_text": "cities.district_id__districts.id cities district_id districts id many_to_one cities.district_id = districts.id matching_id_semantics source_relationship_note full_postgresql_validation manual_semantic_review validated Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+          "status": "validated",
+          "target_filter": null,
+          "to": {
+            "column": "id",
+            "table": "districts"
+          }
+        },
+        {
+          "columns": [
+            {
+              "name": "id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "name",
+              "type": "TEXT"
+            },
+            {
+              "name": "district_id",
+              "type": "BIGINT"
+            }
+          ],
+          "description": "The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys.",
+          "id": "table:cities",
+          "kind": "table",
+          "searchable_text": "table cities The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys. id BIGINT name TEXT district_id BIGINT",
+          "table": "cities"
+        },
+        {
+          "columns": [
+            {
+              "name": "id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "client_id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "latitude",
+              "type": "NUMERIC"
+            },
+            {
+              "name": "longitude",
+              "type": "NUMERIC"
+            },
+            {
+              "name": "recorded_at",
+              "type": "TIMESTAMP"
+            }
+          ],
+          "description": "The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys.",
+          "id": "table:client_locations",
+          "kind": "table",
+          "searchable_text": "table client_locations The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys. id BIGINT client_id BIGINT latitude NUMERIC longitude NUMERIC recorded_at TIMESTAMP",
+          "table": "client_locations"
+        }
+      ],
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    d.id AS district_id,\n    COUNT(c.id) AS client_count\nFROM clients AS c\nJOIN cities AS ci ON c.city_id = ci.id\nJOIN districts AS d ON ci.district_id = d.id\nGROUP BY d.id\nORDER BY d.id",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 1171,
+        "output_tokens": 164,
+        "reasoning_tokens": 100
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.00019669999999999998,
+          "latency_ms": 3536.054541997146,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:48:38.148833+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 1132,
+            "output_tokens": 167,
+            "reasoning_tokens": 86
+          }
+        }
+      ],
       "category": "multi_table",
+      "cohere_latency_ms": 687.6939589856192,
+      "cohere_request_started_at": "2026-11-28T01:48:37.316340+00:00",
+      "cohere_usage": {
+        "billed_input_tokens": 6226.0,
+        "billed_output_tokens": null,
+        "search_units": null
+      },
+      "completed_at": "2026-11-28T01:48:42.899599+00:00",
+      "context_record_count": 5,
+      "context_sha256": "3171e7ccfbe50190b485736f1919f5c852cba62a388453d8ccbff4a5a1b8ad2e",
+      "context_started_at": "2026-11-28T01:48:35.849293+00:00",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.00019669999999999998,
+      "estimated_total_cost_usd": 0.00019669999999999998,
+      "execution_accuracy": false,
+      "execution_latency_ms": 1057.7768750372343,
+      "execution_rows": [
+        [
+          1,
+          "Abu Dhabi",
+          364503
+        ],
+        [
+          5,
+          "Ajman",
+          363780
+        ],
+        [
+          2,
+          "Al Ain",
+          363915
+        ],
+        [
+          9,
+          "Alexandria",
+          363808
+        ],
+        [
+          8,
+          "Cairo",
+          363546
+        ],
+        [
+          7,
+          "Doha",
+          363824
+        ],
+        [
+          3,
+          "Dubai",
+          363592
+        ],
+        [
+          10,
+          "Giza",
+          363526
+        ],
+        [
+          11,
+          "Mumbai",
+          363259
+        ],
+        [
+          6,
+          "Ras Al Khaimah",
+          363201
+        ],
+        [
+          4,
+          "Sharjah",
+          363046
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Abu Dhabi",
@@ -17142,6 +18375,8 @@
           363046
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3536.054541997146,
       "id": "eval-120",
       "luna_low_baseline": {
         "category": "multi_table",
@@ -17156,7 +18391,13 @@
         "retrieval_latency_ms": 33.3297909819521,
         "sql": "SELECT d.name AS district, COUNT(clients.id) AS client_count\nFROM clients\nJOIN cities AS c ON clients.city_id = c.id\nJOIN districts AS d ON c.district_id = d.id\nGROUP BY d.id, d.name"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "637232d1d6718f57bd8467945b4f4305682b40f32bfaf7911ceef2c5048f1895",
       "question": "Give the number of clients by district through their city.",
+      "raw_output": "SELECT\n    d.id AS district_id,\n    d.name AS district_name,\n    COUNT(c.id) AS client_count\nFROM clients AS c\nJOIN cities AS ci\n    ON c.city_id = ci.id\nJOIN districts AS d\n    ON ci.district_id = d.id\nGROUP BY d.id, d.name\nORDER BY d.name, d.id;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:48:41.720614+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "cities.district_id",
@@ -17176,7 +18417,190 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 10.796958988066763,
+      "retrieved_records": [
+        {
+          "columns": [
+            {
+              "name": "id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "type",
+              "type": "TEXT"
+            },
+            {
+              "name": "name",
+              "type": "TEXT"
+            },
+            {
+              "name": "registration_date",
+              "type": "DATE"
+            },
+            {
+              "name": "economic_activity_id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "branch_id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "city_id",
+              "type": "BIGINT"
+            }
+          ],
+          "description": "The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys.",
+          "id": "table:clients",
+          "kind": "table",
+          "searchable_text": "table clients The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys. id BIGINT type TEXT name TEXT registration_date DATE economic_activity_id BIGINT branch_id BIGINT city_id BIGINT",
+          "table": "clients"
+        },
+        {
+          "cardinality": "many_to_one",
+          "confidence": 0.99,
+          "evidence": [
+            "matching_id_semantics",
+            "source_relationship_note",
+            "full_postgresql_validation",
+            "manual_semantic_review"
+          ],
+          "from": {
+            "column": "city_id",
+            "table": "clients"
+          },
+          "id": "clients.city_id__cities.id",
+          "join_predicate": "clients.city_id = cities.id",
+          "kind": "relationship",
+          "provenance": {
+            "cardinality": "many_to_one",
+            "confidence": 0.99,
+            "evidence": [
+              "matching_id_semantics",
+              "source_relationship_note",
+              "full_postgresql_validation",
+              "manual_semantic_review"
+            ],
+            "from": {
+              "column": "city_id",
+              "table": "clients"
+            },
+            "id": "clients.city_id__cities.id",
+            "semantic_review": "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+            "status": "validated",
+            "to": {
+              "column": "id",
+              "table": "cities"
+            }
+          },
+          "searchable_text": "clients.city_id__cities.id clients city_id cities id many_to_one clients.city_id = cities.id matching_id_semantics source_relationship_note full_postgresql_validation manual_semantic_review validated Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+          "status": "validated",
+          "target_filter": null,
+          "to": {
+            "column": "id",
+            "table": "cities"
+          }
+        },
+        {
+          "cardinality": "many_to_one",
+          "confidence": 0.99,
+          "evidence": [
+            "matching_id_semantics",
+            "source_relationship_note",
+            "full_postgresql_validation",
+            "manual_semantic_review"
+          ],
+          "from": {
+            "column": "district_id",
+            "table": "cities"
+          },
+          "id": "cities.district_id__districts.id",
+          "join_predicate": "cities.district_id = districts.id",
+          "kind": "relationship",
+          "provenance": {
+            "cardinality": "many_to_one",
+            "confidence": 0.99,
+            "evidence": [
+              "matching_id_semantics",
+              "source_relationship_note",
+              "full_postgresql_validation",
+              "manual_semantic_review"
+            ],
+            "from": {
+              "column": "district_id",
+              "table": "cities"
+            },
+            "id": "cities.district_id__districts.id",
+            "semantic_review": "Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+            "status": "validated",
+            "to": {
+              "column": "id",
+              "table": "districts"
+            }
+          },
+          "searchable_text": "cities.district_id__districts.id cities district_id districts id many_to_one cities.district_id = districts.id matching_id_semantics source_relationship_note full_postgresql_validation manual_semantic_review validated Reviewed source relationship notes and endpoint roles against the full PostgreSQL profile; no conflicting domain meaning was identified.",
+          "status": "validated",
+          "target_filter": null,
+          "to": {
+            "column": "id",
+            "table": "districts"
+          }
+        },
+        {
+          "columns": [
+            {
+              "name": "id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "name",
+              "type": "TEXT"
+            },
+            {
+              "name": "district_id",
+              "type": "BIGINT"
+            }
+          ],
+          "description": "The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys.",
+          "id": "table:cities",
+          "kind": "table",
+          "searchable_text": "table cities The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys. id BIGINT name TEXT district_id BIGINT",
+          "table": "cities"
+        },
+        {
+          "columns": [
+            {
+              "name": "id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "name",
+              "type": "TEXT"
+            },
+            {
+              "name": "region_id",
+              "type": "BIGINT"
+            }
+          ],
+          "description": "The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys.",
+          "id": "table:districts",
+          "kind": "table",
+          "searchable_text": "table districts The SQL schema is `azraq-schema.sql`. It contains no declared primary keys or foreign keys. id BIGINT name TEXT region_id BIGINT",
+          "table": "districts"
+        }
+      ],
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    d.id AS district_id,\n    d.name AS district_name,\n    COUNT(c.id) AS client_count\nFROM clients AS c\nJOIN cities AS ci\n    ON c.city_id = ci.id\nJOIN districts AS d\n    ON ci.district_id = d.id\nGROUP BY d.id, d.name\nORDER BY d.name, d.id",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 1132,
+        "output_tokens": 167,
+        "reasoning_tokens": 86
+      }
     }
   ],
   "retry_budget": {
@@ -17186,9 +18610,9 @@
     "used_by_request": {}
   },
   "stop_reason": {
-    "at": "2026-11-28T01:39:10.904001+00:00",
-    "condition": "retrieved_schema",
-    "query_id": "eval-115",
+    "at": "2026-11-28T01:49:30.178300+00:00",
+    "condition": "full_schema",
+    "query_id": "eval-026",
     "type": "malformed_model_output"
   }
 }
