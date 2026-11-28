@@ -80,6 +80,7 @@ Verification after the final implementation changes: `uv run pytest -q` — 79 p
 - Usage across 48 returned model responses: 63,145 input tokens, 7,997 output tokens, 6,242 reasoning tokens, and 0 cached input tokens. Estimated OpenAI generation cost is $0.010313; Cohere trial cost is $0. From the 46 completed retrieved-schema queries, 46 SQL outputs were valid and executed, and 7 matched expected outputs. These partial counts are not a final cohort result.
 - The checkpoint records the first explicit continuation approval and both malformed query IDs. A second continuation requires further explicit approval per R003.3; no further requests have been made. No final comparative report can be produced until both conditions cover all 53 IDs.
 - The user approved a second checkpoint continuation on 2026-11-28, explicitly preserving and skipping both malformed outputs and all completed queries. Execution evidence will be appended after this continuation stops or completes.
+- The user approved a third checkpoint continuation on 2026-11-28, preserving and skipping all three malformed outputs and all completed queries. It is limited to the 40 remaining full-schema initial requests within the original budget.
 
 ## T006 approved checkpoint continuation 2 — stopped on a third malformed response
 
