@@ -43,6 +43,7 @@ ARTIFACT_NAMES = {
 STATEMENT_TIMEOUT_MS = 15000
 MAX_RESULT_ROWS = 1000
 MAX_OUTPUT_TOKENS = 512
+COHERE_MIN_INTERVAL_SECONDS = 6.5
 
 
 class ExperimentStopped(RuntimeError):
@@ -109,6 +110,7 @@ class FailureTriggeredExperiment:
         rerank_rate_card: RerankRateCard,
         approved_run: bool = False,
         resume: bool = False,
+        rerank_min_interval_seconds: float = COHERE_MIN_INTERVAL_SECONDS,
     ):
         if not approved_run:
             raise PermissionError("real Luna-high generation requires explicit --approve-run acknowledgement")
@@ -117,6 +119,8 @@ class FailureTriggeredExperiment:
             raise ValueError("OpenAI rate card model must match the configured generator")
         if rerank_rate_card.model != COHERE_RERANK_MODEL:
             raise ValueError("Cohere rate card model must match the configured reranker")
+        if rerank_min_interval_seconds < 0:
+            raise ValueError("Cohere request interval cannot be negative")
         self.root = root
         self.generator = generator
         self.retriever = retriever
@@ -126,6 +130,7 @@ class FailureTriggeredExperiment:
         self.rate_card = rate_card
         self.rerank_rate_card = rerank_rate_card
         self.resume = resume
+        self.rerank_min_interval_seconds = rerank_min_interval_seconds
         self.checkpoint_path = output_dir / CHECKPOINT_NAME
         self.artifact_paths = {
             condition: output_dir / ARTIFACT_NAMES[condition] for condition in CONDITIONS
@@ -195,6 +200,7 @@ class FailureTriggeredExperiment:
                 "retryable_errors": "OpenAI connection/timeouts; HTTP 408, 409, 429, and 5xx",
                 "malformed_output_retry": False,
             },
+            "cohere_min_request_interval_seconds": self.rerank_min_interval_seconds,
             "rate_card": {
                 "model": self.rate_card.model,
                 "input_usd_per_million": self.rate_card.input_usd_per_million,
@@ -329,6 +335,18 @@ class FailureTriggeredExperiment:
             started = time.perf_counter()
             candidates = self.retriever.search(item["question"], "hybrid", top_k=20, candidate_k=20)
             retrieval_latency_ms = (time.perf_counter() - started) * 1000
+            previous_starts = [
+                datetime.fromisoformat(other["cohere_request_started_at"])
+                for other in self.state["conditions"]["retrieved_schema"].values()
+                if other is not row and other.get("cohere_request_started_at")
+            ]
+            if previous_starts:
+                elapsed = (datetime.now(timezone.utc) - max(previous_starts)).total_seconds()
+                wait_seconds = self.rerank_min_interval_seconds - elapsed
+                if wait_seconds > 0:
+                    time.sleep(wait_seconds)
+            row["cohere_request_started_at"] = _now()
+            self._save()
             rerank_started = time.perf_counter()
             retrieved = self.reranker.rerank(item["question"], candidates, top_k=5)
             rerank_latency_ms = (time.perf_counter() - rerank_started) * 1000

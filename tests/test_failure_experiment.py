@@ -94,7 +94,8 @@ class FakeConnection:
         return False
 
 
-def make_experiment(output_dir, *, generator=None, retriever=None, reranker=None, resume=False):
+def make_experiment(output_dir, *, generator=None, retriever=None, reranker=None, resume=False,
+                   rerank_min_interval_seconds=0.0):
     return FailureTriggeredExperiment(
         root=ROOT,
         generator=generator or FakeGenerator(),
@@ -113,6 +114,7 @@ def make_experiment(output_dir, *, generator=None, retriever=None, reranker=None
         ),
         approved_run=True,
         resume=resume,
+        rerank_min_interval_seconds=rerank_min_interval_seconds,
     )
 
 
@@ -184,6 +186,18 @@ class FailureTriggeredExperimentTests(unittest.TestCase):
             generator = _build_experiment_generator()
         factory.assert_called_once_with(max_retries=0)
         self.assertEqual(generator.model, "gpt-6-luna")
+
+    def test_cohere_requests_are_spaced_for_trial_quota(self):
+        experiment = make_experiment(self.output_dir, rerank_min_interval_seconds=6.5)
+        first, second = experiment.cohort[:2]
+        first_row = experiment.state["conditions"]["retrieved_schema"][first["id"]]
+        second_row = experiment.state["conditions"]["retrieved_schema"][second["id"]]
+        with patch("triage_sql.failure_experiment.time.sleep") as sleep:
+            experiment._get_context("retrieved_schema", first["id"], first_row, first)
+            experiment._get_context("retrieved_schema", second["id"], second_row, second)
+        sleep.assert_called_once()
+        self.assertGreater(sleep.call_args.args[0], 0)
+        self.assertLessEqual(sleep.call_args.args[0], 6.5)
 
     def test_malformed_sql_is_checkpointed_and_stops_without_a_new_generation(self):
         generator = FakeGenerator([Generation("not SQL", 5, 1.0, "gpt-6-luna", output_tokens=2)])
