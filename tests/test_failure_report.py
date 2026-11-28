@@ -58,6 +58,19 @@ class FailureReportTests(unittest.TestCase):
         self.assertEqual(full["improvement"]["additional_correct_queries"], 0)
         self.assertIsNone(full["cost_per_additional_success_usd"])
 
+    def test_malformed_stopped_query_is_counted_as_a_failed_first_pass_result(self):
+        row = self.artifacts["retrieved_schema"]["queries"][0]
+        row.update({
+            "status": "malformed_output", "sql_valid": False,
+            "execution_success": False, "result_correct": False,
+            "error_type": "SQLValidationError",
+        })
+        report = build_failure_report(self.cohort, self.pairs, self.artifacts)
+        retrieved = report["conditions"]["retrieved_schema"]["luna_high"]
+        self.assertEqual(retrieved["sql_valid"]["count"], 52)
+        self.assertEqual(retrieved["result_correct"]["total"], 53)
+        self.assertEqual(retrieved["failures_by_error_type"]["SQLValidationError"], 1)
+
     def test_rejects_artifact_with_wrong_ids_or_extra_condition(self):
         self.artifacts["retrieved_schema"]["queries"].pop()
         with self.assertRaisesRegex(ValueError, "exactly the 53"):

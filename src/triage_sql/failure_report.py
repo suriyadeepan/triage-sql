@@ -38,7 +38,7 @@ def build_failure_report(cohort: list[dict], baseline_pairs: dict[str, dict], ar
         if set(rows) != set(ids):
             raise ValueError(f"{condition} artifact must contain exactly the 53 cohort IDs")
         high_rows = [rows[query_id] for query_id in ids]
-        if any(row.get("status") != "completed" for row in high_rows):
+        if any(row.get("status") not in {"completed", "malformed_output"} for row in high_rows):
             raise ValueError(f"{condition} artifact contains an unfinished query")
         low_rows = [baseline_pairs[query_id][condition] for query_id in ids]
         low_correct = sum(bool(row.get("execution_accuracy")) for row in low_rows)

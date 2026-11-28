@@ -54,6 +54,10 @@ def main() -> int:
         "--resume", action="store_true",
         help="resume an interrupted checkpoint without repeating completed or ambiguous requests",
     )
+    parser.add_argument(
+        "--continue-after-stop", action="store_true",
+        help="after explicit approval, continue a malformed-output stop while preserving and skipping that query",
+    )
     parser.add_argument("--pricing-checked-at", help="date on which both official token rate cards were checked (YYYY-MM-DD)")
     parser.add_argument("--openai-input-rate", type=float, help="USD per million standard OpenAI input tokens")
     parser.add_argument("--openai-cached-input-rate", type=float, help="USD per million cached OpenAI input tokens")
@@ -80,6 +84,8 @@ def main() -> int:
         parser.error("output directory already contains experiment state; use --resume after explicit approval")
     if args.resume and not (ROOT / OUTPUT_DIR / "checkpoint.json").exists():
         parser.error("--resume requires an existing checkpoint")
+    if args.continue_after_stop and not args.resume:
+        parser.error("--continue-after-stop requires --resume")
     if not args.pricing_checked_at:
         parser.error("--pricing-checked-at is required for an approved experiment run")
     try:
@@ -128,6 +134,7 @@ def main() -> int:
             ),
             approved_run=True,
             resume=args.resume,
+            continue_after_stop=args.continue_after_stop,
         )
         state = experiment.run()
     except Exception as error:

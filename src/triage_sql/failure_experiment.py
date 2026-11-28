@@ -110,6 +110,7 @@ class FailureTriggeredExperiment:
         rerank_rate_card: RerankRateCard,
         approved_run: bool = False,
         resume: bool = False,
+        continue_after_stop: bool = False,
         rerank_min_interval_seconds: float = COHERE_MIN_INTERVAL_SECONDS,
     ):
         if not approved_run:
@@ -130,6 +131,9 @@ class FailureTriggeredExperiment:
         self.rate_card = rate_card
         self.rerank_rate_card = rerank_rate_card
         self.resume = resume
+        self.continue_after_stop = continue_after_stop
+        if continue_after_stop and not resume:
+            raise ValueError("--continue-after-stop requires --resume")
         self.rerank_min_interval_seconds = rerank_min_interval_seconds
         self.checkpoint_path = output_dir / CHECKPOINT_NAME
         self.artifact_paths = {
@@ -162,6 +166,16 @@ class FailureTriggeredExperiment:
         self.full_context_hash = _canonical_hash(self.records)
         self.metadata = self._build_metadata()
         self.state = self._load_or_initialize()
+        self.continuation_skip = set()
+        self.continuation_stop_reason = None
+        if continue_after_stop:
+            self.continuation_stop_reason = self.state["stop_reason"]
+            for event in self.state.get("continuations", []):
+                self.continuation_skip.add((event["malformed_condition"], event["malformed_query_skipped"]))
+            self.continuation_skip.add((
+                self.continuation_stop_reason["condition"],
+                self.continuation_stop_reason["query_id"],
+            ))
 
     def _build_metadata(self) -> dict:
         return {
@@ -259,8 +273,25 @@ class FailureTriggeredExperiment:
                 raise ValueError("checkpoint configuration or frozen identities differ from this invocation")
             if state.get("status") == "completed":
                 raise ValueError("this one-time experiment is already complete; refusing to repeat it")
-            if state.get("status") == "stopped" and state.get("stop_reason") not in {"interrupted_before_request"}:
-                raise ValueError("stopped experiment requires a new explicit approval; refusing implicit continuation")
+            if state.get("status") == "stopped":
+                reason = state.get("stop_reason") or {}
+                malformed_matches = [
+                    condition for condition in CONDITIONS
+                    if reason.get("query_id") in state.get("conditions", {}).get(condition, {})
+                    and state["conditions"][condition][reason["query_id"]]["status"] == "malformed_output"
+                ]
+                if reason.get("condition") is None and len(malformed_matches) == 1:
+                    reason["condition"] = malformed_matches[0]
+                can_continue_malformed = (
+                    self.continue_after_stop
+                    and reason.get("type") == "malformed_model_output"
+                    and len(malformed_matches) == 1
+                    and reason.get("condition") == malformed_matches[0]
+                )
+                if not can_continue_malformed:
+                    raise ValueError(
+                        "stopped experiment requires an explicitly approved malformed-output continuation"
+                    )
             budget = RetryBudget.from_dict(state["retry_budget"])
             if (budget.per_request_limit, budget.total_limit) != (
                 MAX_RETRIES_PER_REQUEST, MAX_RETRIES_PER_EXPERIMENT
@@ -304,9 +335,13 @@ class FailureTriggeredExperiment:
             }
             _atomic_json(path, artifact)
 
-    def _set_stopped(self, reason: str, query_id: str | None = None) -> None:
+    def _set_stopped(
+        self, reason: str, query_id: str | None = None, condition: str | None = None
+    ) -> None:
         self.state["status"] = "stopped"
-        self.state["stop_reason"] = {"type": reason, "query_id": query_id, "at": _now()}
+        self.state["stop_reason"] = {
+            "type": reason, "condition": condition, "query_id": query_id, "at": _now()
+        }
         self._save()
 
     def _get_context(self, condition: str, query_id: str, row: dict, item: dict) -> list[dict]:
@@ -384,7 +419,7 @@ class FailureTriggeredExperiment:
                 row["validation_error"] = str(error)
                 row["error_type"] = "SQLValidationError"
                 self._save()
-                self._set_stopped("malformed_model_output", query_id)
+                self._set_stopped("malformed_model_output", query_id, condition)
                 raise ExperimentStopped(f"malformed Luna-high SQL for {query_id}; run stopped") from error
             row["sql_valid"] = True
             row["sql"] = sql_text
@@ -529,6 +564,15 @@ class FailureTriggeredExperiment:
 
     def run(self) -> dict:
         self._recover_ambiguous_attempts()
+        if self.continue_after_stop:
+            self.state.setdefault("continuations", []).append({
+                "approved": True,
+                "continued_at": _now(),
+                "prior_stop_reason": self.continuation_stop_reason,
+                "malformed_condition": self.continuation_stop_reason["condition"],
+                "malformed_query_skipped": self.continuation_stop_reason["query_id"],
+                "initial_requests_used_before_continuation": self.state["initial_requests_used"],
+            })
         self.state["status"] = "running"
         self.state["stop_reason"] = None
         self._save()
@@ -538,6 +582,8 @@ class FailureTriggeredExperiment:
                     query_id = item["id"]
                     row = self.state["conditions"][condition][query_id]
                     if row["status"] == "completed":
+                        continue
+                    if row["status"] == "malformed_output" and (condition, query_id) in self.continuation_skip:
                         continue
                     if row["status"] in {"malformed_output", "api_error", "ambiguous_attempt"}:
                         self._set_stopped("terminal_query_failure", query_id)
@@ -552,7 +598,7 @@ class FailureTriggeredExperiment:
                     break
         if self.state["status"] != "stopped":
             all_complete = all(
-                row["status"] == "completed"
+                row["status"] in {"completed", "malformed_output"}
                 for condition in CONDITIONS
                 for row in self.state["conditions"][condition].values()
             )
