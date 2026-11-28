@@ -21,6 +21,7 @@ htmlcov/
 .env
 
 # data
+data/index/
 data/raw/*
 !data/raw/azraq-schema.sql
 !data/raw/azraq-relationships.yaml
