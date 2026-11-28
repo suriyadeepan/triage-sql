@@ -1,0 +1,215 @@
+{
+  "cohort_count": 53,
+  "conditions": {
+    "full_schema": {
+      "baseline": {
+        "accuracy": 0.3584905660377358,
+        "correct": 19,
+        "cost": "unavailable",
+        "output_tokens": "unavailable",
+        "reasoning_tokens": "unavailable",
+        "total": 53
+      },
+      "luna_high": {
+        "category_breakdown": {
+          "aggregation": {
+            "execution_success": 15,
+            "failures": 10,
+            "queries": 15,
+            "result_correct": 5,
+            "sql_valid": 15
+          },
+          "date": {
+            "execution_success": 10,
+            "failures": 10,
+            "queries": 11,
+            "result_correct": 1,
+            "sql_valid": 10
+          },
+          "filter": {
+            "execution_success": 12,
+            "failures": 4,
+            "queries": 12,
+            "result_correct": 8,
+            "sql_valid": 12
+          },
+          "join": {
+            "execution_success": 7,
+            "failures": 5,
+            "queries": 7,
+            "result_correct": 2,
+            "sql_valid": 7
+          },
+          "multi_table": {
+            "execution_success": 7,
+            "failures": 8,
+            "queries": 8,
+            "result_correct": 0,
+            "sql_valid": 7
+          }
+        },
+        "cost_per_additional_success_usd": null,
+        "estimated_cost_usd": {
+          "cohere_rerank": 0.0,
+          "complete": true,
+          "generation": 0.0755601,
+          "generation_queries_priced": 53,
+          "queries_fully_priced": 53,
+          "rerank_queries_priced": 53,
+          "total": 0.0755601
+        },
+        "execution_success": {
+          "count": 51,
+          "rate": 0.9622641509433962,
+          "total": 53
+        },
+        "failures_by_error_type": {
+          "SQLValidationError": 2,
+          "result_mismatch": 35
+        },
+        "improvement": {
+          "additional_correct_queries": -3,
+          "percentage_points": -5.660377358490566
+        },
+        "latency_ms": {
+          "cohere_rerank_mean": 0.0,
+          "cohere_rerank_sum": 0.0,
+          "execution_mean": 1210.2537769561761,
+          "execution_queries": 51,
+          "execution_sum": 61722.94262476498,
+          "generation_mean": 3625.1786972444397,
+          "generation_queries": 53,
+          "generation_sum": 192134.47095395532,
+          "rerank_queries": 53,
+          "retrieval_mean": 0.0,
+          "retrieval_queries": 53,
+          "retrieval_sum": 0.0
+        },
+        "result_correct": {
+          "accuracy": 0.3018867924528302,
+          "count": 16,
+          "total": 53
+        },
+        "sql_valid": {
+          "count": 51,
+          "rate": 0.9622641509433962,
+          "total": 53
+        },
+        "tokens": {
+          "input": 708966,
+          "input_queries_with_usage": 53,
+          "output": 9327,
+          "output_queries_with_usage": 53,
+          "reasoning": 7002,
+          "reasoning_queries_with_usage": 53
+        }
+      }
+    },
+    "retrieved_schema": {
+      "baseline": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "cost": "unavailable",
+        "output_tokens": "unavailable",
+        "reasoning_tokens": "unavailable",
+        "total": 53
+      },
+      "luna_high": {
+        "category_breakdown": {
+          "aggregation": {
+            "execution_success": 15,
+            "failures": 14,
+            "queries": 15,
+            "result_correct": 1,
+            "sql_valid": 15
+          },
+          "date": {
+            "execution_success": 11,
+            "failures": 10,
+            "queries": 11,
+            "result_correct": 1,
+            "sql_valid": 11
+          },
+          "filter": {
+            "execution_success": 12,
+            "failures": 9,
+            "queries": 12,
+            "result_correct": 3,
+            "sql_valid": 12
+          },
+          "join": {
+            "execution_success": 7,
+            "failures": 5,
+            "queries": 7,
+            "result_correct": 2,
+            "sql_valid": 7
+          },
+          "multi_table": {
+            "execution_success": 6,
+            "failures": 8,
+            "queries": 8,
+            "result_correct": 0,
+            "sql_valid": 6
+          }
+        },
+        "cost_per_additional_success_usd": 0.0016275142857142858,
+        "estimated_cost_usd": {
+          "cohere_rerank": 0.0,
+          "complete": true,
+          "generation": 0.011392600000000001,
+          "generation_queries_priced": 53,
+          "queries_fully_priced": 53,
+          "rerank_queries_priced": 53,
+          "total": 0.011392600000000001
+        },
+        "execution_success": {
+          "count": 51,
+          "rate": 0.9622641509433962,
+          "total": 53
+        },
+        "failures_by_error_type": {
+          "SQLValidationError": 2,
+          "result_mismatch": 44
+        },
+        "improvement": {
+          "additional_correct_queries": 7,
+          "percentage_points": 13.20754716981132
+        },
+        "latency_ms": {
+          "cohere_rerank_mean": 651.2354889825285,
+          "cohere_rerank_sum": 34515.48091607401,
+          "execution_mean": 1303.8343062953038,
+          "execution_queries": 51,
+          "execution_sum": 66495.54962106049,
+          "generation_mean": 3379.2244716556215,
+          "generation_queries": 53,
+          "generation_sum": 179098.89699774794,
+          "rerank_queries": 53,
+          "retrieval_mean": 26.300596610317886,
+          "retrieval_queries": 53,
+          "retrieval_sum": 1393.931620346848
+        },
+        "result_correct": {
+          "accuracy": 0.1320754716981132,
+          "count": 7,
+          "total": 53
+        },
+        "sql_valid": {
+          "count": 51,
+          "rate": 0.9622641509433962,
+          "total": 53
+        },
+        "tokens": {
+          "input": 69106,
+          "input_queries_with_usage": 53,
+          "output": 8964,
+          "output_queries_with_usage": 53,
+          "reasoning": 6894,
+          "reasoning_queries_with_usage": 53
+        }
+      }
+    }
+  },
+  "cost_acceptability": "left to the reader; no threshold was specified",
+  "recommendation": "Consider Luna-high only as failure-triggered escalation if the reader judges its measured cost per additional successful query acceptable."
+}

@@ -1,7 +1,7 @@
 {
   "condition": "full_schema",
-  "experiment_status": "stopped",
-  "initial_requests_used": 101,
+  "experiment_status": "completed",
+  "initial_requests_used": 106,
   "metadata": {
     "cohere_min_request_interval_seconds": 6.5,
     "cohort_count": 53,
@@ -6835,8 +6835,94 @@
       "validation_error": "generated SQL must contain exactly one SELECT query"
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0014522,
+          "latency_ms": 4604.886125016492,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:56:35.953739+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13377,
+            "output_tokens": 229,
+            "reasoning_tokens": 151
+          }
+        }
+      ],
       "category": "multi_table",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:56:42.153179+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0014522,
+      "estimated_total_cost_usd": 0.0014522,
+      "execution_accuracy": false,
+      "execution_latency_ms": 1468.2991249719635,
+      "execution_rows": [
+        [
+          1,
+          "Abu Dhabi",
+          364503
+        ],
+        [
+          5,
+          "Ajman",
+          363780
+        ],
+        [
+          2,
+          "Al Ain",
+          363915
+        ],
+        [
+          9,
+          "Alexandria",
+          363808
+        ],
+        [
+          8,
+          "Cairo",
+          363546
+        ],
+        [
+          7,
+          "Doha",
+          363824
+        ],
+        [
+          3,
+          "Dubai",
+          363592
+        ],
+        [
+          10,
+          "Giza",
+          363526
+        ],
+        [
+          11,
+          "Mumbai",
+          363259
+        ],
+        [
+          6,
+          "Ras Al Khaimah",
+          363201
+        ],
+        [
+          4,
+          "Sharjah",
+          363046
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Abu Dhabi",
@@ -6883,6 +6969,8 @@
           363046
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 4604.886125016492,
       "id": "eval-116",
       "luna_low_baseline": {
         "category": "multi_table",
@@ -6897,7 +6985,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    d.name AS district_name,\n    COUNT(c.id) AS client_count\nFROM clients AS c\nJOIN cities AS ci\n    ON c.city_id = ci.id\nJOIN districts AS d\n    ON ci.district_id = d.id\nGROUP BY d.id, d.name\nORDER BY d.name"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "814bac9ff3993c21971ffe6a7e46d6ffa15a8d0a5b0a9bae99c2b1d7ecdd4fac",
       "question": "How many clients by district through their city are there?",
+      "raw_output": "SELECT\n    d.id AS district_id,\n    d.name AS district_name,\n    COUNT(c.id) AS client_count\nFROM clients AS c\nJOIN cities AS ci\n    ON c.city_id = ci.id\nJOIN districts AS d\n    ON ci.district_id = d.id\nGROUP BY d.id, d.name\nORDER BY d.name;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:56:40.598134+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "cities.district_id",
@@ -6917,11 +7011,109 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    d.id AS district_id,\n    d.name AS district_name,\n    COUNT(c.id) AS client_count\nFROM clients AS c\nJOIN cities AS ci\n    ON c.city_id = ci.id\nJOIN districts AS d\n    ON ci.district_id = d.id\nGROUP BY d.id, d.name\nORDER BY d.name",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13377,
+        "output_tokens": 229,
+        "reasoning_tokens": 151
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0014338000000000003,
+          "latency_ms": 3529.626083036419,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:56:42.281443+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13378,
+            "output_tokens": 192,
+            "reasoning_tokens": 109
+          }
+        }
+      ],
       "category": "multi_table",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:56:47.665974+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0014338000000000003,
+      "estimated_total_cost_usd": 0.0014338000000000003,
+      "execution_accuracy": false,
+      "execution_latency_ms": 1685.4622079990804,
+      "execution_rows": [
+        [
+          1,
+          "Abu Dhabi",
+          364503
+        ],
+        [
+          5,
+          "Ajman",
+          363780
+        ],
+        [
+          2,
+          "Al Ain",
+          363915
+        ],
+        [
+          9,
+          "Alexandria",
+          363808
+        ],
+        [
+          8,
+          "Cairo",
+          363546
+        ],
+        [
+          7,
+          "Doha",
+          363824
+        ],
+        [
+          3,
+          "Dubai",
+          363592
+        ],
+        [
+          10,
+          "Giza",
+          363526
+        ],
+        [
+          11,
+          "Mumbai",
+          363259
+        ],
+        [
+          6,
+          "Ras Al Khaimah",
+          363201
+        ],
+        [
+          4,
+          "Sharjah",
+          363046
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Abu Dhabi",
@@ -6968,6 +7160,8 @@
           363046
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3529.626083036419,
       "id": "eval-117",
       "luna_low_baseline": {
         "category": "multi_table",
@@ -6982,7 +7176,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    d.name AS district_name,\n    COUNT(c.id) AS client_count\nFROM districts AS d\nJOIN cities AS ci\n    ON ci.district_id = d.id\nLEFT JOIN clients AS c\n    ON c.city_id = ci.id\nGROUP BY d.id, d.name\nORDER BY d.name"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "c4e896e1317e50bff968ec450b54c0d396b9b03df430497aafb85f208c4e43da",
       "question": "Count the clients by district through their city in the dataset.",
+      "raw_output": "SELECT\n    d.id AS district_id,\n    d.name AS district_name,\n    COUNT(c.id) AS client_count\nFROM districts AS d\nLEFT JOIN cities AS ci\n    ON ci.district_id = d.id\nLEFT JOIN clients AS c\n    ON c.city_id = ci.id\nGROUP BY d.id, d.name\nORDER BY d.name, d.id;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:56:45.852021+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "cities.district_id",
@@ -7002,11 +7202,109 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    d.id AS district_id,\n    d.name AS district_name,\n    COUNT(c.id) AS client_count\nFROM districts AS d\nLEFT JOIN cities AS ci\n    ON ci.district_id = d.id\nLEFT JOIN clients AS c\n    ON c.city_id = ci.id\nGROUP BY d.id, d.name\nORDER BY d.name, d.id",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13378,
+        "output_tokens": 192,
+        "reasoning_tokens": 109
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0014764,
+          "latency_ms": 5366.658916987944,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:56:47.785306+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13379,
+            "output_tokens": 277,
+            "reasoning_tokens": 194
+          }
+        }
+      ],
       "category": "multi_table",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:56:54.994989+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0014764,
+      "estimated_total_cost_usd": 0.0014764,
+      "execution_accuracy": false,
+      "execution_latency_ms": 1682.616040983703,
+      "execution_rows": [
+        [
+          1,
+          "Abu Dhabi",
+          364503
+        ],
+        [
+          5,
+          "Ajman",
+          363780
+        ],
+        [
+          2,
+          "Al Ain",
+          363915
+        ],
+        [
+          9,
+          "Alexandria",
+          363808
+        ],
+        [
+          8,
+          "Cairo",
+          363546
+        ],
+        [
+          7,
+          "Doha",
+          363824
+        ],
+        [
+          3,
+          "Dubai",
+          363592
+        ],
+        [
+          10,
+          "Giza",
+          363526
+        ],
+        [
+          11,
+          "Mumbai",
+          363259
+        ],
+        [
+          6,
+          "Ras Al Khaimah",
+          363201
+        ],
+        [
+          4,
+          "Sharjah",
+          363046
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Abu Dhabi",
@@ -7053,6 +7351,8 @@
           363046
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 5366.658916987944,
       "id": "eval-118",
       "luna_low_baseline": {
         "category": "multi_table",
@@ -7067,7 +7367,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    d.id AS district_id,\n    d.name AS district_name,\n    COUNT(c.id) AS client_count\nFROM districts AS d\nLEFT JOIN cities AS city\n    ON city.district_id = d.id\nLEFT JOIN clients AS c\n    ON c.city_id = city.id\nGROUP BY d.id, d.name\nORDER BY d.name"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "0f3302a4d131552317b23391a84ac2c540fd7c6bb0f4bda6f6e5c5cd8c2704e7",
       "question": "What is the total number of clients by district through their city?",
+      "raw_output": "SELECT\n    d.id AS district_id,\n    d.name AS district_name,\n    COUNT(cl.id) AS client_count\nFROM districts AS d\nLEFT JOIN cities AS ci\n    ON ci.district_id = d.id\nLEFT JOIN clients AS cl\n    ON cl.city_id = ci.id\nGROUP BY d.id, d.name\nORDER BY d.name, d.id;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:56:53.192894+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "cities.district_id",
@@ -7087,11 +7393,109 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    d.id AS district_id,\n    d.name AS district_name,\n    COUNT(cl.id) AS client_count\nFROM districts AS d\nLEFT JOIN cities AS ci\n    ON ci.district_id = d.id\nLEFT JOIN clients AS cl\n    ON cl.city_id = ci.id\nGROUP BY d.id, d.name\nORDER BY d.name, d.id",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13379,
+        "output_tokens": 277,
+        "reasoning_tokens": 194
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0014543000000000002,
+          "latency_ms": 3808.200500032399,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:56:55.124938+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13378,
+            "output_tokens": 233,
+            "reasoning_tokens": 153
+          }
+        }
+      ],
       "category": "multi_table",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:57:00.827600+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0014543000000000002,
+      "estimated_total_cost_usd": 0.0014543000000000002,
+      "execution_accuracy": false,
+      "execution_latency_ms": 1713.866667007096,
+      "execution_rows": [
+        [
+          1,
+          "Abu Dhabi",
+          364503
+        ],
+        [
+          5,
+          "Ajman",
+          363780
+        ],
+        [
+          2,
+          "Al Ain",
+          363915
+        ],
+        [
+          9,
+          "Alexandria",
+          363808
+        ],
+        [
+          8,
+          "Cairo",
+          363546
+        ],
+        [
+          7,
+          "Doha",
+          363824
+        ],
+        [
+          3,
+          "Dubai",
+          363592
+        ],
+        [
+          10,
+          "Giza",
+          363526
+        ],
+        [
+          11,
+          "Mumbai",
+          363259
+        ],
+        [
+          6,
+          "Ras Al Khaimah",
+          363201
+        ],
+        [
+          4,
+          "Sharjah",
+          363046
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Abu Dhabi",
@@ -7138,6 +7542,8 @@
           363046
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3808.200500032399,
       "id": "eval-119",
       "luna_low_baseline": {
         "category": "multi_table",
@@ -7152,7 +7558,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    d.name AS district_name,\n    COUNT(c.id) AS client_count\nFROM districts AS d\nLEFT JOIN cities AS ct\n    ON ct.district_id = d.id\nLEFT JOIN clients AS c\n    ON c.city_id = ct.id\nGROUP BY d.id, d.name\nORDER BY d.name"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "a5b36adecceba03eb68ae79b2425a13773886e56cbb5461fc5343f6174c9a5d1",
       "question": "Show me the count of clients by district through their city.",
+      "raw_output": "SELECT\n    d.id AS district_id,\n    d.name AS district_name,\n    COUNT(c.id) AS client_count\nFROM districts AS d\nLEFT JOIN cities AS ci\n    ON ci.district_id = d.id\nLEFT JOIN clients AS c\n    ON c.city_id = ci.id\nGROUP BY d.id, d.name\nORDER BY d.name;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:56:58.975153+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "cities.district_id",
@@ -7172,11 +7584,109 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    d.id AS district_id,\n    d.name AS district_name,\n    COUNT(c.id) AS client_count\nFROM districts AS d\nLEFT JOIN cities AS ci\n    ON ci.district_id = d.id\nLEFT JOIN clients AS c\n    ON c.city_id = ci.id\nGROUP BY d.id, d.name\nORDER BY d.name",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13378,
+        "output_tokens": 233,
+        "reasoning_tokens": 153
+      }
     },
     {
-      "attempts": [],
+      "attempts": [
+        {
+          "attempt_number": 1,
+          "estimated_cost_usd": 0.0014362,
+          "latency_ms": 3588.7327500386164,
+          "model": "gpt-6-luna",
+          "reasoning_effort": "high",
+          "request_kind": "initial",
+          "started_at": "2026-11-28T01:57:00.963053+00:00",
+          "status": "succeeded",
+          "usage": {
+            "cached_input_tokens": 0,
+            "input_tokens": 13377,
+            "output_tokens": 197,
+            "reasoning_tokens": 117
+          }
+        }
+      ],
       "category": "multi_table",
+      "cohere_latency_ms": 0.0,
+      "completed_at": "2026-11-28T01:57:06.429484+00:00",
+      "context_record_count": 53,
+      "context_sha256": "fe5b98cf456516c560c414ef09d9004594ec4db0188769581266a84b834c97ba",
+      "context_status": "ready",
+      "estimated_cohere_cost_usd": 0.0,
+      "estimated_generation_cost_usd": 0.0014362,
+      "estimated_total_cost_usd": 0.0014362,
+      "execution_accuracy": false,
+      "execution_latency_ms": 1711.4082080079243,
+      "execution_rows": [
+        [
+          1,
+          "Abu Dhabi",
+          364503
+        ],
+        [
+          5,
+          "Ajman",
+          363780
+        ],
+        [
+          2,
+          "Al Ain",
+          363915
+        ],
+        [
+          9,
+          "Alexandria",
+          363808
+        ],
+        [
+          8,
+          "Cairo",
+          363546
+        ],
+        [
+          7,
+          "Doha",
+          363824
+        ],
+        [
+          3,
+          "Dubai",
+          363592
+        ],
+        [
+          10,
+          "Giza",
+          363526
+        ],
+        [
+          11,
+          "Mumbai",
+          363259
+        ],
+        [
+          6,
+          "Ras Al Khaimah",
+          363201
+        ],
+        [
+          4,
+          "Sharjah",
+          363046
+        ]
+      ],
+      "execution_status": "result_mismatch",
+      "execution_success": true,
       "expected_result": [
         [
           "Abu Dhabi",
@@ -7223,6 +7733,8 @@
           363046
         ]
       ],
+      "generation_cost_estimate_complete": true,
+      "generation_latency_ms": 3588.7327500386164,
       "id": "eval-120",
       "luna_low_baseline": {
         "category": "multi_table",
@@ -7237,7 +7749,13 @@
         "retrieval_latency_ms": 0.0,
         "sql": "SELECT\n    d.id AS district_id,\n    d.name AS district_name,\n    COUNT(c.id) AS client_count\nFROM districts AS d\nLEFT JOIN cities AS city\n    ON city.district_id = d.id\nLEFT JOIN clients AS c\n    ON c.city_id = city.id\nGROUP BY d.id, d.name\nORDER BY d.name"
       },
+      "model": "gpt-6-luna",
+      "prompt_sha256": "4b6dc178cf8f0ee52140ef2d6388adfe44635a9f571922646968d9398d60ae94",
       "question": "Give the number of clients by district through their city.",
+      "raw_output": "SELECT\n    d.id AS district_id,\n    d.name AS district_name,\n    COUNT(cl.id) AS client_count\nFROM districts AS d\nLEFT JOIN cities AS ci\n    ON ci.district_id = d.id\nLEFT JOIN clients AS cl\n    ON cl.city_id = ci.id\nGROUP BY d.id, d.name\nORDER BY d.name;",
+      "reasoning_effort": "high",
+      "response_received_at": "2026-11-28T01:57:04.592756+00:00",
+      "result_correct": false,
       "retrieval_labels": {
         "relevant_columns": [
           "cities.district_id",
@@ -7257,7 +7775,19 @@
         ],
         "unresolved_relationships": []
       },
-      "status": "not_started"
+      "retrieval_latency_ms": 0.0,
+      "retry_preclaimed": false,
+      "sql": "SELECT\n    d.id AS district_id,\n    d.name AS district_name,\n    COUNT(cl.id) AS client_count\nFROM districts AS d\nLEFT JOIN cities AS ci\n    ON ci.district_id = d.id\nLEFT JOIN clients AS cl\n    ON cl.city_id = ci.id\nGROUP BY d.id, d.name\nORDER BY d.name",
+      "sql_valid": true,
+      "status": "completed",
+      "total_cost_estimate_complete": true,
+      "unpriced_request_attempts": 0,
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 13377,
+        "output_tokens": 197,
+        "reasoning_tokens": 117
+      }
     }
   ],
   "retry_budget": {
@@ -7266,10 +7796,5 @@
     "total_used": 0,
     "used_by_request": {}
   },
-  "stop_reason": {
-    "at": "2026-11-28T01:54:25.579500+00:00",
-    "condition": "full_schema",
-    "query_id": "eval-115",
-    "type": "malformed_model_output"
-  }
+  "stop_reason": null
 }

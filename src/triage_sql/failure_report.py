@@ -12,6 +12,10 @@ def _rate(count: int, total: int) -> float | None:
     return count / total if total else None
 
 
+def _mean(total: int | float | None, count: int) -> float | None:
+    return total / count if total is not None and count else None
+
+
 def _sum_known(rows: list[dict], key: str) -> tuple[int | None, int]:
     values = [row[key] for row in rows if isinstance(row.get(key), (int, float))]
     return (sum(values), len(values)) if values else (None, 0)
@@ -92,9 +96,13 @@ def build_failure_report(cohort: list[dict], baseline_pairs: dict[str, dict], ar
                            "reasoning": sum(reasoning_values) if reasoning_values else None,
                            "reasoning_queries_with_usage": len(reasoning_values)},
                 "latency_ms": {"generation_sum": generation_latency, "generation_queries": generation_latency_queries,
+                               "generation_mean": _mean(generation_latency, generation_latency_queries),
                                "execution_sum": execution_latency, "execution_queries": execution_latency_queries,
+                               "execution_mean": _mean(execution_latency, execution_latency_queries),
                                "retrieval_sum": retrieval_latency, "retrieval_queries": retrieval_latency_queries,
-                               "cohere_rerank_sum": rerank_latency, "rerank_queries": rerank_latency_queries},
+                               "retrieval_mean": _mean(retrieval_latency, retrieval_latency_queries),
+                               "cohere_rerank_sum": rerank_latency, "rerank_queries": rerank_latency_queries,
+                               "cohere_rerank_mean": _mean(rerank_latency, rerank_latency_queries)},
                 "estimated_cost_usd": {"generation": generation_cost, "generation_queries_priced": priced_generation_queries,
                                        "cohere_rerank": cohere_cost, "rerank_queries_priced": priced_cohere_queries,
                                        "total": reported_total_cost,

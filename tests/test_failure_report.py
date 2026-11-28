@@ -43,6 +43,7 @@ class FailureReportTests(unittest.TestCase):
         self.assertEqual(retrieved["luna_high"]["result_correct"]["count"], 2)
         self.assertEqual(retrieved["luna_high"]["improvement"]["additional_correct_queries"], 2)
         self.assertAlmostEqual(retrieved["luna_high"]["cost_per_additional_success_usd"], 53 * 0.01 / 2)
+        self.assertEqual(retrieved["luna_high"]["latency_ms"]["generation_mean"], 100.0)
         self.assertEqual(full["baseline"]["correct"], 19)
         self.assertEqual(full["luna_high"]["improvement"]["additional_correct_queries"], 1)
         self.assertEqual(full["luna_high"]["tokens"]["input"], 530)

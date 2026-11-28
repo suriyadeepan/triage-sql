@@ -90,6 +90,23 @@ Verification after the final implementation changes: `uv run pytest -q` — 79 p
 - Partial metrics: retrieved schema 7/53 correct at estimated $0.0113926, a completed condition compared with Luna-low's 0/53. Full schema has 16 correct among 46 executed, two malformed, and five not started; its final 53-query result is incomplete. Estimated OpenAI costs so far are $0.0113926 retrieved and $0.0683072 full; trial Cohere cost is $0. Total across 101 model responses is 711,183 input, 17,163 output, and 13,172 reasoning tokens, with estimated OpenAI spend $0.0796998.
 - Full-schema output remains capped at 512 tokens for comparability; the malformed outputs exhausted that budget. No setting changes or correction calls were made. Five full-schema initial requests remain. TODO T006.6 requires explicit approval before another continuation.
 
+## T006 final results — experiment complete
+
+- On 2026-11-28 the user approved the final checkpoint continuation. It skipped all completed rows and the four recorded malformed condition/query outputs, then generated the remaining five full-schema cases. Final checkpoint status is `completed`: exactly 106 initial Luna-high requests, 0 retries, and 53 Cohere reranks. Each condition now has a recorded outcome for all 53 frozen IDs. No malformed response was regenerated and no SQL correction/follow-up generation occurred.
+- The final report at `data/evaluation/experiments/failure-sql-luna-high/comparison-report.json` reverified frozen baseline/cohort identities and compares each condition against its matching Luna-low result:
+
+| Condition | Luna-low correct | Luna-high correct | SQL valid / execution succeeded | Accuracy delta | Estimated total cost | Cost per additional correct query |
+|---|---:|---:|---:|---:|---:|---:|
+| Retrieved schema, candidate-k 20/top-k 5 | 0/53 | 7/53 (13.2%) | 51/53; 51/53 | +7 queries; +13.2 pp | $0.0113926 | $0.0016275 |
+| Full schema, 26 tables / 27 validated relationships | 19/53 (35.8%) | 16/53 (30.2%) | 51/53; 51/53 | -3 queries; -5.7 pp | $0.0755601 | Undefined; no net additional correct query |
+
+- Retrieved-schema token totals were 69,106 input, 8,964 output, and 6,894 reasoning. Mean generation, execution, retrieval, and Cohere latency were 3,379.2 ms, 1,303.8 ms, 26.3 ms, and 651.2 ms respectively (execution mean uses the 51 valid SQL statements).
+- Full-schema token totals were 708,966 input, 9,327 output, and 7,002 reasoning. Mean generation and execution latency were 3,625.2 ms and 1,210.3 ms (execution mean uses the 51 valid SQL statements). Retrieval and reranking time were zero for this condition.
+- Retrieved-schema failures: 2 `SQLValidationError` malformed outputs and 44 result mismatches; category counts are in the report. Full-schema failures: 2 `SQLValidationError` malformed outputs and 35 result mismatches; category counts are in the report. Four malformed outputs occurred across condition/query pairs: retrieved `eval-114`, retrieved `eval-115`, full `eval-026`, and full `eval-115`.
+- Estimated OpenAI total cost was $0.0869527 across both conditions at the recorded Standard rate card. Cohere trial reranking cost was $0. Historical Luna-low cost and output/reasoning token data remain unavailable. Cost acceptability is left to the reader; the measured retrieved-schema escalation gained seven correct results at about $0.00163 per additional correct result, while full schema cost more and reduced accuracy by three queries.
+- Final validation after the continuation-guard fix and latency-mean report update: `uv run pytest -q` — 82 passed, 7 environment-gated PostgreSQL tests skipped, 14 subtests passed; one existing Chroma deprecation warning. Focused `uv run pytest -q tests/test_failure_report.py` — 4 passed. The comparison report was generated only after both condition artifacts were complete.
+- FS-03 is converged: the approved 53-query/two-condition experiment ran within its limits, its outputs and failures are preserved separately, and the final comparison is recorded. No production routing or deployment was performed.
+
 ## T006 approved checkpoint continuation 2 — stopped on a third malformed response
 
 - After explicit approval, continuation 2 skipped all completed rows and the two prior malformed rows. It completed the retrieved-schema condition (51 SQL-valid, executed results; 2 malformed failures) and began full schema. It stopped on `eval-026`, which returned truncated SQL: `SELECT COUNT(*) AS loan_count\nFROM loans\nWHERE disbursed_date IS NOT` (13,377 input tokens, 512 output tokens, including 490 reasoning tokens).
