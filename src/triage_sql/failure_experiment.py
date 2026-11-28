@@ -282,11 +282,12 @@ class FailureTriggeredExperiment:
                 ]
                 if reason.get("condition") is None and len(malformed_matches) == 1:
                     reason["condition"] = malformed_matches[0]
+                stopped_condition = reason.get("condition")
                 can_continue_malformed = (
                     self.continue_after_stop
                     and reason.get("type") == "malformed_model_output"
-                    and len(malformed_matches) == 1
-                    and reason.get("condition") == malformed_matches[0]
+                    and stopped_condition in CONDITIONS
+                    and stopped_condition in malformed_matches
                 )
                 if not can_continue_malformed:
                     raise ValueError(

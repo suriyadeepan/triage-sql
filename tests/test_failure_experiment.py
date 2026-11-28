@@ -269,6 +269,13 @@ class FailureTriggeredExperimentTests(unittest.TestCase):
                         "error_type": "SQLValidationError",
                         "attempts": [{"request_kind": "initial", "status": "succeeded"}],
                     })
+                elif condition == "full_schema" and query_id == malformed_id:
+                    row.update({
+                        "status": "malformed_output", "raw_output": "SELECT broken",
+                        "validation_error": "generated SQL could not be parsed",
+                        "error_type": "SQLValidationError",
+                        "attempts": [{"request_kind": "initial", "status": "succeeded"}],
+                    })
                 elif condition == "full_schema" and query_id == pending_id:
                     row["status"] = "not_started"
                 else:
@@ -279,8 +286,13 @@ class FailureTriggeredExperimentTests(unittest.TestCase):
                     row["attempts"] = [{"request_kind": "initial", "status": "succeeded"}]
         experiment.state["initial_requests_used"] = 105
         experiment.state["status"] = "stopped"
+        experiment.state["continuations"] = [{
+            "approved": True, "malformed_condition": "retrieved_schema",
+            "malformed_query_skipped": malformed_id,
+        }]
         experiment.state["stop_reason"] = {
-            "type": "malformed_model_output", "query_id": malformed_id, "at": "2026-11-28T00:00:00+00:00"
+            "type": "malformed_model_output", "condition": "full_schema",
+            "query_id": malformed_id, "at": "2026-11-28T00:00:00+00:00"
         }
         experiment._save()
 
@@ -295,6 +307,7 @@ class FailureTriggeredExperimentTests(unittest.TestCase):
         self.assertEqual(resumed["initial_requests_used"], 106)
         self.assertEqual(resumed["status"], "completed")
         self.assertEqual(resumed["conditions"]["retrieved_schema"][malformed_id]["status"], "malformed_output")
+        self.assertEqual(resumed["conditions"]["full_schema"][malformed_id]["status"], "malformed_output")
         self.assertEqual(resumed["conditions"]["full_schema"][pending_id]["status"], "completed")
         self.assertEqual(resumed["continuations"][-1]["malformed_query_skipped"], malformed_id)
 
